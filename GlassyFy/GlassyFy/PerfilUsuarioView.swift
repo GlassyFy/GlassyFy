@@ -13,7 +13,7 @@ struct PerfilUsuarioView: View {
             
         
             HStack{
-            Text("")
+            Text("Hola")
             }
         }
     }
