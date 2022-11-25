@@ -12,7 +12,8 @@ struct GlassyFyApp: App {
     @StateObject private var vm: ViewModel = ViewModel()
     var body: some Scene {
         WindowGroup {
-            PerfilUsuarioView()
+            VistaEliminacionExperimento (experimentoCurrent: vm.experimentosArray[1])
+            //VistaPerfilUsuario()
                 .environmentObject(vm)
         }
     }

@@ -7,24 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29269DC2293117CF00A24F37 /* VistaEliminacion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29269DC1293117CF00A24F37 /* VistaEliminacion.swift */; };
+		29269DC4293117F400A24F37 /* VistaFilaHistoricoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29269DC3293117F400A24F37 /* VistaFilaHistoricoUsuario.swift */; };
+		29269DC62931188700A24F37 /* VistaHistoricoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29269DC52931188700A24F37 /* VistaHistoricoUsuario.swift */; };
+		29269DC829311B5700A24F37 /* VistaExperimentoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29269DC729311B5700A24F37 /* VistaExperimentoUsuario.swift */; };
+		29269DCA29311B8D00A24F37 /* VistaEdicionPerfil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29269DC929311B8D00A24F37 /* VistaEdicionPerfil.swift */; };
 		29DC4245291EC43D0067B0A8 /* GlassyFyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4244291EC43D0067B0A8 /* GlassyFyApp.swift */; };
-		29DC4247291EC43D0067B0A8 /* PerfilUsuarioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4246291EC43D0067B0A8 /* PerfilUsuarioView.swift */; };
 		29DC4249291EC43E0067B0A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29DC4248291EC43E0067B0A8 /* Assets.xcassets */; };
 		29DC424C291EC43E0067B0A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29DC424B291EC43E0067B0A8 /* Preview Assets.xcassets */; };
 		29DC4255291EC5100067B0A8 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4254291EC5100067B0A8 /* ViewModel.swift */; };
 		29DC4257291EC6BA0067B0A8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4256291EC6BA0067B0A8 /* CoreDataManager.swift */; };
 		29DC425A291EC90D0067B0A8 /* GestionGlassyFyModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4258291EC90D0067B0A8 /* GestionGlassyFyModel.xcdatamodeld */; };
+		29FAAB302927E38600E9D812 /* VistaPerfilUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FAAB2F2927E38600E9D812 /* VistaPerfilUsuario.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29269DC1293117CF00A24F37 /* VistaEliminacion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaEliminacion.swift; sourceTree = "<group>"; };
+		29269DC3293117F400A24F37 /* VistaFilaHistoricoUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaFilaHistoricoUsuario.swift; sourceTree = "<group>"; };
+		29269DC52931188700A24F37 /* VistaHistoricoUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaHistoricoUsuario.swift; sourceTree = "<group>"; };
+		29269DC729311B5700A24F37 /* VistaExperimentoUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaExperimentoUsuario.swift; sourceTree = "<group>"; };
+		29269DC929311B8D00A24F37 /* VistaEdicionPerfil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaEdicionPerfil.swift; sourceTree = "<group>"; };
 		29DC4241291EC43D0067B0A8 /* GlassyFy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlassyFy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29DC4244291EC43D0067B0A8 /* GlassyFyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassyFyApp.swift; sourceTree = "<group>"; };
-		29DC4246291EC43D0067B0A8 /* PerfilUsuarioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilUsuarioView.swift; sourceTree = "<group>"; };
 		29DC4248291EC43E0067B0A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29DC424B291EC43E0067B0A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		29DC4254291EC5100067B0A8 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		29DC4256291EC6BA0067B0A8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		29DC4259291EC90D0067B0A8 /* GestionGlassyFyModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GestionGlassyFyModel.xcdatamodel; sourceTree = "<group>"; };
+		29FAAB2F2927E38600E9D812 /* VistaPerfilUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaPerfilUsuario.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,11 +48,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29269DC0293115FE00A24F37 /* Usuario */ = {
+			isa = PBXGroup;
+			children = (
+				29FAAB2F2927E38600E9D812 /* VistaPerfilUsuario.swift */,
+				29269DC929311B8D00A24F37 /* VistaEdicionPerfil.swift */,
+				29269DC52931188700A24F37 /* VistaHistoricoUsuario.swift */,
+				29269DC3293117F400A24F37 /* VistaFilaHistoricoUsuario.swift */,
+				29269DC729311B5700A24F37 /* VistaExperimentoUsuario.swift */,
+				29269DC1293117CF00A24F37 /* VistaEliminacion.swift */,
+			);
+			path = Usuario;
+			sourceTree = "<group>";
+		};
 		29DC4238291EC43D0067B0A8 = {
 			isa = PBXGroup;
 			children = (
 				29DC4252291EC4690067B0A8 /* Model */,
 				29DC4253291EC4790067B0A8 /* ViewModel */,
+				29269DC0293115FE00A24F37 /* Usuario */,
 				29DC4243291EC43D0067B0A8 /* GlassyFy */,
 				29DC4242291EC43D0067B0A8 /* Products */,
 			);
@@ -60,7 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				29DC4244291EC43D0067B0A8 /* GlassyFyApp.swift */,
-				29DC4246291EC43D0067B0A8 /* PerfilUsuarioView.swift */,
 				29DC4248291EC43E0067B0A8 /* Assets.xcassets */,
 				29DC424A291EC43E0067B0A8 /* Preview Content */,
 			);
@@ -162,11 +185,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29269DC4293117F400A24F37 /* VistaFilaHistoricoUsuario.swift in Sources */,
+				29269DC829311B5700A24F37 /* VistaExperimentoUsuario.swift in Sources */,
+				29FAAB302927E38600E9D812 /* VistaPerfilUsuario.swift in Sources */,
 				29DC425A291EC90D0067B0A8 /* GestionGlassyFyModel.xcdatamodeld in Sources */,
-				29DC4247291EC43D0067B0A8 /* PerfilUsuarioView.swift in Sources */,
+				29269DC2293117CF00A24F37 /* VistaEliminacion.swift in Sources */,
+				29269DCA29311B8D00A24F37 /* VistaEdicionPerfil.swift in Sources */,
 				29DC4245291EC43D0067B0A8 /* GlassyFyApp.swift in Sources */,
 				29DC4257291EC6BA0067B0A8 /* CoreDataManager.swift in Sources */,
 				29DC4255291EC5100067B0A8 /* ViewModel.swift in Sources */,
+				29269DC62931188700A24F37 /* VistaHistoricoUsuario.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

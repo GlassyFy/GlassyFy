@@ -12,23 +12,28 @@ import UIKit
 class ViewModel: ObservableObject {
     let gestorCoreData = CoreDataManager.instance //singleton (1 sola instancia)
 
-    @Published var personasArray: [PersonaEntity] = []
-    @Published var mascotasArray: [MascotaEntity] = []
+    @Published var usuariosArray: [UsuarioEntity] = []
+    @Published var experimentosArray: [ExperimentoEntity] = []
     
     init(){
         cargarDatos()
-        //addPersona(nombre: "Lolita", foto: UIImage(systemName: "person")!)
-        //addPersona(nombre: "Cinthya", foto: UIImage(systemName: "person.fill")!)
+        //addUsuario(nombre: String, descripcion: String, telefono: String, email: String, contrasena: String, foto: UIImage(systemName: "person")!) //
+        //addExperimento(usuario: UsuarioEntity, nombre: String, descripcion: String, tipo: String, fechaToma: Date, fechaCreacion: Date,iR: Decimal, al: Decimal, ba: Decimal, ca: Decimal, mg: Decimal, k: Decimal)
+        //addUsuario(nombre: "usuario1", descripcion: "La descripción", telefono: "+34 123 456 789" , email: "Correo@dominio.com", contrasena: "usuario", foto: UIImage(systemName: "person")!)
+        //cargarDatos()
+        //addExperimento(usuario: usuariosArray[0], nombre: "Exp1", descripcion: "Descripción del experimento 1", tipo: "Tipo 1", fechaToma: Date.now, fechaCreacion: Date.now, iR: 1.1, al: 0.01, ba: 0.02, ca: 0.03, mg: 0.04, k: 0.05)
+        //addExperimento(usuario: usuariosArray[0], nombre: "Exp2", descripcion: "Descripción del experimento 2", tipo: "Tipo 2", fechaToma: Date.now, fechaCreacion: Date.now, iR: 1.1, al: 0.01, ba: 0.02, ca: 0.03, mg: 0.04, k: 0.05)
+        
     }
     
     func cargarDatos(){
-        personasArray.removeAll()
-        mascotasArray.removeAll()
-        let fetchPersonas = NSFetchRequest<PersonaEntity>(entityName: "PersonaEntity")
-        let fetchMascotas = NSFetchRequest<MascotaEntity>(entityName: "MascotaEntity")
+        usuariosArray.removeAll()
+        experimentosArray.removeAll()
+        let fetchUsuarios = NSFetchRequest<UsuarioEntity>(entityName: "UsuarioEntity")
+        let fetchExperimentos = NSFetchRequest<ExperimentoEntity>(entityName: "ExperimentoEntity")
         do{
-            self.personasArray = try gestorCoreData.contexto.fetch(fetchPersonas).sorted(){$0.nombre! < $1.nombre!}
-            self.mascotasArray = try gestorCoreData.contexto.fetch(fetchMascotas).sorted(){$0.nombre! < $1.nombre!}
+            self.usuariosArray = try gestorCoreData.contexto.fetch(fetchUsuarios).sorted(){$0.nombre! < $1.nombre!}
+            self.experimentosArray = try gestorCoreData.contexto.fetch(fetchExperimentos).sorted(){$0.nombre! < $1.nombre!}
         }catch let error{
             print("Error al cargar los datos: \(error)")
         }
@@ -39,31 +44,45 @@ class ViewModel: ObservableObject {
         cargarDatos()
     }
     
-    func addPersona(nombre: String, foto: UIImage){
-        let nuevaPersona = PersonaEntity(context: gestorCoreData.contexto)
-        nuevaPersona.nombre = nombre
-        nuevaPersona.foto = foto.pngData()
+    func addUsuario(nombre : String, descripcion: String, telefono : String, email: String, contrasena: String, foto: UIImage){
+        let nuevoUsuario = UsuarioEntity(context: gestorCoreData.contexto)
+        nuevoUsuario.nombre = nombre
+        nuevoUsuario.descripcion = descripcion
+        nuevoUsuario.telefono = telefono
+        nuevoUsuario.email = email
+        nuevoUsuario.contrasena = contrasena
+        nuevoUsuario.foto = foto.pngData()
         guardarDatos()
     }
 
-    func deletePersona(indexSet: IndexSet){
+    func deleteUsuario(indexSet: IndexSet){
         for index in indexSet{  //podrÌa eliminar varios a lavez
-            gestorCoreData.contexto.delete(personasArray[index])
+            gestorCoreData.contexto.delete(usuariosArray[index])
         }
         guardarDatos()
     }
     
-    func addMascota(persona: PersonaEntity, nombre: String, edad: Int16, raza: String){
-        let nuevaMascota = MascotaEntity(context: gestorCoreData.contexto)
-        nuevaMascota.nombre = nombre
-        nuevaMascota.edad = edad
-        nuevaMascota.raza = raza
-        nuevaMascota.personasRelation = persona   // atributo de relaciÛn
+    func addExperimento(usuario: UsuarioEntity, nombre: String, descripcion: String, tipo: String, fechaToma: Date, fechaCreacion: Date,
+        iR: NSDecimalNumber, al: NSDecimalNumber, ba: NSDecimalNumber, ca: NSDecimalNumber, mg: NSDecimalNumber, k: NSDecimalNumber){
+        let nuevoExperimento = ExperimentoEntity(context: gestorCoreData.contexto)
+        nuevoExperimento.nombre = nombre
+        nuevoExperimento.descripcion = descripcion
+        nuevoExperimento.tipo = tipo
+        nuevoExperimento.fechaToma = fechaToma
+        nuevoExperimento.fechaCreacion = fechaCreacion
+        nuevoExperimento.iR = iR
+        nuevoExperimento.aluminio = al
+        nuevoExperimento.bario = ba
+        nuevoExperimento.calcio = ca
+        nuevoExperimento.magnesio = mg
+        nuevoExperimento.potasio = k
+        nuevoExperimento.usuariosRelation = usuario
+        //nuevaMascota.personasRelation = persona   // atributo de relaciÛn
         guardarDatos()
     }
     
-    func deleteMascota(mascota: MascotaEntity){
-        gestorCoreData.contexto.delete(mascota)
+    func deleteExperimento(experimento: ExperimentoEntity){
+        gestorCoreData.contexto.delete(experimento)
         guardarDatos()
     }
 }
