@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		299AC2A0293120CF00A84CA2 /* Historico.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AC29F293120CF00A84CA2 /* Historico.swift */; };
+		299AC2A22931358600A84CA2 /* HistoricoSeleccionadoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AC2A12931358600A84CA2 /* HistoricoSeleccionadoView.swift */; };
 		29DC4245291EC43D0067B0A8 /* GlassyFyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4244291EC43D0067B0A8 /* GlassyFyApp.swift */; };
 		29DC4247291EC43D0067B0A8 /* PerfilUsuarioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4246291EC43D0067B0A8 /* PerfilUsuarioView.swift */; };
 		29DC4249291EC43E0067B0A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29DC4248291EC43E0067B0A8 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		299AC29F293120CF00A84CA2 /* Historico.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Historico.swift; sourceTree = "<group>"; };
+		299AC2A12931358600A84CA2 /* HistoricoSeleccionadoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricoSeleccionadoView.swift; sourceTree = "<group>"; };
 		29DC4241291EC43D0067B0A8 /* GlassyFy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlassyFy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29DC4244291EC43D0067B0A8 /* GlassyFyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassyFyApp.swift; sourceTree = "<group>"; };
 		29DC4246291EC43D0067B0A8 /* PerfilUsuarioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilUsuarioView.swift; sourceTree = "<group>"; };
@@ -43,6 +45,7 @@
 		29DC4238291EC43D0067B0A8 = {
 			isa = PBXGroup;
 			children = (
+				299AC2A12931358600A84CA2 /* HistoricoSeleccionadoView.swift */,
 				29DC4252291EC4690067B0A8 /* Model */,
 				29DC4253291EC4790067B0A8 /* ViewModel */,
 				29DC4243291EC43D0067B0A8 /* GlassyFy */,
@@ -167,6 +170,7 @@
 			files = (
 				299AC2A0293120CF00A84CA2 /* Historico.swift in Sources */,
 				29DC425A291EC90D0067B0A8 /* GestionGlassyFyModel.xcdatamodeld in Sources */,
+				299AC2A22931358600A84CA2 /* HistoricoSeleccionadoView.swift in Sources */,
 				29DC4247291EC43D0067B0A8 /* PerfilUsuarioView.swift in Sources */,
 				29DC4245291EC43D0067B0A8 /* GlassyFyApp.swift in Sources */,
 				29DC4257291EC6BA0067B0A8 /* CoreDataManager.swift in Sources */,

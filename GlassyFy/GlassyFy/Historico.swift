@@ -43,8 +43,7 @@ struct BusquedaView: View {
                  .padding(5)
                  .foregroundColor(.white)
                     TextField("Buscar experimento...", text:$text)
-                        .foregroundColor(.white)
-            
+                        .foregroundColor(.white)            
              
                 Button(){
                 text = "" }
