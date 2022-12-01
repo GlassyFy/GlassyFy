@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22A380" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ExperimentoEntity" representedClassName="ExperimentoEntity" syncable="YES" codeGenerationType="class">
         <attribute name="aluminio" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="bario" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="calcio" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="fecha" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fechaCreacion" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fechaToma" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iR" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="magnesio" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="nombre" optional="YES" attributeType="String"/>
@@ -20,8 +21,4 @@
         <attribute name="telefono" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="experimentosRelation" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExperimentoEntity" inverseName="usuariosRelation" inverseEntity="ExperimentoEntity"/>
     </entity>
-    <elements>
-        <element name="UsuarioEntity" positionX="-63" positionY="-18" width="128" height="119"/>
-        <element name="ExperimentoEntity" positionX="-54" positionY="-9" width="128" height="179"/>
-    </elements>
 </model>
