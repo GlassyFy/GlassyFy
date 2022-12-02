@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
-   uuid = "26EA8E36-8F4E-483B-8D5E-10A714D9A58E"
+   uuid = "BE2790A7-08DE-4EF1-9EA3-17B67884A9DC"
    type = "1"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "86C4C081-F0C6-4F39-9908-6936E23C7334"
+            uuid = "BC4EF70D-F206-41D5-B768-A7CE13486C67"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GlassyFy/PerfilUsuarioView.swift"
+            filePath = "Usuario/VistaEliminacion.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23">
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

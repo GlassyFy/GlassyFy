@@ -9,11 +9,14 @@ import SwiftUI
 
 @main
 struct GlassyFyApp: App {
-    //@StateObject private var vm: ViewModel = ViewModel()
+    @StateObject private var vm: ViewModel = ViewModel()
     var body: some Scene {
         WindowGroup {
-           Historico()
-                
+            //VistaEliminacionExperimento (experimentoCurrent: vm.experimentosArray[1])
+            //VistaPerfilUsuario()
+           // Historico(experimento: vm.experimentosArray[0])
+            Vistadetalle()
+               // .environmentObject(vm)
         }
     }
 }
