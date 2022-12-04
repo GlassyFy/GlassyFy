@@ -37,18 +37,25 @@ class ViewModel: ObservableObject {
         cargarDatos()
     }
   
-//    func addMascota(persona: PersonaEntity, nombre: String, edad: Int16, raza: String){
-//        let nuevaMascota = MascotaEntity(context: gestorCoreData.contexto)
-//        nuevaMascota.nombre = nombre
-//        nuevaMascota.edad = edad
-//        nuevaMascota.raza = raza
-//        nuevaMascota.personasRelation = persona   // atributo de relaciÛn
-//        guardarDatos()
-//    }
-//
-//    func deleteMascota(mascota: MascotaEntity){
-//        gestorCoreData.contexto.delete(mascota)
-//        guardarDatos()
-//    }
+    func addExperimento(usuario: UsuarioEntity, nombre: String, fechaToma: Date, descripcion: String, inRef: Double, magnesio: Double, aluminio: Double, potasio: Double, Calcio: Double, Bario: Double){
+        let nuevoExperimento = ExperimentoEntity(context: gestorCoreData.contexto)
+        nuevoExperimento.nombre = nombre
+        nuevoExperimento.usuariosRelation = usuario
+        nuevoExperimento.fechaToma = fechaToma
+        nuevoExperimento.descripcion = descripcion
+        nuevoExperimento.iR = inRef
+        nuevoExperimento.magnesio = magnesio
+        nuevoExperimento.aluminio = aluminio
+        nuevoExperimento.potasio = potasio
+        nuevoExperimento.calcio = Calcio
+        nuevoExperimento.bario = Bario
+        nuevoExperimento.fechaCreacion = Date()
+        guardarDatos()
+    }
+
+    func deleteMascota(experimento: ExperimentoEntity){
+        gestorCoreData.contexto.delete(experimento)
+        guardarDatos()
+    }
 }
 

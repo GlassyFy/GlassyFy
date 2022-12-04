@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22A380" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ExperimentoEntity" representedClassName="ExperimentoEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="aluminio" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="bario" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="calcio" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="aluminio" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="bario" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="calcio" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="descripcion" optional="YES" attributeType="String"/>
         <attribute name="fechaCreacion" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="fechaToma" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="iR" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="magnesio" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="iR" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="magnesio" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="nombre" optional="YES" attributeType="String"/>
-        <attribute name="potasio" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="potasio" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="tipo" optional="YES" attributeType="String"/>
         <relationship name="usuariosRelation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UsuarioEntity" inverseName="experimentosRelation" inverseEntity="UsuarioEntity"/>
     </entity>
