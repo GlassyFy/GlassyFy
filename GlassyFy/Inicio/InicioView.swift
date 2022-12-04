@@ -24,6 +24,7 @@ struct InicioView: View {
                 //Falta la animación de disolución o fade
                 NavigationLink(destination: LoginView()
                     .navigationBarBackButtonHidden(true)
+                               //withAnimation...
                                ,isActive: $pushNuevaVista){
                     EmptyView()
                 }

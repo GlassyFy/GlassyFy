@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RegistroView: View {
-    @State private var registroCorrecto = true //Cambiar a false luego para correcta funcionalidad
+    @State private var registroCorrecto = false //Cambiar a false luego para correcta funcionalidad
     @State private var usuario: String = ""
     @State private var clave: String = ""
     @State private var clave2: String = ""
@@ -81,7 +81,7 @@ struct RegistroView: View {
                         .padding(.top, 20)
                         .disabled(usuario.isEmpty ||  clave.isEmpty ||  clave2.isEmpty || correo.isEmpty)
                         
-                        NavigationLink(destination: Text("Gracias por usar la app :D")
+                        NavigationLink(destination: Text("Registro relizado :D")
                                        ,isActive: $registroCorrecto){
                             EmptyView()
                         }
@@ -92,7 +92,6 @@ struct RegistroView: View {
                                 .foregroundColor(Color.white)
                                 .font(.footnote)
                                 .bold()
-                            
                             NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true)) {
                                 Text("Inicia sesión aquí")
                                     .foregroundColor(Color(red: 77 / 255, green: 167 / 255, blue: 231 / 255))

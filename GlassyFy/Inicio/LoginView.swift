@@ -6,13 +6,21 @@ struct LoginView: View {
     @State private var wrongCorreo = 0
     @State private var wrongClave = 0
     @State private var acceso = false
+    let boton: UIButton = UIButton()
+    @State private var opacidad: Double = 1.0
     //    var iconClick = true //Implementar funcionalidad para un icono que muestre o no la contraseña
     var body: some View {
+        //Boton visible cuando los campos no estén vacios
+//        if !correo.isEmpty && !clave.isEmpty {
+//            opacidad = 1.0
+//        }
+//        return
         NavigationView{
             ZStack{
                 Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
                     .ignoresSafeArea()
                 //Cambiar el color de los placeholders a blanco
+                
                 VStack{
                     Image("logo_glassyfy")
                         .resizable()
@@ -45,7 +53,11 @@ struct LoginView: View {
                         .foregroundColor(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .border(.red, width: CGFloat(wrongClave))
-
+                    
+                    //Avisos a implementar:
+                    //-El campo usuario está vacío o el campo contraseña está vacío,
+                    //-Campos no coinciden con la base de datos (usuario o contraseña incorrectos)
+                    
                     
                     Button("Entrar"){
                         //Autenticación del usuario... Hay que conectar con base de datos
@@ -58,10 +70,11 @@ struct LoginView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 25))
                     .padding(.top, 40)
                     .disabled(correo.isEmpty || clave.isEmpty)
-                    
+                    .opacity(opacidad)
+                   
                         
                     
-                    NavigationLink(destination: Text("Gracias por usar la app :D"),
+                    NavigationLink(destination: Text("Acceso a la app realizado :D"),
                                    isActive: $acceso){
                         EmptyView()
                     }
