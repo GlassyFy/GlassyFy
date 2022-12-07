@@ -97,12 +97,14 @@ struct RevisarExpDatosView: View {
                                     .background(rojoboton)
                                     .foregroundColor(.white)
                                     .clipShape(RoundedRectangle(cornerRadius: 30))
+                                    
                                     NavigationLink(destination:NuevoExperimentoView()){
                                         Text("Confirmar")
                                             .frame(width: 150, height: 55)
                                             .background(colorboton)
                                             .foregroundColor(.white)
                                             .clipShape(RoundedRectangle(cornerRadius: 30))
+                                        
                                     }
                                 }
                     }
@@ -111,6 +113,16 @@ struct RevisarExpDatosView: View {
     }
 }
 
+struct popUpConfirmacion: View {
+    
+    
+    var body: some View{
+        ZStack{
+            
+        }
+        Text("hi!")
+    }
+}
 
 
 struct sNuevoExperimentoView_Previews: PreviewProvider {
