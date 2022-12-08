@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct GlassyFyApp: App {
-    //@StateObject private var vm: ViewModel = ViewModel()
+    @StateObject private var vm: ViewModel = ViewModel()
     var body: some Scene {
         WindowGroup {
         InicioView()

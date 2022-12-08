@@ -1,13 +1,12 @@
 import SwiftUI
 
 struct RegistroView: View {
-    @State private var registroCorrecto = false //Cambiar a false luego para correcta funcionalidad
+    @Environment(\.presentationMode) var presentation
+    @State private var registroCorrecto = false
     @State private var usuario: String = ""
     @State private var clave: String = ""
     @State private var clave2: String = ""
     @State private var correo: String = ""
-    @State private var opacidad: Double = 0.5
-    @State private var camposVacios = true
     
     var body: some View {
         ZStack{
@@ -33,9 +32,7 @@ struct RegistroView: View {
                         .foregroundColor(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .autocapitalization(.none)
-                        .onChange(of: usuario){ vacio in
-                            comprobarCampos()
-                        }
+                       
                 }
                 
                 Text("Contraseña")
@@ -50,9 +47,7 @@ struct RegistroView: View {
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .autocapitalization(.none)
-                    .onChange(of: clave){ vacio in
-                        comprobarCampos()
-                    }
+                    
                 
                 Text("Repita su contraseña")
                     .foregroundColor(.white)
@@ -66,9 +61,7 @@ struct RegistroView: View {
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .autocapitalization(.none)
-                    .onChange(of: clave2){ vacio in
-                        comprobarCampos()
-                    }
+                    
                 
                 Text("Correo electrónico")
                     .foregroundColor(.white)
@@ -82,16 +75,15 @@ struct RegistroView: View {
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .autocapitalization(.none)
-                    .onChange(of: correo){ vacio in
-                        comprobarCampos()
-                    }
+                   
                 
                 Group {
                     Button("Registrarse"){
+                        
                         //Hay que completar la funcionalidad del boton para que añada usuarios a base de datos
                         //una vez que haya validado el registro (contraseñas que coincidan, nombre de usuario
                         //no repetido, correo no repetido, correo con @, contraseña con mayuscula...)
-                        //Registro de eemplo:
+                        //Registro de ejemplo:
                         validarRegistro(usuario: usuario, clave: clave, clave2: clave2, correo: correo)
                     }
                     .frame(width: 144 , height: 53)
@@ -100,14 +92,7 @@ struct RegistroView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 25))
                     .padding(.top, 20)
                     .disabled(usuario.isEmpty ||  clave.isEmpty ||  clave2.isEmpty || correo.isEmpty)
-                    .onChange(of: camposVacios) { opacidad in
-                        if(camposVacios == false){
-                            self.opacidad = 1.0
-                        }else{
-                            self.opacidad = 0.5
-                        }
-                    }
-                    .opacity(opacidad)
+                    .opacity(usuario.isEmpty ||  clave.isEmpty ||  clave2.isEmpty || correo.isEmpty ? 0.5 : 1.0)
                     
                     
                     NavigationLink(destination: Text("Registro relizado :D")
@@ -135,36 +120,23 @@ struct RegistroView: View {
                     }
                 }
                 
-            }.frame(width: 296)
-                .offset(x: 0 , y: -50)
-            Spacer()
-        }
-        .navigationBarHidden(true)
-        .toolbar(content: {
-            ToolbarItem(placement: .bottomBar){
                 Text("GlassyFy 2022")
                     .font(.footnote)
                     .foregroundColor(.gray)
-                
-            }
-        })
+                    .frame(width: 100, height: 10, alignment:.bottom)
+                    .offset(x:0, y: 100)
+            }.frame(width: 296)
+                .offset(x: 0 , y: -50)
+            Spacer()
+     
+        }
+        .navigationBarHidden(true)
     }
     func validarRegistro(usuario: String, clave: String, clave2: String, correo: String){
         //Aquí habría que hacer conexión con la base de datos...
         //Validacion de registro de ejemplo
         if(!(usuario.isEmpty || clave.isEmpty || clave2.isEmpty || correo.isEmpty)){
             registroCorrecto = true
-        }
-    }
-    
-    func comprobarCampos(){
-        if(!usuario.isEmpty && !clave.isEmpty && !clave2.isEmpty && !correo.isEmpty){
-            camposVacios = false
-        }else{
-            camposVacios = true
-        }
-        if(usuario.isEmpty || clave.isEmpty || clave2.isEmpty || correo.isEmpty ){
-            camposVacios = true
         }
     }
 }

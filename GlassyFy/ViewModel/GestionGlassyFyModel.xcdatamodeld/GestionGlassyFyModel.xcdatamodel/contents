@@ -14,6 +14,7 @@
     </entity>
     <entity name="UsuarioEntity" representedClassName="UsuarioEntity" syncable="YES" codeGenerationType="class">
         <attribute name="contrasena" optional="YES" attributeType="String"/>
+        <attribute name="correo" optional="YES" attributeType="String"/>
         <attribute name="descripcion" optional="YES" attributeType="String"/>
         <attribute name="foto" optional="YES" attributeType="Binary"/>
         <attribute name="nombre" optional="YES" attributeType="String"/>
@@ -21,7 +22,7 @@
         <relationship name="experimentosRelation" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExperimentoEntity" inverseName="usuariosRelation" inverseEntity="ExperimentoEntity"/>
     </entity>
     <elements>
-        <element name="UsuarioEntity" positionX="-63" positionY="-18" width="128" height="119"/>
         <element name="ExperimentoEntity" positionX="-54" positionY="-9" width="128" height="179"/>
+        <element name="UsuarioEntity" positionX="-63" positionY="-18" width="128" height="134"/>
     </elements>
 </model>

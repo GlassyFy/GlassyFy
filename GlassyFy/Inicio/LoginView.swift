@@ -6,15 +6,8 @@ struct LoginView: View {
     @State private var wrongCorreo = 0
     @State private var wrongClave = 0
     @State private var acceso = false
-    @State private var opacidad: Double = 0.5
-    @State private var camposVacios = true
     //var iconClick = true //Implementar funcionalidad para un icono que muestre o no la contraseña
     var body: some View {
-        //Boton visible cuando los campos no estén vacios
-        //        if !correo.isEmpty && !clave.isEmpty {
-        //            opacidad = 1.0
-        //        }
-        //        return
         
         ZStack{
             Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
@@ -41,9 +34,6 @@ struct LoginView: View {
                     .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .border(.red, width: CGFloat(wrongCorreo))
-                    .onChange(of: correo){ vacio in
-                        comprobarCampos()
-                    }
                 
                 
                 Text("Contraseña")
@@ -60,9 +50,6 @@ struct LoginView: View {
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .border(.red, width: CGFloat(wrongClave))
-                    .onChange(of: clave){ vacio in
-                        comprobarCampos()
-                    }
                 //Avisos a implementar:
                 //-El campo usuario está vacío o el campo contraseña está vacío,
                 //-Campos no coinciden con la base de datos (usuario o contraseña incorrectos)
@@ -79,14 +66,7 @@ struct LoginView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 25))
                 .padding(.top, 40)
                 .disabled(correo.isEmpty || clave.isEmpty)
-                .onChange(of: camposVacios) { opacidad in
-                    if(camposVacios == false){
-                        self.opacidad = 1.0
-                    }else{
-                        self.opacidad = 0.5
-                    }
-                }
-                .opacity(opacidad)
+                .opacity(correo.isEmpty || clave.isEmpty ? 0.5 : 1.0 )
                 
                 NavigationLink(destination: Text("Acceso a la app realizado :D"),
                                isActive: $acceso){
@@ -111,23 +91,17 @@ struct LoginView: View {
                         .offset(x:-15, y:0)
                         
                 }
+                Text("GlassyFy 2022")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                    .frame(width: 100, height: 10, alignment:.bottom)
+                    .offset(x:0, y: 270)
             }
             .padding()
             .offset(x: 0 , y: -130)
             Spacer()
         }
         .navigationBarHidden(true)
-        .toolbar(content: {
-            ToolbarItem(placement: .navigationBarLeading){
-                
-            }
-            ToolbarItem(placement: .bottomBar){
-                Text("GlassyFy 2022")
-                    .font(.footnote)
-                    .foregroundColor(.gray)
-                
-            }
-        })
     }
     func autenticarUsuario(correo: String, clave: String){
         //Aquí habría que hacer conexión con la base de datos...
@@ -144,16 +118,6 @@ struct LoginView: View {
             wrongCorreo = 2
         }
         
-    }
-    func comprobarCampos(){
-        if(!correo.isEmpty && !clave.isEmpty){
-            camposVacios = false
-        }else{
-            camposVacios = true
-        }
-        if(correo.isEmpty || clave.isEmpty){
-            camposVacios = true
-        }
     }
 }
 
