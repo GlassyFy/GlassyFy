@@ -2,6 +2,7 @@ import SwiftUI
 
 struct RegistroView: View {
     @Environment(\.presentationMode) var presentation
+    @EnvironmentObject var vm: ViewModel
     @State private var registroCorrecto = false
     @State private var usuario: String = ""
     @State private var clave: String = ""
@@ -32,7 +33,7 @@ struct RegistroView: View {
                         .foregroundColor(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .autocapitalization(.none)
-                       
+                    
                 }
                 
                 Text("Contraseña")
@@ -47,7 +48,7 @@ struct RegistroView: View {
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .autocapitalization(.none)
-                    
+                
                 
                 Text("Repita su contraseña")
                     .foregroundColor(.white)
@@ -61,7 +62,7 @@ struct RegistroView: View {
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .autocapitalization(.none)
-                    
+                
                 
                 Text("Correo electrónico")
                     .foregroundColor(.white)
@@ -75,7 +76,7 @@ struct RegistroView: View {
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .autocapitalization(.none)
-                   
+                
                 
                 Group {
                     Button("Registrarse"){
@@ -85,6 +86,9 @@ struct RegistroView: View {
                         //no repetido, correo no repetido, correo con @, contraseña con mayuscula...)
                         //Registro de ejemplo:
                         validarRegistro(usuario: usuario, clave: clave, clave2: clave2, correo: correo)
+                        if(registroCorrecto == true){
+                            vm.registrarUsuario(nombre: usuario, contrasena: clave, email: correo)
+                        }
                     }
                     .frame(width: 144 , height: 53)
                     .background(Color(red: 73 / 255, green: 82 / 255, blue: 189 / 255))
@@ -106,17 +110,13 @@ struct RegistroView: View {
                             .foregroundColor(Color.white)
                             .font(.footnote)
                             .bold()
-                        NavigationLink(destination: LoginView()
-                            //.animation(.easeInOut(duration: 0.5))
-                            .navigationBarBackButtonHidden(true)
-                            .navigationBarHidden(true)) {
-                                Text("Inicia sesión aquí")
-                                    .foregroundColor(Color(red: 77 / 255, green: 167 / 255, blue: 231 / 255))
-                                    .font(.footnote)
-                                    .padding()
-                                
-                            }
-                            .offset(x:-15, y:0)
+                        Button("Inicia sesión aquí"){
+                            self.presentation.wrappedValue.dismiss()
+                        }
+                        .foregroundColor(Color(red: 77 / 255, green: 167 / 255, blue: 231 / 255))
+                        .font(.footnote)
+                        .padding()
+                        .offset(x:-15, y:0)
                     }
                 }
                 
@@ -128,7 +128,7 @@ struct RegistroView: View {
             }.frame(width: 296)
                 .offset(x: 0 , y: -50)
             Spacer()
-     
+            
         }
         .navigationBarHidden(true)
     }
@@ -136,7 +136,9 @@ struct RegistroView: View {
         //Aquí habría que hacer conexión con la base de datos...
         //Validacion de registro de ejemplo
         if(!(usuario.isEmpty || clave.isEmpty || clave2.isEmpty || correo.isEmpty)){
-            registroCorrecto = true
+            if(!clave.elementsEqual(clave2)){
+                registroCorrecto = true
+            }
         }
     }
 }

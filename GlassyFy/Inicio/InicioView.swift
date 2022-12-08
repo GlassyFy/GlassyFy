@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct InicioView: View {
+    @EnvironmentObject var vm: ViewModel
     @State private var fadeInOut = false
     @State private var pushNuevaVista: Bool = false
     var body: some View {
