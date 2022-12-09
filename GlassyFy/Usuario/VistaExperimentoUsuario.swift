@@ -24,7 +24,7 @@ struct VistaExperimentoUsuario: View {
   var usuarioCurrent: UsuarioEntity
   var experimentoCurrent: ExperimentoEntity
   let fecha1 = DateFormatter()
-  //fecha1.dateStyle = .short
+  //fecha1.dateStyle = .medium
   var body: some View {
       Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
       .ignoresSafeArea()
@@ -43,11 +43,18 @@ struct VistaExperimentoUsuario: View {
               .foregroundColor(.white)
               .frame(width: 419, height: 40, alignment: .leading)
               .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
+              //.offset(x:10)
 
           HStack {
-              Label("Fecha de la toma:", systemImage: "calendar@2x1")
-                  .foregroundColor(colorLabel)
-              Text("\(fecha1.string(from: experimentoCurrent.fechaToma!))")
+              //HStack{
+                  Image(systemName: "calendar")
+                  Text("Fecha de la toma: ")
+                    .font(.custom("Arial", size:24))
+                    .foregroundColor(colorLabel)
+              //}.frame(width: 380, alignment: .leading)
+              /*Label("Fecha de la toma:", systemImage: "calendar")
+                  //.foregroundColor(colorLabel)*/
+              Text(fecha1.string(from: experimentoCurrent.fechaToma!))
                   .foregroundColor(.white)
                   .frame(alignment: .trailing)
           }
@@ -55,8 +62,12 @@ struct VistaExperimentoUsuario: View {
           .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
 
           HStack {
-              Label("Creado el día: ", systemImage: "calendar.badge")
-                  .foregroundColor(colorLabel)
+              Image(systemName: "calendar.badge.plus")
+              Text("Creado eldía: ")
+                .font(.custom("Arial", size:24))
+                .foregroundColor(colorLabel)
+              /*Label("Creado el día: ", systemImage: "calendar.badge.plus")
+                  //.foregroundColor(colorLabel)*/
               Text("\(fecha1.string(from: experimentoCurrent.fechaCreacion!))")
                   .foregroundColor(.white)
                   .frame(alignment: .trailing)
@@ -65,65 +76,81 @@ struct VistaExperimentoUsuario: View {
           .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
 
           VStack {  //Datos
-              Label("Datos:", systemImage: "doc.plaintext")
-                  .foregroundColor(colorLabel)
-                  .frame(width: 380, alignment: .leading)
+              HStack{
+                  Image(systemName: "doc.plaintext.fill")
+                  Text("Datos: ")
+                    .font(.custom("Arial", size:24))
+                    .foregroundColor(colorLabel)
+              }
+              .frame(width: 380, height:26, alignment: .leading)
+              .offset(x: -15, y:0)
+              /*Label("Datos:", systemImage: "doc.plaintext.fill")
+                  //.foregroundColor(colorLabel)
+                  .frame(width: 380, alignment: .leading)*/
 
               HStack{
                   Text("Iíndice de refracción (IR): ")
                     .font(.custom("Arial", size:24))
                     .foregroundColor(colorLabel)
                   Text("\(String(format: "%.2f", experimentoCurrent.iR!))")
-              }.frame(width: 380, alignment: .trailing)
+              }.frame(width: 380, height:26, alignment: .trailing)
   
                HStack{
                   Text("Magnesio (Mg): ")
                     .foregroundColor(colorLabel)
                    Text("\(String(format: "%.2f", experimentoCurrent.magnesio!))")
-              }.frame(width: 380, alignment: .trailing)
+              }.frame(width: 380, height:26, alignment: .trailing)
 
               HStack{
                   Text("Aluminio (Al): ")
                     .foregroundColor(colorLabel)
                   Text("\(String(format: "%.2f", experimentoCurrent.aluminio!))")
-              }.frame(width: 380, alignment: .trailing)
+              }.frame(width: 380, height:26, alignment: .trailing)
 
               HStack{
                   Text("Potasio (K): ")
                     .foregroundColor(colorLabel)
                   Text("\(String(format: "%.2f", experimentoCurrent.potasio!))")
-              }.frame(width: 380, alignment: .trailing)
+              }.frame(width: 380, height:26, alignment: .trailing)
 
               HStack{
                   Text("Calcio (Ca): ")
                     .foregroundColor(colorLabel)
                   Text("\(String(format: "%.2f", experimentoCurrent.calcio!))")
-              }.frame(width: 380, alignment: .trailing)
+              }.frame(width: 380, height:26, alignment: .trailing)
 
               HStack{
                   Text("Bario (Ba): ")
                     .foregroundColor(colorLabel)
                   Text("\(String(format: "%.2f", experimentoCurrent.bario!))")
-              }.frame(width: 380, alignment: .trailing)
+              }.frame(width: 380, height:26, alignment: .trailing)
 
               HStack{
                   Text("Tipo: ")
                     .foregroundColor(colorLabel)
                   Text(experimentoCurrent.tipo!)
-              }.frame(width: 380, alignment: .trailing)
+              }.frame(width: 380, height:26, alignment: .trailing)
           } //VStack
-          .frame(width: 419, height: 303, alignment: .leading)//, height: 303)
+          .frame(width: 419, height: 303, alignment:.top)//  .leading)//, height: 303)
           .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
 
           VStack{
-            Label("Descripción:", systemImage: "text")
-                .font(.custom("Arial", size:24))
-                .foregroundColor(colorLabel)
-                .frame(width: 380, alignment: .leading)
+              HStack{
+                  Image(systemName: "text.alignleft")
+                  Text("Descripción: ")
+                    .font(.custom("Arial", size:24))
+                    .foregroundColor(colorLabel)
+              }
+              .frame(width: 380, height:26, alignment: .leading)
+              .offset(x: -15, y:0)
+              /*Label("Descripción:", systemImage: "text.alignleft")
+                    .font(.custom("Arial", size:24))
+                    //.foregroundColor(colorLabel)
+                    .frame(width: 380, alignment: .leading)*/
               Text(experimentoCurrent.descripcion!)
                .frame(width: 400, alignment: .leading)
           }
-          .frame(width: 419, height: 184, alignment: .leading)//, height: 184)
+          .frame(width: 419, height: 184, alignment:.top)// .leading)//, height: 184)
           .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
     }
      .frame(width: 425, height: 625, alignment: .leading)
@@ -131,7 +158,7 @@ struct VistaExperimentoUsuario: View {
     .font(.custom("Arial", size:20))
     .foregroundColor(.white)
     }
-    .frame(width: 435, height: 749, alignment: .center)
+    .frame(width: 435, height: 749)//, alignment: .center)
     )
   }
 }
@@ -143,4 +170,4 @@ struct VistaExperimentoUsuario: View {
         .environmentObject(vm)
     }
 }*/
-/*
+

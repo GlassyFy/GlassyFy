@@ -137,33 +137,34 @@ struct VistaEdicionPerfilUsuario: View {
                 
                     HStack{
                         Spacer()
-                        Text("\(descripcion.count)/300")
+                        Text("\(descripcion.count)/150")
                             .font(.custom("Arial", size:16))
                             .foregroundColor(colorRojoTxt)
                     }
                     .frame(width:409, height:19,  alignment: .trailing)
                     .offset(y:-20)
-                
-                    TextEditor (text: $descripcion) //Cambiar descripcion
-                        //.colorMultiply(colorFondo) //Fondo=Fondovistacolo
-                        //.padding()
-                        .background(.clear)
-                        .foregroundColor(Color.gray)
-                        .background(colorFondo)
-                        //.foregroundColor(Color(red: 255 / 255, green: 255 / 255, blue: 255 / 255))
-                        .font(.custom("HelveticaNeue", size:16))
-                        //.foregroundColor(.white)
-                        //.padding()
-                        .frame(width:409,  height:80, alignment: .leading) //439
-                        .offset(y:-10)
-                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(colorStroke, lineWidth: 1))
-                        .disableAutocorrection(true)
-                        //.clipShape(RoundedRectangle(cornerRadius: 15))
-                        .onChange(of: self.descripcion) {value in
-                            if Int(descripcion.count) > 300 {
-                                self.descripcion = String(descripcion.prefix(300))
+                    VStack {
+                        TextEditor (text: $descripcion) //Cambiar descripcion
+                            .frame(width:409, alignment: .leading) //439
+                            //.colorMultiply(colorRect) //Fondo=Fondovistacolo
+                            .foregroundColor(Color.green)
+                            .background(colorRect)
+                            //.foregroundColor(Color(red: 199 / 255, green: 198 / 255, blue: 195 / 255))
+                            .font(.custom("HelveticaNeue", size:16))
+                            .disableAutocorrection(true)
+                            //.clipShape(RoundedRectangle(cornerRadius: 15))
+                            .onChange(of: self.descripcion) {value in
+                                if Int(descripcion.count) > 150 {
+                                    self.descripcion = String(descripcion.prefix(150))
+                                }
                             }
-                        }
+                    }
+                    .frame(width:409,  height:80, alignment:.top)
+                    .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
+                    .background(colorRect)
+                    .font(.custom("HelveticaNeue", size:16))
+                    .offset(y:-10)
+                
                 //} //Form  
             } //VStack
             .frame(width:475,  height:729, alignment: .center) //475x729

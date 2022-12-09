@@ -28,9 +28,20 @@ struct VistaHistoricoUsuario: View {
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
         .ignoresSafeArea()
         .overlay(
-            NavigationView{
+            //NavigationView{
                 VStack {
+                    HStack{
+                        //Spacer()
+                        Text("Tu histórico")
+                            .frame(width:373, alignment: .center)
+                            .foregroundColor(.white)
+                    }
+                    .frame(width:475,  height:37, alignment: .center)
+                    .background(colorRect)
+                    .font(.custom("Arial", size:24))
+
                     BusquedaView(text: $query)  //llama a la subvista para BARRA DE BÚSQUEDA
+                    //Spacer()
                     List(){
                         ForEach(vm.experimentosArray){experimento in
                             if (query.isEmpty || experimento.nombre!.contains(query)) {
@@ -42,10 +53,15 @@ struct VistaHistoricoUsuario: View {
                         } // ForEach
                     }// List
                     .background(colorFondo)
+                    .colorMultiply(colorFondo)
+                    .frame(width:455,  height:549, alignment: .center)
                 }// VStack
                 .background(colorFondo)
-            } // NavigationView
-            .navigationBarBackButtonHidden(true)
+                .frame(width:455,  height:749, alignment: .top)
+                //Spacer()
+            
+           // } // NavigationView
+            //.navigationBarBackButtonHidden(true)
         )
     } // body
 }
@@ -57,26 +73,29 @@ struct BusquedaView: View {   // Subvista BARRA DE BÚSQUEDA   EJERCICIO 2
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
         .ignoresSafeArea()
         .overlay(
-            HStack{
-                Image(systemName: "magnifyingglass.circle")
-                    .resizable()
-                    .frame(width: 34, height: 33)
-                    .foregroundColor(text.isEmpty ? Color(UIColor.gray).opacity(0.4) : Color(UIColor.gray).opacity(0.9))
-                TextField("Buscar experimento...", text:$text)
-                    .font(.custom("Arial", size:24))
-                    .multilineTextAlignment(.leading)
-                Button(){
-                text = ""
-                }label:{
-                    Image(systemName: "x.circle")
-                }
-                .opacity(text.isEmpty ? 0.0 : 1.0)   // Desaparece o aparece el botón
-            } //HStack
-            .frame(width: 350, height: 50, alignment:.center)
-            .background(colorRect)
-            .foregroundColor(.white)
-            .clipShape(Rectangle()) //.clipShape(Circle())
-            .shadow(color: colorStroke, radius:2)
+            VStack {
+                HStack{
+                    Image(systemName: "magnifyingglass.circle")
+                        .resizable()
+                        .frame(width: 34, height: 33)
+                        .foregroundColor(text.isEmpty ? Color(UIColor.gray).opacity(0.4) : Color(UIColor.gray).opacity(0.9))
+                    TextField("Buscar experimento...", text:$text)
+                        .font(.custom("Arial", size:24))
+                        .multilineTextAlignment(.leading)
+                    Button(){
+                        text = ""
+                    }label:{
+                        Image(systemName: "x.circle")
+                    }
+                    .opacity(text.isEmpty ? 0.0 : 1.0)   // Desaparece o aparece el botón
+                } //HStack
+                .frame(width: 409, height: 50, alignment:.center)
+                .background(colorRect)
+                .foregroundColor(.white)
+                .clipShape(Rectangle()) //.clipShape(Circle())
+                .shadow(color: colorStroke, radius:2)
+            }
+            .frame(width:455,  height:70, alignment: .top)
         )
     }
 }

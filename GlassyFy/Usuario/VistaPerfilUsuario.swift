@@ -52,7 +52,7 @@ struct VistaPerfilUsuario: View {
 
                     VStack {  //Paisaje, foto y enlaces
                         HStack{
-                            NavigationLink(destination:VistaHistoricoUsuario(usuarioCurrent: usuarioCurrent)){
+                            NavigationLink(destination:VistaHistoricoUsuario(usuarioCurrent: usuarioCurrent).environmentObject(vm)){
                                 Image(systemName: "books.vertical.fill")
                                     .resizable()
                                     .frame(width: 37, height: 31)
@@ -85,7 +85,9 @@ struct VistaPerfilUsuario: View {
                                                 usuarioCurrent.email = email
                                                 usuarioCurrent.telefono = telefono
                                                 usuarioCurrent.descripcion = descripcion
-                                                usuarioCurrent.foto = foto //
+                                                //usuarioCurrent.foto = foto UIImage(data: usuarioCurrent.foto!)!//
+                                                //UIImage(data: usuarioCurrent.foto) = foto
+                                                //usuarioCurrent.foto = UIImage(data: foto)
                                             }
                                         }, content: {
                                             VistaEdicionPerfilUsuario(usuarioCurrent: usuarioCurrent, email: $email, telefono: $telefono, 
@@ -125,14 +127,19 @@ struct VistaPerfilUsuario: View {
                     }
                     .frame(width:419,  height:65, alignment: .leading)
                     .offset(y:-50)
-                    Text (usuarioCurrent.descripcion!)
-                        .frame(width:419,  height:110, alignment: .leading)
-                        .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
-                        .background(colorRect)
-                        .font(.custom("HelveticaNeue", size:16))
-                        .offset(y:-50)
+                    VStack {
+                        Text (usuarioCurrent.descripcion!)
+                            .frame(width:409, alignment:.leading)
+                            .offset(x:5, y:5)
+                    }
+                    .frame(width:419,  height:110, alignment:.top)
+                    .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
+                    .background(colorRect)
+                    .font(.custom("HelveticaNeue", size:16))
+                    .offset(y:-50)
+                    
                 } //VStack Todo
-                .frame(width:455,  height:749, alignment: .center)
+                .frame(width:455,  height:749)//, alignment: .leading)
                 .background(colorFondo)
                 .foregroundColor(.white)
                 .onAppear(){
