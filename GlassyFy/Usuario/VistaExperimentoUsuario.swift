@@ -6,6 +6,19 @@
 //
 
 import SwiftUI
+
+/*
+var colorFondo: Color = Color(red: 48/255, green: 49/255, blue: 54/255) 
+var colorRect: Color = Color(red: 56/255, green: 57/255, blue: 62/255)
+var colorcampostxt: Color = Color(red: 65 / 255, green: 68 / 255, blue: 74 / 255)
+var colorBlue: Color = Color(red: 73/255, green: 82/255, blue: 189/255)  //var colorSeleccion
+var colorGreen: Color = Color(red: 90/255, green: 163/255, blue: 100/255)
+var colorStroke: Color = Color(red: 101/255, green: 101/255, blue: 101/255)
+var colorLabel: Color = Color(red: 150/255, green: 152/255, blue: 157/255)
+var colorRojoTxt: Color = Color(red: 199/255, green: 73/255, blue: 69/255) //var colorSalir
+var colorRojoBoton: Color = Color(red: 237/255, green: 106/255, blue: 94/255) //var colorBTNSi
+*/
+
 struct VistaExperimentoUsuario: View {
   @EnvironmentObject var vm: ViewModel
   var usuarioCurrent: UsuarioEntity
@@ -16,89 +29,88 @@ struct VistaExperimentoUsuario: View {
       Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
       .ignoresSafeArea()
       .overlay(
-    VStack {
-      
-      
-      Text(experimentoCurrent.nombre!)
+      VStack { 
+        Text(experimentoCurrent.nombre!)
             .font(.custom("Arial", size:24))
             .foregroundColor(.white)
             .frame(width: 419, height: 37, alignment: .center)
         Spacer()
-     VStack { //Permite desplazar la vista// VStack {
-         Label(usuarioCurrent.nombre!, systemImage:"person")
-            .font(.custom("Arial", size:24))
-            .background(colorFondo)
-            .foregroundColor(.white)
-            .frame(width: 419, height: 40, alignment: .leading)
-            .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
-          ///*
-           HStack {
-            Label("Fecha de la toma:", systemImage: "calendar@2x1")
-                .foregroundColor(colorLabel)
-               Text("\(fecha1.string(from: experimentoCurrent.fechaToma!))")
-                .foregroundColor(.white)
-                .frame(alignment: .trailing)
-            }
-            .frame(width: 419, height: 52, alignment: .leading) // height: 52
-            .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
+
+        VStack { 
+          Label(usuarioCurrent.nombre!, systemImage:"person")
+              .font(.custom("Arial", size:24))
+              .background(colorFondo)
+              .foregroundColor(.white)
+              .frame(width: 419, height: 40, alignment: .leading)
+              .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
 
           HStack {
-            Label("Creado el día: ", systemImage: "calendar.badge")
-                .foregroundColor(colorLabel)
+              Label("Fecha de la toma:", systemImage: "calendar@2x1")
+                  .foregroundColor(colorLabel)
+              Text("\(fecha1.string(from: experimentoCurrent.fechaToma!))")
+                  .foregroundColor(.white)
+                  .frame(alignment: .trailing)
+          }
+          .frame(width: 419, height: 52, alignment: .leading) // height: 52
+          .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
+
+          HStack {
+              Label("Creado el día: ", systemImage: "calendar.badge")
+                  .foregroundColor(colorLabel)
               Text("\(fecha1.string(from: experimentoCurrent.fechaCreacion!))")
-                .foregroundColor(.white)
-                .frame(alignment: .trailing)
-            }
-            .frame(width: 419, height: 52, alignment: .leading) // height: 52
-            .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
-          VStack {
+                  .foregroundColor(.white)
+                  .frame(alignment: .trailing)
+          }
+          .frame(width: 419, height: 52, alignment: .leading) // height: 52
+          .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
+
+          VStack {  //Datos
               Label("Datos:", systemImage: "doc.plaintext")
                   .foregroundColor(colorLabel)
                   .frame(width: 380, alignment: .leading)
+
               HStack{
                   Text("Iíndice de refracción (IR): ")
                     .font(.custom("Arial", size:24))
                     .foregroundColor(colorLabel)
-                  //Text(experimentoCurrent.IR)
                   Text("\(String(format: "%.2f", experimentoCurrent.iR!))")
               }.frame(width: 380, alignment: .trailing)
-              ///*
+  
                HStack{
                   Text("Magnesio (Mg): ")
                     .foregroundColor(colorLabel)
-                   //Text(experimentoCurrent.magnesio)
                    Text("\(String(format: "%.2f", experimentoCurrent.magnesio!))")
               }.frame(width: 380, alignment: .trailing)
+
               HStack{
                   Text("Aluminio (Al): ")
                     .foregroundColor(colorLabel)
-                  //Text(experimentoCurrent.aluminio!)
                   Text("\(String(format: "%.2f", experimentoCurrent.aluminio!))")
               }.frame(width: 380, alignment: .trailing)
+
               HStack{
                   Text("Potasio (K): ")
                     .foregroundColor(colorLabel)
-                  //Text(experimentoCurrent.potasio)
                   Text("\(String(format: "%.2f", experimentoCurrent.potasio!))")
               }.frame(width: 380, alignment: .trailing)
+
               HStack{
                   Text("Calcio (Ca): ")
                     .foregroundColor(colorLabel)
-                  //Text(experimentoCurrent.Calcio)
                   Text("\(String(format: "%.2f", experimentoCurrent.calcio!))")
               }.frame(width: 380, alignment: .trailing)
+
               HStack{
                   Text("Bario (Ba): ")
                     .foregroundColor(colorLabel)
                   Text("\(String(format: "%.2f", experimentoCurrent.bario!))")
-                  //Text(experimentoCurrent.Bario)
               }.frame(width: 380, alignment: .trailing)
+
               HStack{
                   Text("Tipo: ")
                     .foregroundColor(colorLabel)
                   Text(experimentoCurrent.tipo!)
               }.frame(width: 380, alignment: .trailing)
-               //*/
           } //VStack
           .frame(width: 419, height: 303, alignment: .leading)//, height: 303)
           .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
@@ -124,108 +136,11 @@ struct VistaExperimentoUsuario: View {
   }
 }
 
-
 /*struct VistaExperimentoUsuario_Previews: PreviewProvider {
+    @StateObject private var vm: ViewModel = ViewModel()
     static var previews: some View {
-       VistaExperimentoUsuario(experimentoCurrent: experimentoCurrent)
+        VistaExperimentoUsuario(usuarioCurrent: vm.usuariosArray[0], experimentoCurrent: vm.experimentosArray[0])
+        .environmentObject(vm)
     }
 }*/
 /*
-struct VistaExperimentoUsuario: View {
-    @EnvironmentObject var vm: ViewModel
-    var usuarioCurrent: UsuarioEntity
-    var experimentoCurrent: ExperimentoEntity
-    @State var colorApp = Color.gray
-    @State var colorFondo = Color.gray
-    @State var colorStroke = Color.gray
-    @State var colorLabel = Color.gray
-    var body: some View {
-        VStack { //ScrollView { //Permite desplazar la vista// VStack {
-           /*Text(experimentoCurrent.nombre)
-              .font(.title)
-              .foregroundColor(.white)
-            Label(usuarioCurrent.nombre, systemImage:"person1")
-               .background(colorFondo)
-              .foregroundColor(.white)
-              .frame(width: 435, height: 40, alignment: .leading)
-              .overlay(RoundedRectangle(cornerRadius:2).stroke(Color.blue, lineWidth: 2))
-            HStack {
-              Label("Fecha de la toma:", systemImage:"calendar@2x1")
-                  .foregroundColor(colorLabel)
-              Text(experimentoCurrent.fechaToma)
-                  .foregroundColor(.white)
-                  .frame(alignment: .trailing)
-              }
-              .frame(width: 350, height: 20, alignment: .leading)
-              .overlay(Rectangle().stroke(Color.blue, lineWidth: 2))
-            Label("Creado el día:    \(experimentoCurrent.fechaCreacion)", systemImage:"calendar.badge")
-              .foregroundColor(.white)
-              .frame(width: 350, height: 20, alignment: .leading)
-              .overlay(Rectangle().stroke(color: colorStroke, lineWidth: 2))*/
-            VStack {
-                Label("Datos", systemImage:"doc.plaintext")
-                HStack{
-                    Text("Iíndice de refracción (IR): ")
-                    Text(experimentoCurrent.IR)
-                }.frame(width: 300, alignment: .trailing)
-                HStack{
-                    Text("Magnesio (Mg): ")
-                    Text(experimentoCurrent.Magnesio)
-                }.frame(width: 300, alignment: .trailing)
-                HStack{
-                    Text("Aluminio (Al): ")
-                    Text(experimentoCurrent.Aluminio)
-                }.frame(width: 300, alignment: .trailing)
-                HStack{
-                    Text("Potasio (K): ")
-                    Text(experimentoCurrent.Potasio)
-                }.frame(width: 300, alignment: .trailing)
-                HStack{
-                    Text("Calcio (Ca): ")
-                    Text(experimentoCurrent.Calcio)
-                }.frame(width: 300, alignment: .trailing)
-                HStack{
-                    Text("Bario (Ba): ")
-                    Text(experimentoCurrent.Bario)
-                }.frame(width: 300, alignment: .trailing)
-                HStack{
-                    Text("Tipo: ")
-                    Text(experimentoCurrent.Tipo)
-                }.frame(width: 300, alignment: .trailing)
-            } //VStack
-            .frame(width: 350, alignment: .leading)//, height: 300)
-            .overlay(RoundedRectangle(cornerRadius:2).stroke(Color.blue, lineWidth: 2))
-            /*Label(amigoCurrent.telefono, systemImage:"iphone")
-                .font(.body)
-            Link(destination: URL(string: experimentoCurrent.email)!, label: {
-                Image(systemName: "livephoto")
-                    .frame(width: 20, height: 20, alignment: .center) // /s)
-                Text(amigoCurrent.email)
-            })*/
-            //Divider()
-            VStack{
-              Label("Descripción:", systemImage:"text")
-              Text(experimentoCurrent.Descripcion)
-                 .frame(width: 320, alignment: .leading)
-              /*TextEditor (text: $descripcion)
-                .colorMultiply(Color.green)  // FondoEditor=FondoVista
-                .font(.custom("HelveticaNeue", size: 15))
-                .padding()
-                .frame(width: 350, height: 300)
-                .overlay(Rectangle().stroke(Color.blue, lineWidth: 2))
-                .disableAutocorrection(true)*/
-            }
-            .frame(width: 350, alignment: .leading)//, height: 300)
-            //.overlay(Rectangle().stroke(Color.blue, lineWidth: 2))
-            .overlay(Rectangle().stroke(color: colorStroke, lineWidth: 2))
-      }
-       .background(.gray)
-      .foregroundColor(.white)
-    }
-  }
-*/
-/*struct VistaExperimentoUsuario_Previews: PreviewProvider {
-    static var previews: some View {
-        VistaExperimentoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimentoCurrent)
-    }
-}*/
