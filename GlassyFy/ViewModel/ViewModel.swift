@@ -23,6 +23,9 @@ class ViewModel: ObservableObject {
         //cargarDatos()
         //addExperimento(usuario: usuariosArray[0], nombre: "Exp1", descripcion: "Descripción del experimento 1", tipo: "Tipo 1", fechaToma: Date.now, fechaCreacion: Date.now, iR: 1.1, al: 0.01, ba: 0.02, ca: 0.03, mg: 0.04, k: 0.05)
         //addExperimento(usuario: usuariosArray[0], nombre: "Exp2", descripcion: "Descripción del experimento 2", tipo: "Tipo 2", fechaToma: Date.now, fechaCreacion: Date.now, iR: 1.1, al: 0.01, ba: 0.02, ca: 0.03, mg: 0.04, k: 0.05)
+        //addExperimento(usuario: usuariosArray[0], nombre: "Exp3", descripcion: "Descripción del experimento 2", tipo: "Tipo 3", fechaToma: Date.now, fechaCreacion: Date.now, iR: 1.1, al: 0.01, ba: 0.02, ca: 0.03, mg: 0.04, k: 0.05)
+        //addExperimento(usuario: usuariosArray[0], nombre: "Exp4", descripcion: "Descripción del experimento 2", tipo: "Tipo 4", fechaToma: Date.now, fechaCreacion: Date.now, iR: 1.1, al: 0.01, ba: 0.02, ca: 0.03, mg: 0.04, k: 0.05)
+        
         
     }
     

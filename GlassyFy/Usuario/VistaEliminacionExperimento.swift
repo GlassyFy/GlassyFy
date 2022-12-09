@@ -20,7 +20,8 @@ var colorRojoTxt: Color = Color(red: 199/255, green: 73/255, blue: 69/255)
 struct VistaEliminacionExperimento: View {
     @EnvironmentObject var vm: ViewModel
     var experimentoCurrent: ExperimentoEntity
-    var cancelar = true //@Binding var cancelar: Bool //true Texto=No rojo
+    //@Binding var cancelar = true //@Binding var cancelar: Bool //true Texto=No rojo
+    @State var cancelar = true 
     @Environment(\.presentationMode) var modoPresentacion
     let fecha1 = DateFormatter()
     var body: some View {
@@ -66,9 +67,9 @@ struct VistaEliminacionExperimento: View {
             
             HStack{
               Button() {
-                print ("action NO")
-                // cancelar = true
-                // modoPresentacion.wrappedValue.dismiss()
+                //print ("action NO")
+                cancelar = true
+                modoPresentacion.wrappedValue.dismiss()
               } label: {
                   Text("No").bold()
                       .frame(width: 176, height: 24, alignment: .center)
@@ -84,9 +85,9 @@ struct VistaEliminacionExperimento: View {
               Spacer()
 
               Button() {
-                print ("action SI") //vm.deleteExperimento(experimento: experimentoCurrent)
-                // cancelar = false
-                // modoPresentacion.wrappedValue.dismiss()
+                //print ("action SI") //vm.deleteExperimento(experimento: experimentoCurrent)
+                cancelar = false
+                modoPresentacion.wrappedValue.dismiss()
               } label: {
                   Text("Sí").bold()
                     .frame(width: 176, height: 24, alignment: .center)
