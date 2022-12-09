@@ -56,7 +56,7 @@ struct VistaPerfilUsuario: View {
                                 Image(systemName: "books.vertical.fill")
                                     .resizable()
                                     .frame(width: 37, height: 31)
-                                    .padding(5)  //spacing
+                                    .padding(5) 
                                     .background(colorBlue)
                                     .cornerRadius(10)
                                     .offset(x:-25, y:0)
@@ -64,13 +64,11 @@ struct VistaPerfilUsuario: View {
                             Image(uiImage: UIImage(data: usuarioCurrent.foto!)!)//("foto")
                                 .frame(width:234, height:215)
                                 //.resizable()
-                            //NavigationLink(destination:VistaEdicionPerfilUsuario(usuarioCurrent: usuarioCurrent)){
                             Button() {
                                 mostrarEdicion.toggle()
                                 email = usuarioCurrent.email!
                                 telefono = usuarioCurrent.telefono!
                                 descripcion = usuarioCurrent.descripcion!
-                                //foto = usuarioCurrent.foto
                                 foto = UIImage(data: usuarioCurrent.foto!)!
                             } label: {
                                 Image(systemName: "pencil")
@@ -80,9 +78,6 @@ struct VistaPerfilUsuario: View {
                                     .foregroundColor(colorGreen)
                                     .border(colorGreen, width: 3) //
                                     .cornerRadius(10) //
-                                    //.background(colorFondo)
-                                    //.strokeBorder(colorGreen, lineWidth:3)
-                                    //.clipShape(RoundedRectangle(cornerRadius: 10))
                                     .offset(x:25, y:0)
                                     .sheet (isPresented: $mostrarEdicion,
                                         onDismiss: {
@@ -90,16 +85,14 @@ struct VistaPerfilUsuario: View {
                                                 usuarioCurrent.email = email
                                                 usuarioCurrent.telefono = telefono
                                                 usuarioCurrent.descripcion = descripcion
-                                                //usuarioCurrent.foto = foto
+                                                usuarioCurrent.foto = foto //
                                             }
                                         }, content: {
-                                            VistaEdicionPerfilUsuario(usuarioCurrent: usuarioCurrent,
-                                            email: $email, telefono: $telefono, descripcion: $descripcion, foto: $foto, cancelar: $cancelar)
-                                            //VistaEdicionPerfilUsuario(usuarioCurrent: usuarioCurrent, email: $email, telefono: $telefono, descripcion: $descripcion, cancelar: $cancelar)
+                                            VistaEdicionPerfilUsuario(usuarioCurrent: usuarioCurrent, email: $email, telefono: $telefono, 
+                                                descripcion: $descripcion, foto: $foto, cancelar: $cancelar)
                                         }
                                     )
                             }
-                            //} //NavigationLink
                         }
                     } // //Paisaje, foto y enlaces
                     .frame(width:439, height:215, alignment: .center)
@@ -125,10 +118,9 @@ struct VistaPerfilUsuario: View {
                         Image (systemName: "questionmark.app")
                             .resizable()
                             .frame(width: 43, height: 43)
-                            //.overlay(RoundedRectangle(cornerRadius:10))//.stroke(colorStroke, lineWidth: 1))
                             .background(colorRect)
                             .foregroundColor(.white)
-                        Text("  Sobre mí")
+                        Text(" Sobre mí")
                             .font(.custom("Arial", size:32))
                     }
                     .frame(width:419,  height:65, alignment: .leading)
@@ -141,7 +133,6 @@ struct VistaPerfilUsuario: View {
                         .offset(y:-50)
                 } //VStack Todo
                 .frame(width:455,  height:749, alignment: .center)
-                //.frame(width:455,  height:709, alignment: .top) //
                 .background(colorFondo)
                 .foregroundColor(.white)
                 .onAppear(){
@@ -157,7 +148,7 @@ struct VistaPerfilUsuario: View {
 /*struct VistaPerfilUsuario_Previews: PreviewProvider {
     @StateObject private var vm: ViewModel = ViewModel()
     static var previews: some View {
-        VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[0])
+        VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[0], foto: UIImage(data: vm.usuariosArray[0].foto!)!)
             .environmentObject(vm)
     }
 }*/
