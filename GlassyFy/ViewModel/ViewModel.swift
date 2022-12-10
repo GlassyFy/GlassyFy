@@ -20,11 +20,12 @@ class ViewModel: ObservableObject {
         //addUsuario(nombre: String, descripcion: String, telefono: String, email: String, contrasena: String, foto: UIImage(systemName: "person")!) //
         //addExperimento(usuario: UsuarioEntity, nombre: String, descripcion: String, tipo: String, fechaToma: Date, fechaCreacion: Date,iR: Decimal, al: Decimal, ba: Decimal, ca: Decimal, mg: Decimal, k: Decimal)
         //addUsuario(nombre: "usuario1", descripcion: "La descripción", telefono: "+34 123 456 789" , email: "Correo@dominio.com", contrasena: "usuario", foto: UIImage(imageLiteralResourceName: "person1"))//UIImage(systemName: "person")!)
-        cargarDatos()
+        //cargarDatos()
         //addExperimento(usuario: usuariosArray[0], nombre: "Exp1", descripcion: "Descripción del experimento 1", tipo: "Tipo 1", fechaToma: Date(), fechaCreacion: Date(), iR: 1.1, al: 0.01, ba: 0.02, ca: 0.03, mg: 0.04, k: 0.05)
         //addExperimento(usuario: usuariosArray[0], nombre: "Exp2", descripcion: "Descripción del experimento 2", tipo: "Tipo 2", fechaToma: Date(), fechaCreacion: Date(), iR: 1.1, al: 0.01, ba: 0.02, ca: 0.03, mg: 0.04, k: 0.05)
         //addExperimento(usuario: usuariosArray[0], nombre: "Exp3", descripcion: "Descripción del experimento 2", tipo: "Tipo 3", fechaToma: Date(), fechaCreacion: Date(), iR: 1.1, al: 0.01, ba: 0.02, ca: 0.03, mg: 0.04, k: 0.05)
         //addExperimento(usuario: usuariosArray[0], nombre: "Exp4", descripcion: "Descripción del experimento 2", tipo: "Tipo 4", fechaToma: Date(), fechaCreacion: Date(), iR: 1.1, al: 0.01, ba: 0.02, ca: 0.03, mg: 0.04, k: 0.05)
+                
         
         
     }

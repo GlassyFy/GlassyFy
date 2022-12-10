@@ -21,9 +21,11 @@ var colorRojoBoton: Color = Color(red: 237/255, green: 106/255, blue: 94/255) //
 
 struct VistaFilaHistoricoUsuario: View {
     @EnvironmentObject var vm: ViewModel
+    var usuarioCurrent: UsuarioEntity  //¿?
     var experimentoCurrent: ExperimentoEntity
     @State var mostrarConfirmarEliminarExperimento: Bool = false
     @State var cancelar: Bool = true
+    @State var eliminar: Bool = false  //para solucionar problema de eliminar
     let fecha1 = DateFormatter()
     //fecha1.dateStyle = .short
     var body: some View {
@@ -31,8 +33,9 @@ struct VistaFilaHistoricoUsuario: View {
         .ignoresSafeArea()
         .overlay(
         //NavigationView {
+        HStack {
             HStack{
-                NavigationLink (destination: VistaExperimentoUsuario(usuarioCurrent: vm.usuariosArray[0], experimentoCurrent: experimentoCurrent)) {
+                NavigationLink (destination: VistaExperimentoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimentoCurrent)) {
                     Image(systemName: "books.vertical.fill")
                         .resizable()
                         .frame(width: 37, height: 31)
@@ -41,41 +44,47 @@ struct VistaFilaHistoricoUsuario: View {
                         .cornerRadius(10)
                         .offset(x:10, y:0)
                 }
+                
                 VStack{
-                    Text(experimentoCurrent.nombre!)
-                        .font(.custom("Arial", size:20))
-                    Text("Fecha Creación: \(fecha1.string(from: experimentoCurrent.fechaCreacion!))")
-                        .font(.custom("Arial", size:14))
+                    if (!eliminar) {
+                        Text(experimentoCurrent.nombre!)  //Tras eliminar, experimentoCurrent.nombre = nil
+                            .font(.custom("Arial", size:20))
+                        Text("Fecha Creación: \(fecha1.string(from: experimentoCurrent.fechaCreacion!))")
+                            .font(.custom("Arial", size:14))
+                    }
                 }
                 .frame(width:189,  height:40, alignment: .leading)
                 .offset(x:5, y:0)
-                Spacer()
-
-                Button() {
-                    mostrarConfirmarEliminarExperimento.toggle()
-                } label: {
-                    Image(systemName: "trash.circle.fill")
-                        .resizable()
-                        .background(colorFondo)
-                        .foregroundColor(colorRojoTxt)
-                        .clipShape(Circle())
-                        .frame(width: 40, height: 40)
-                        .offset(x:-10, y:0)
-                        .sheet (isPresented: $mostrarConfirmarEliminarExperimento,
-                            onDismiss: {
-                                if !cancelar {
-                                    vm.deleteExperimento(experimento: experimentoCurrent )
-                                }
-                            }, content: {
-                                    VistaEliminacionExperimento(experimentoCurrent: experimentoCurrent)
+            }
+            Spacer()
+            Button() {
+                mostrarConfirmarEliminarExperimento.toggle()
+            } label: {
+                Image(systemName: "trash.circle.fill")
+                    .resizable()
+                    .background(colorFondo)
+                    .foregroundColor(colorRojoTxt)
+                    .clipShape(Circle())
+                    .frame(width: 40, height: 40)
+                    .offset(x:-10, y:0)
+                    .sheet (isPresented: $mostrarConfirmarEliminarExperimento,
+                        onDismiss: {
+                            if !cancelar {
+                                eliminar = true
+                                vm.deleteExperimento(experimento: experimentoCurrent )
+                                // Hay que hacer algo más porque experimentoCurrent ya no existe
+                                //guardarDatos()
                             }
-                        )
-                }
-            } //HStak
-            .frame(width:389,  height:40, alignment: .center) // 439x65
-            .overlay(RoundedRectangle(cornerRadius: 10).stroke(colorStroke, lineWidth: 1))
-            .background(colorRect)
-            .foregroundColor(.white)
+                        }, content: {
+                            VistaEliminacionExperimento(experimentoCurrent: experimentoCurrent, cancelar: $cancelar)
+                        }
+                    )
+            }
+        } //HStak
+        .frame(width:389,  height:40, alignment: .center) // 439x65
+        .overlay(RoundedRectangle(cornerRadius: 10).stroke(colorStroke, lineWidth: 1))
+        .background(colorRect)
+        .foregroundColor(.white)
         //} //NavigationView
         //.navigationBarBackButtonHidden(true)
         )

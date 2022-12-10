@@ -6,25 +6,26 @@
 //
 
 import SwiftUI
+
+/*
 var colorFondo: Color = Color(red: 48/255, green: 49/255, blue: 54/255)
 var colorRect: Color = Color(red: 56/255, green: 57/255, blue: 62/255)
-var colorSalir: Color = Color(red: 199/255, green: 73/255, blue: 69/255)
-var colorBlue: Color = Color(red: 73/255, green: 82/255, blue: 189/255)
+var colorcampostxt: Color = Color(red: 65 / 255, green: 68 / 255, blue: 74 / 255)
+var colorBlue: Color = Color(red: 73/255, green: 82/255, blue: 189/255)  //var colorSeleccion
 var colorGreen: Color = Color(red: 90/255, green: 163/255, blue: 100/255)
-var colorLabel: Color = Color(red: 150/255, green: 152/255, blue: 157/255)
 var colorStroke: Color = Color(red: 101/255, green: 101/255, blue: 101/255)
-var colorBTNNo: Color = Color(red: 73/255, green: 82/255, blue: 189/255)
-var colorBTNSi: Color = Color(red: 237/255, green: 106/255, blue: 94/255)
-var colorRojoTxt: Color = Color(red: 199/255, green: 73/255, blue: 69/255)
+var colorLabel: Color = Color(red: 150/255, green: 152/255, blue: 157/255)
+var colorRojoTxt: Color = Color(red: 199/255, green: 73/255, blue: 69/255) //var colorSalir
+var colorRojoBoton: Color = Color(red: 237/255, green: 106/255, blue: 94/255) //var colorBTNSi
+*/
 
 struct VistaEliminacionExperimento: View {
     @EnvironmentObject var vm: ViewModel
     var experimentoCurrent: ExperimentoEntity
-    //@Binding var cancelar = true //@Binding var cancelar: Bool //true Texto=No rojo
-    @State var cancelar = true 
+    @Binding var cancelar: Bool
     @Environment(\.presentationMode) var modoPresentacion
     let fecha1 = DateFormatter()
-    var body: some View {  
+    var body: some View {
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
         .ignoresSafeArea()
         .overlay(
@@ -38,7 +39,7 @@ struct VistaEliminacionExperimento: View {
                 Image(systemName: "books.vertical.fill")
                   .resizable()
                   .frame(width: 37, height: 31)
-                  .padding(5)  
+                  .padding(5)
                   .background(colorBlue)
                   .cornerRadius(10)
 
@@ -69,11 +70,11 @@ struct VistaEliminacionExperimento: View {
                 } label: {
                     Text("No").bold()
                         .frame(width: 176, height: 24, alignment: .center)
-                        .font(.custom("Arial", size:20)) 
+                        .font(.custom("Arial", size:20))
                 }
                 .frame(width: 130, height: 33, alignment: .center)
                 .padding()
-                .background(colorBTNNo)
+                .background(colorBlue)
                 .clipShape(Capsule())
 
                 Spacer()
@@ -84,11 +85,11 @@ struct VistaEliminacionExperimento: View {
                 } label: {
                     Text("Sí").bold()
                         .frame(width: 176, height: 24, alignment: .center)
-                        .font(.custom("Arial", size:20)) 
+                        .font(.custom("Arial", size:20))
                 }
                 .frame(width: 130, height: 33, alignment: .center)//170X53
                 .padding()
-                .background(colorBTNSi)
+                .background(colorRojoBoton)
                 .clipShape(Capsule())
             } //HStack
             .frame(width: 360, height: 53, alignment: .center) //400
@@ -111,3 +112,5 @@ struct VistaEliminacionExperimento: View {
               .environmentObject(vm)   //Falla
        }
 }*/
+
+

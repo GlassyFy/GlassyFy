@@ -49,21 +49,26 @@ struct VistaPerfilUsuario: View {
                     Image("paisaje")
                         .frame(width:475,  height:193, alignment: .center)
                         //.resizable()
+                        .scaledToFit()
 
-                    VStack {  //Paisaje, foto y enlaces
+                    VStack {  //Foto y enlaces
                         HStack{
-                            NavigationLink(destination:VistaHistoricoUsuario(usuarioCurrent: usuarioCurrent).environmentObject(vm)){
+                            NavigationLink(destination:VistaHistoricoUsuario(usuarioCurrent: usuarioCurrent)){
                                 Image(systemName: "books.vertical.fill")
                                     .resizable()
                                     .frame(width: 37, height: 31)
-                                    .padding(5) 
+                                    .padding(5)
                                     .background(colorBlue)
                                     .cornerRadius(10)
                                     .offset(x:-25, y:0)
                             }
-                            Image(uiImage: UIImage(data: usuarioCurrent.foto!)!)//("foto")
+                            Image(uiImage: foto) //Image(uiImage: UIImage(data: usuarioCurrent.foto!)!)//("foto")
+                                .resizable()
+                                .scaledToFit()
                                 .frame(width:234, height:215)
-                                //.resizable()
+                                .clipShape(Circle())
+                                //.overlay(Circle())
+                                
                             Button() {
                                 mostrarEdicion.toggle()
                                 email = usuarioCurrent.email!
@@ -85,37 +90,37 @@ struct VistaPerfilUsuario: View {
                                                 usuarioCurrent.email = email
                                                 usuarioCurrent.telefono = telefono
                                                 usuarioCurrent.descripcion = descripcion
-                                                //usuarioCurrent.foto = foto UIImage(data: usuarioCurrent.foto!)!//
-                                                //UIImage(data: usuarioCurrent.foto) = foto
-                                                //usuarioCurrent.foto = UIImage(data: foto)
+                                                usuarioCurrent.foto = foto.pngData()
+                                                vm.guardarDatos()
                                             }
                                         }, content: {
-                                            VistaEdicionPerfilUsuario(usuarioCurrent: usuarioCurrent, email: $email, telefono: $telefono, 
+                                            VistaEdicionPerfilUsuario(usuarioCurrent: usuarioCurrent, email: $email, telefono: $telefono,
                                                 descripcion: $descripcion, foto: $foto, cancelar: $cancelar)
                                         }
                                     )
                             }
                         }
-                    } // //Paisaje, foto y enlaces
+                    } // foto y enlaces
                     .frame(width:439, height:215, alignment: .center)
                     .offset(y:-80)
             
                     Text(usuarioCurrent.nombre!)
                         .frame(width:439,  height:44, alignment: .center)
                         .font(.custom("Arial", size:36))
-                        .offset(y:-80)
-                    Label (usuarioCurrent.email!, systemImage: "envelope.fill")
+                        .offset(y:-75)
+                    Label (email, systemImage: "envelope.fill")//Label (usuarioCurrent.email!, systemImage: "envelope.fill")
                         .frame(width:419,  height:65, alignment: .leading) //439
                         .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                         .background(colorRect)
                         .font(.custom("Arial", size:28))
-                        .offset(y:-70)
-                    Label (usuarioCurrent.telefono!, systemImage: "phone.fill")
+                        .offset(y:-75)
+                    Label (telefono, systemImage: "phone.fill")//Label (usuarioCurrent.telefono!, systemImage: "phone.fill")
                         .frame(width:419,  height:65, alignment: .leading)
                         .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                         .background(colorRect)
                         .font(.custom("Arial", size:32))
-                        .offset(y:-60)
+                        .offset(y:-75)
+                    
                     HStack{  //Sobre mi
                         Image (systemName: "questionmark.app")
                             .resizable()
@@ -126,24 +131,28 @@ struct VistaPerfilUsuario: View {
                             .font(.custom("Arial", size:32))
                     }
                     .frame(width:419,  height:65, alignment: .leading)
-                    .offset(y:-50)
+                    .offset(y:-75)
+
                     VStack {
-                        Text (usuarioCurrent.descripcion!)
-                            .frame(width:409, alignment:.leading)
+                        Text (descripcion)//Text (usuarioCurrent.descripcion!)
+                            .frame(width:419,  alignment: .leading) //419x110
                             .offset(x:5, y:5)
                     }
-                    .frame(width:419,  height:110, alignment:.top)
+                    .frame(width:419,  height:90, alignment: .top)
                     .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                     .background(colorRect)
                     .font(.custom("HelveticaNeue", size:16))
-                    .offset(y:-50)
-                    
+                    .offset(y:-75)
+
                 } //VStack Todo
-                .frame(width:455,  height:749)//, alignment: .leading)
+                .frame(width:455,  height:719, alignment: .center)
                 .background(colorFondo)
                 .foregroundColor(.white)
                 .onAppear(){
-                    //foto = UIImage(data: usuarioCurrent.foto!)!
+                    self.email = usuarioCurrent.email!
+                    self.telefono = usuarioCurrent.telefono!
+                    self.descripcion = usuarioCurrent.descripcion!
+                    self.foto = UIImage(data: usuarioCurrent.foto!)!
                 }
                 Spacer()
             }//NavigationView
@@ -159,3 +168,4 @@ struct VistaPerfilUsuario: View {
             .environmentObject(vm)
     }
 }*/
+

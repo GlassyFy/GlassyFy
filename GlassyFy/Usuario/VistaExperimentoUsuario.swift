@@ -4,11 +4,11 @@
 //
 //  Created by Aula11 on 25/11/22.
 //
-
 import SwiftUI
+import Foundation
 
 /*
-var colorFondo: Color = Color(red: 48/255, green: 49/255, blue: 54/255) 
+var colorFondo: Color = Color(red: 48/255, green: 49/255, blue: 54/255)
 var colorRect: Color = Color(red: 56/255, green: 57/255, blue: 62/255)
 var colorcampostxt: Color = Color(red: 65 / 255, green: 68 / 255, blue: 74 / 255)
 var colorBlue: Color = Color(red: 73/255, green: 82/255, blue: 189/255)  //var colorSeleccion
@@ -25,18 +25,18 @@ struct VistaExperimentoUsuario: View {
   var experimentoCurrent: ExperimentoEntity
   let fecha1 = DateFormatter()
   //fecha1.dateStyle = .medium
+  //fecha1.dateFormat = "dd/MM/AAAA" //"YY/MM/dd"
   var body: some View {
       Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
       .ignoresSafeArea()
       .overlay(
-      VStack { 
+      VStack {
         Text(experimentoCurrent.nombre!)
             .font(.custom("Arial", size:24))
             .foregroundColor(.white)
-            .frame(width: 419, height: 37, alignment: .center)
-        Spacer()
+            .frame(width: 419, height: 57, alignment: .center)
 
-        VStack { 
+        VStack {
           Label(usuarioCurrent.nombre!, systemImage:"person")
               .font(.custom("Arial", size:24))
               .background(colorFondo)
@@ -44,7 +44,6 @@ struct VistaExperimentoUsuario: View {
               .frame(width: 419, height: 40, alignment: .leading)
               .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
               //.offset(x:10)
-
           HStack {
               //HStack{
                   Image(systemName: "calendar")
@@ -54,7 +53,7 @@ struct VistaExperimentoUsuario: View {
               //}.frame(width: 380, alignment: .leading)
               /*Label("Fecha de la toma:", systemImage: "calendar")
                   //.foregroundColor(colorLabel)*/
-              Text(fecha1.string(from: experimentoCurrent.fechaToma!))
+              Text(fecha1.string(from: experimentoCurrent.fechaToma!))//Text(fecha1.string(from: experimentoCurrent.fechaToma!))
                   .foregroundColor(.white)
                   .frame(alignment: .trailing)
           }
@@ -68,7 +67,7 @@ struct VistaExperimentoUsuario: View {
                 .foregroundColor(colorLabel)
               /*Label("Creado el día: ", systemImage: "calendar.badge.plus")
                   //.foregroundColor(colorLabel)*/
-              Text("\(fecha1.string(from: experimentoCurrent.fechaCreacion!))")
+              Text(fecha1.string(from: experimentoCurrent.fechaCreacion!))//Text("\(fecha1.string(from: experimentoCurrent.fechaCreacion!))")
                   .foregroundColor(.white)
                   .frame(alignment: .trailing)
           }
@@ -131,7 +130,7 @@ struct VistaExperimentoUsuario: View {
                   Text(experimentoCurrent.tipo!)
               }.frame(width: 380, height:26, alignment: .trailing)
           } //VStack
-          .frame(width: 419, height: 303, alignment:.top)//  .leading)//, height: 303)
+          .frame(width: 419, height: 283, alignment:.top)//  .leading)//, height: 303)
           .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
 
           VStack{
@@ -152,13 +151,16 @@ struct VistaExperimentoUsuario: View {
           }
           .frame(width: 419, height: 184, alignment:.top)// .leading)//, height: 184)
           .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
+            //Spacer()
     }
      .frame(width: 425, height: 625, alignment: .leading)
     .background(colorFondo)
     .font(.custom("Arial", size:20))
     .foregroundColor(.white)
+          
+          
     }
-    .frame(width: 435, height: 749)//, alignment: .center)
+    .frame(width: 435, height: 749, alignment: .top)
     )
   }
 }
@@ -170,4 +172,3 @@ struct VistaExperimentoUsuario: View {
         .environmentObject(vm)
     }
 }*/
-

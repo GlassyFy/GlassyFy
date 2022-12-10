@@ -24,6 +24,7 @@ struct VistaHistoricoUsuario: View {
     var usuarioCurrent: UsuarioEntity //= usuario
     @State var query: String = ""
     @State var enEdicion: Bool = false
+    //@State var eliminar: Bool = false  //para solucionar problema de eliminar
     var body: some View {
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
         .ignoresSafeArea()
@@ -45,19 +46,21 @@ struct VistaHistoricoUsuario: View {
                     List(){
                         ForEach(vm.experimentosArray){experimento in
                             if (query.isEmpty || experimento.nombre!.contains(query)) {
-                                NavigationLink(destination: VistaExperimentoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento)){
-                                   VistaFilaHistoricoUsuario(experimentoCurrent: experimento)
-                                }
-                                //VistaFilaHistoricoUsuario(experimentoCurrent: experimento)
+                            //if (!eliminar && (query.isEmpty || experimento.nombre!.contains(query))) {
+                                //NavigationLink(destination: VistaExperimentoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento)){
+                                   //VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento)
+                                //}
+                                VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento)
                             }  //if
                         } // ForEach
                     }// List
-                    .background(colorFondo)
-                    .colorMultiply(colorFondo)
-                    .frame(width:455,  height:549, alignment: .center)
+                    //.scrollContentBackground(.hidden)
+                    //.background(colorFondo)
+                    .colorMultiply(Color(red: 127 / 255, green: 127 / 255, blue: 127 / 255))//.colorMultiply(colorFondo)
+                    .frame(width:455,  height:649, alignment: .center)
                 }// VStack
                 .background(colorFondo)
-                .frame(width:455,  height:749, alignment: .top)
+                .frame(width:455,  height:769, alignment: .top)
                 //Spacer()
             
            // } // NavigationView
@@ -80,6 +83,7 @@ struct BusquedaView: View {   // Subvista BARRA DE BÚSQUEDA   EJERCICIO 2
                         .frame(width: 34, height: 33)
                         .foregroundColor(text.isEmpty ? Color(UIColor.gray).opacity(0.4) : Color(UIColor.gray).opacity(0.9))
                     TextField("Buscar experimento...", text:$text)
+                        .redacted(reason: .placeholder)
                         .font(.custom("Arial", size:24))
                         .multilineTextAlignment(.leading)
                     Button(){
@@ -92,12 +96,11 @@ struct BusquedaView: View {   // Subvista BARRA DE BÚSQUEDA   EJERCICIO 2
                 .frame(width: 409, height: 50, alignment:.center)
                 .background(colorRect)
                 .foregroundColor(.white)
-                .clipShape(Rectangle()) //.clipShape(Circle())
-                .shadow(color: colorStroke, radius:2)
+                //.clipShape(RoundedRectangle(cornerRadius: 10))
+                .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
+                //.shadow(color: colorStroke, radius:2)
             }
-            .frame(width:455,  height:70, alignment: .top)
+            .frame(width:455,  height:50, alignment: .top)
         )
     }
 }
-
-

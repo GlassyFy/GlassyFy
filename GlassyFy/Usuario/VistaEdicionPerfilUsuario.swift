@@ -35,52 +35,56 @@ struct VistaEdicionPerfilUsuario: View {
         .overlay(
             VStack {
                 HStack { //Navegacion a VistaPerfilUsuario
-                Button() {
-                    cancelar = true
-                    modoPresentacion.wrappedValue.dismiss()
-                } label: {
-                    Image(systemName: "x.circle")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(colorRojoTxt)
-                }
-                Text(usuarioCurrent.nombre!)
-                    .frame(width:303, alignment: .center) //373
-                Button() {
-                    cancelar = false
-                    modoPresentacion.wrappedValue.dismiss()
-                } label: {
-                    Image(systemName: "checkmark.circle")
-                        .resizable()
-                        .frame(width: 35, height: 35)
-                        .foregroundColor(colorGreen)
-                }
-            } //HStack Navegacion
-            .frame(width:439,  height:37, alignment: .center)
-            .background(colorRect)
-            .font(.custom("Arial", size:24))
+                    Button() {
+                        cancelar = true
+                        modoPresentacion.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "x.circle")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(colorRojoTxt)
+                    }
+                    Text(usuarioCurrent.nombre!)
+                        .frame(width:303, alignment: .center) //373
+                    Button() {
+                        cancelar = false
+                        modoPresentacion.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "checkmark.circle")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                            .foregroundColor(colorGreen)
+                    }
+                } //HStack Navegacion
+                .frame(width:439,  height:37, alignment: .center)
+                .background(colorRect)
+                .font(.custom("Arial", size:24))
 
                 Image("paisaje")
                     .frame(width:475,  height:193, alignment: .center)
                     //.resizable()
+                    //.scaledToFit()
 
                 VStack {
                     HStack { //Cambiar Foto
-                        Image(uiImage: UIImage(data: usuarioCurrent.foto!)!)//("foto")
+                        Image(uiImage: foto) //Image(uiImage: UIImage(data: usuarioCurrent.foto!)!)//("foto")
+                            .resizable()
+                            .scaledToFit()
                             .frame(width:234, height:215)
-                            //.resizable()
+                            .clipShape(Circle())
+                            //.overlay(Circle())
                         Button() {
-                                mostrarCambiarFoto.toggle()
+                            mostrarCambiarFoto.toggle()
                         } label: {
                             Image(systemName: "plus.circle")
                                 .resizable()
                                 .frame(width: 40, height: 40)
-                                //.shadow(color: .pink, radius:14, x:5, y:5)
-                                //.shadow(color: .gray, radius:14, x:-5, y:-5)
                                 .offset(x:25, y:0)
                                 .sheet (isPresented: $mostrarCambiarFoto) {
                                     ImagePicker(sourceType: .photoLibrary) {imageSeleccionada in
                                         foto = imageSeleccionada
+                                    //ImagePicker(sourceType: .photoLibrary) {imageSeleccionada in
+                                        //foto = UIImage(imageLiteralResourceName: imageSeleccionada)
                                     }
                                 }
                         }
@@ -143,29 +147,30 @@ struct VistaEdicionPerfilUsuario: View {
                     }
                     .frame(width:409, height:19,  alignment: .trailing)
                     .offset(y:-20)
+
                     VStack {
                         TextEditor (text: $descripcion) //Cambiar descripcion
                             .frame(width:409, alignment: .leading) //439
-                            //.colorMultiply(colorRect) //Fondo=Fondovistacolo
-                            .foregroundColor(Color.green)
-                            .background(colorRect)
-                            //.foregroundColor(Color(red: 199 / 255, green: 198 / 255, blue: 195 / 255))
-                            .font(.custom("HelveticaNeue", size:16))
+                            .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
+                            .clipShape(RoundedRectangle(cornerRadius:10))
+                            //.scrollContentBackground(.hidden)
+                            .colorMultiply(Color(red: 127 / 255, green: 127 / 255, blue: 127 / 255))//.colorMultiply(colorRect)
+                            .foregroundColor(Color.black)
+                            //.background(colorRect)
                             .disableAutocorrection(true)
-                            //.clipShape(RoundedRectangle(cornerRadius: 15))
                             .onChange(of: self.descripcion) {value in
                                 if Int(descripcion.count) > 150 {
                                     self.descripcion = String(descripcion.prefix(150))
                                 }
                             }
                     }
-                    .frame(width:409,  height:80, alignment:.top)
+                    .frame(width:409, height:80, alignment:.leading)
                     .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                     .background(colorRect)
                     .font(.custom("HelveticaNeue", size:16))
                     .offset(y:-10)
-                
-                //} //Form  
+
+                //} //Form
             } //VStack
             .frame(width:475,  height:729, alignment: .center) //475x729
             .background(colorFondo)
