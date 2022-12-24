@@ -12,6 +12,7 @@ import UIKit
 class ViewModel: ObservableObject {
     let gestorCoreData = CoreDataManager.instance //singleton (1 sola instancia)
 
+
     @Published var experimentosArray: [ExperimentoEntity] = []
     @Published var usuariosArray: [UsuarioEntity] = []
     
@@ -40,6 +41,7 @@ class ViewModel: ObservableObject {
         do{
             self.usuariosArray = try gestorCoreData.contexto.fetch(fetchUsuarios).sorted(){$0.nombre! < $1.nombre!}
             self.experimentosArray = try gestorCoreData.contexto.fetch(fetchExperimentos).sorted(){$0.nombre! < $1.nombre!}
+            
         }catch let error{
             print("Error al cargar los datos: \(error)")
         }
@@ -49,6 +51,7 @@ class ViewModel: ObservableObject {
         gestorCoreData.save()
         cargarDatos()
     }
+
   
     func addExperimento(usuario: UsuarioEntity, nombre: String, fechaToma: Date, descripcion: String, fechaCreacion: Date, inRef: Double, magnesio: Double, aluminio: Double, potasio: Double, Calcio: Double, Bario: Double){
         let nuevoExperimento = ExperimentoEntity(context: gestorCoreData.contexto)

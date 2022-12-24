@@ -21,10 +21,12 @@ var colorRojoBoton: Color = Color(red: 237/255, green: 106/255, blue: 94/255) //
 
 @main
 struct GlassyFyApp: App {
-    @StateObject private var vm: ViewModel = ViewModel()
+    //@StateObject private var vm: ViewModel = ViewModel()
     var body: some Scene {
         WindowGroup {
+
            VistaMain()
+
         }
     }
 }

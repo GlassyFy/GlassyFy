@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		299AC2A0293120CF00A84CA2 /* Historico.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AC29F293120CF00A84CA2 /* Historico.swift */; };
+		299AC2A22931358600A84CA2 /* HistoricoSeleccionadoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AC2A12931358600A84CA2 /* HistoricoSeleccionadoView.swift */; };
 		29DC4245291EC43D0067B0A8 /* GlassyFyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4244291EC43D0067B0A8 /* GlassyFyApp.swift */; };
 		29DC4247291EC43D0067B0A8 /* PerfilUsuarioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4246291EC43D0067B0A8 /* PerfilUsuarioView.swift */; };
 		29DC4249291EC43E0067B0A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29DC4248291EC43E0067B0A8 /* Assets.xcassets */; };
@@ -30,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		299AC29F293120CF00A84CA2 /* Historico.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Historico.swift; sourceTree = "<group>"; };
+		299AC2A12931358600A84CA2 /* HistoricoSeleccionadoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricoSeleccionadoView.swift; sourceTree = "<group>"; };
 		29DC4241291EC43D0067B0A8 /* GlassyFy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlassyFy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29DC4244291EC43D0067B0A8 /* GlassyFyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassyFyApp.swift; sourceTree = "<group>"; };
 		29DC4246291EC43D0067B0A8 /* PerfilUsuarioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilUsuarioView.swift; sourceTree = "<group>"; };
@@ -67,9 +71,11 @@
 		29DC4238291EC43D0067B0A8 = {
 			isa = PBXGroup;
 			children = (
+
 				6A93878D29567A8D00E9B38E /* Inicio */,
 				6A9B59A2295529700023D088 /* Usuario */,
 				6AA136A22927F0DC006C1D4F /* Experimento */,
+
 				29DC4253291EC4790067B0A8 /* ViewModel */,
 				29DC4243291EC43D0067B0A8 /* GlassyFy */,
 				29DC4242291EC43D0067B0A8 /* Products */,
@@ -87,7 +93,9 @@
 		29DC4243291EC43D0067B0A8 /* GlassyFy */ = {
 			isa = PBXGroup;
 			children = (
+
 				6AB481B6292E3D2A00558179 /* VistaMain.swift */,
+
 				29DC4244291EC43D0067B0A8 /* GlassyFyApp.swift */,
 				29DC4246291EC43D0067B0A8 /* PerfilUsuarioView.swift */,
 				29DC4248291EC43E0067B0A8 /* Assets.xcassets */,
@@ -217,9 +225,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
 				6A9B59AC295529C60023D088 /* VistaExperimentoUsuario.swift in Sources */,
 				6A9B59A4295529AF0023D088 /* VistaPerfilUsuario.swift in Sources */,
+
 				29DC425A291EC90D0067B0A8 /* GestionGlassyFyModel.xcdatamodeld in Sources */,
+				299AC2A22931358600A84CA2 /* HistoricoSeleccionadoView.swift in Sources */,
 				29DC4247291EC43D0067B0A8 /* PerfilUsuarioView.swift in Sources */,
 				29DC4245291EC43D0067B0A8 /* GlassyFyApp.swift in Sources */,
 				6ABE5F66293A714300615DFE /* ControlVistasNuevoExp.swift in Sources */,
