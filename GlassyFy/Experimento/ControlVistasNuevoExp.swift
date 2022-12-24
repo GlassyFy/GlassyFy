@@ -25,10 +25,12 @@ struct NuevoExperimentoView: View {
                                 .background(colorboton)
                                 .foregroundColor(.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 30))
+                        EmptyView()
                     }
                 }
                 )
         }.navigationBarBackButtonHidden(true)
+            .navigationBarTitleDisplayMode(.inline)
     }
 
     
@@ -62,6 +64,7 @@ struct AnadirDatosView: View {
                                         .background(colorboton)
                                         .foregroundColor(.white)
                                         .clipShape(RoundedRectangle(cornerRadius: 30))
+                                    EmptyView()
                                 }
                             
                         }
@@ -104,6 +107,7 @@ struct RevisarExpDatosView: View {
                                             .background(colorboton)
                                             .foregroundColor(.white)
                                             .clipShape(RoundedRectangle(cornerRadius: 30))
+                                        EmptyView()
                                         
                                     }
                                 }

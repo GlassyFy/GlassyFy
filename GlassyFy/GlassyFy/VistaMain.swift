@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct VistaMain: View {
+    @EnvironmentObject var vm: ViewModel
     @State var seleccion : Int = 0
     var colorSeleccion: Color = Color(red: 73 / 255, green: 82 / 255, blue: 189 / 255)
     
     var body: some View {
+        InicioView()
         TabView(selection: $seleccion){
             NuevoExperimentoView()
                 .tabItem{
@@ -26,6 +28,14 @@ struct VistaMain: View {
 //                    Text("Nuevo experimento")
 //                }
 //                .tag(1)
+//            VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[0], foto: UIImage(data: vm.usuariosArray[0].foto!)!)//NuevoExperimentoView()
+//                        .tabItem{
+//                            Image(systemName: "calendar.badge.plus") //"signature")
+//                            Text("Nuevo experimento")
+//                        }
+//                        .tag(1)
+//                        .background(.white)
+//                        .foregroundColor(.red)
         }
     }
 }

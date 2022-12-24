@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-var colorFondo: Color = Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
+//var colorFondo: Color = Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
 
 var colorboton: Color = Color(red: 73 / 255, green: 82 / 255, blue: 189 / 255)
 
-var colorcampostxt: Color = Color(red: 65 / 255, green: 68 / 255, blue: 74 / 255)
+//var colorcampostxt: Color = Color(red: 65 / 255, green: 68 / 255, blue: 74 / 255)
 
 var rojotxt: Color = Color(red: 199 / 255, green: 73 / 255, blue: 69 / 255)
 
