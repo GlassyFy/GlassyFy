@@ -67,9 +67,19 @@ struct AnadirDatosExpA: View {
                                 .foregroundColor(rojotxt)
                         }
                         VStack{
-                            if #available(iOS 16.0, *) {
+//                            if #available(iOS 16.0, *) {
+//                                TextEditor(text: $descripcion)
+//                                    .scrollContentBackground(.hidden)
+//                                    .frame(height: 278)
+//                                    .background(colorcampostxt)
+//                                    .clipShape(RoundedRectangle(cornerRadius: 15))
+//                                    .onChange(of: self.descripcion){ value in
+//                                        if Int(descripcion.count) > 300 {
+//                                            self.descripcion = String(value.prefix(300))
+//                                        }
+//                                    }
+//                            } else {
                                 TextEditor(text: $descripcion)
-                                    .scrollContentBackground(.hidden)
                                     .frame(height: 278)
                                     .background(colorcampostxt)
                                     .clipShape(RoundedRectangle(cornerRadius: 15))
@@ -78,17 +88,7 @@ struct AnadirDatosExpA: View {
                                             self.descripcion = String(value.prefix(300))
                                         }
                                     }
-                            } else {
-                                TextEditor(text: $descripcion)
-                                    .frame(height: 278)
-                                    .background(colorcampostxt)
-                                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                                    .onChange(of: self.descripcion){ value in
-                                        if Int(descripcion.count) > 300 {
-                                            self.descripcion = String(value.prefix(300))
-                                        }
-                                    }
-                            }
+//                            }
                                 
                             
                             Button("Limpiar datos"){

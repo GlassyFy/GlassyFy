@@ -13,7 +13,7 @@ struct VistaMain: View {
     var colorSeleccion: Color = Color(red: 73 / 255, green: 82 / 255, blue: 189 / 255)
     
     var body: some View {
-        InicioView()
+        //InicioView()
         TabView(selection: $seleccion){
             NuevoExperimentoView()
                 .tabItem{
@@ -22,20 +22,11 @@ struct VistaMain: View {
                 }
                 .tag(0)
                 .background()
-//            NuevoExperimentoView()
-//                .tabItem{
-//                    Image(systemName: "bell")
-//                    Text("Nuevo experimento")
-//                }
-//                .tag(1)
-//            VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[0], foto: UIImage(data: vm.usuariosArray[0].foto!)!)//NuevoExperimentoView()
-//                        .tabItem{
-//                            Image(systemName: "calendar.badge.plus") //"signature")
-//                            Text("Nuevo experimento")
-//                        }
-//                        .tag(1)
-//                        .background(.white)
-//                        .foregroundColor(.red)
+
+            VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[0], foto: UIImage(data: vm.usuariosArray[0].foto!)!)
+                        .tag(1)
+                        .background(.white)
+                        .foregroundColor(.red)
         }
     }
 }
