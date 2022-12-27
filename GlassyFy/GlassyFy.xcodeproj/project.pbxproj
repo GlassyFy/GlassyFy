@@ -49,7 +49,7 @@
 		6A9B59A9295529C60023D088 /* VistaHistoricoUsuario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VistaHistoricoUsuario.swift; sourceTree = "<group>"; };
 		6A9B59AA295529C60023D088 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		6AA136A32927F11A006C1D4F /* NuevoExperimentoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuevoExperimentoView.swift; sourceTree = "<group>"; };
-		6AB481B6292E3D2A00558179 /* VistaMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaMain.swift; sourceTree = "<group>"; };
+		6AB481B6292E3D2A00558179 /* VistaMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaMain.swift; sourceTree = "<group>"; usesTabs = 0; };
 		6ABE5F65293A714300615DFE /* ControlVistasNuevoExp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlVistasNuevoExp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
