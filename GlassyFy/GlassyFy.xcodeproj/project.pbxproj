@@ -7,38 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		29269DC2293117CF00A24F37 /* VistaEliminacionExperimento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29269DC1293117CF00A24F37 /* VistaEliminacionExperimento.swift */; };
-		29269DC4293117F400A24F37 /* VistaFilaHistoricoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29269DC3293117F400A24F37 /* VistaFilaHistoricoUsuario.swift */; };
-		29269DC62931188700A24F37 /* VistaHistoricoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29269DC52931188700A24F37 /* VistaHistoricoUsuario.swift */; };
-		29269DC829311B5700A24F37 /* VistaExperimentoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29269DC729311B5700A24F37 /* VistaExperimentoUsuario.swift */; };
-		29269DCA29311B8D00A24F37 /* VistaEdicionPerfilUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29269DC929311B8D00A24F37 /* VistaEdicionPerfilUsuario.swift */; };
-		295D3DD22942422300043F49 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295D3DD12942422300043F49 /* ImagePicker.swift */; };
-		299BAF14294477C8003BDF9E /* VistaMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299BAF13294477C8003BDF9E /* VistaMain.swift */; };
 		29DC4245291EC43D0067B0A8 /* GlassyFyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4244291EC43D0067B0A8 /* GlassyFyApp.swift */; };
+		29DC4247291EC43D0067B0A8 /* PerfilUsuarioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4246291EC43D0067B0A8 /* PerfilUsuarioView.swift */; };
 		29DC4249291EC43E0067B0A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29DC4248291EC43E0067B0A8 /* Assets.xcassets */; };
 		29DC424C291EC43E0067B0A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29DC424B291EC43E0067B0A8 /* Preview Assets.xcassets */; };
 		29DC4255291EC5100067B0A8 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4254291EC5100067B0A8 /* ViewModel.swift */; };
 		29DC4257291EC6BA0067B0A8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4256291EC6BA0067B0A8 /* CoreDataManager.swift */; };
 		29DC425A291EC90D0067B0A8 /* GestionGlassyFyModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4258291EC90D0067B0A8 /* GestionGlassyFyModel.xcdatamodeld */; };
-		29FAAB302927E38600E9D812 /* VistaPerfilUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FAAB2F2927E38600E9D812 /* VistaPerfilUsuario.swift */; };
+		6A93879729567BDF00E9B38E /* RegistroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A93879429567BDF00E9B38E /* RegistroView.swift */; };
+		6A93879829567BDF00E9B38E /* InicioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A93879529567BDF00E9B38E /* InicioView.swift */; };
+		6A93879929567BDF00E9B38E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A93879629567BDF00E9B38E /* LoginView.swift */; };
+		6A9B59A4295529AF0023D088 /* VistaPerfilUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B59A3295529AF0023D088 /* VistaPerfilUsuario.swift */; };
+		6A9B59AB295529C60023D088 /* VistaEliminacionExperimento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B59A5295529C50023D088 /* VistaEliminacionExperimento.swift */; };
+		6A9B59AC295529C60023D088 /* VistaExperimentoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B59A6295529C50023D088 /* VistaExperimentoUsuario.swift */; };
+		6A9B59AD295529C60023D088 /* VistaEdicionPerfilUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B59A7295529C50023D088 /* VistaEdicionPerfilUsuario.swift */; };
+		6A9B59AE295529C60023D088 /* VistaFilaHistoricoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B59A8295529C60023D088 /* VistaFilaHistoricoUsuario.swift */; };
+		6A9B59AF295529C60023D088 /* VistaHistoricoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B59A9295529C60023D088 /* VistaHistoricoUsuario.swift */; };
+		6A9B59B0295529C60023D088 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B59AA295529C60023D088 /* ImagePicker.swift */; };
+		6AA136A42927F11A006C1D4F /* NuevoExperimentoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA136A32927F11A006C1D4F /* NuevoExperimentoView.swift */; };
+		6AB481B7292E3D2A00558179 /* VistaMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB481B6292E3D2A00558179 /* VistaMain.swift */; };
+		6ABE5F66293A714300615DFE /* ControlVistasNuevoExp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE5F65293A714300615DFE /* ControlVistasNuevoExp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		29269DC1293117CF00A24F37 /* VistaEliminacionExperimento.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaEliminacionExperimento.swift; sourceTree = "<group>"; };
-		29269DC3293117F400A24F37 /* VistaFilaHistoricoUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaFilaHistoricoUsuario.swift; sourceTree = "<group>"; };
-		29269DC52931188700A24F37 /* VistaHistoricoUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaHistoricoUsuario.swift; sourceTree = "<group>"; };
-		29269DC729311B5700A24F37 /* VistaExperimentoUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaExperimentoUsuario.swift; sourceTree = "<group>"; };
-		29269DC929311B8D00A24F37 /* VistaEdicionPerfilUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaEdicionPerfilUsuario.swift; sourceTree = "<group>"; };
-		295D3DD12942422300043F49 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		299BAF13294477C8003BDF9E /* VistaMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaMain.swift; sourceTree = "<group>"; };
 		29DC4241291EC43D0067B0A8 /* GlassyFy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlassyFy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29DC4244291EC43D0067B0A8 /* GlassyFyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassyFyApp.swift; sourceTree = "<group>"; };
+		29DC4246291EC43D0067B0A8 /* PerfilUsuarioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilUsuarioView.swift; sourceTree = "<group>"; };
 		29DC4248291EC43E0067B0A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29DC424B291EC43E0067B0A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		29DC4254291EC5100067B0A8 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		29DC4256291EC6BA0067B0A8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		29DC4259291EC90D0067B0A8 /* GestionGlassyFyModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GestionGlassyFyModel.xcdatamodel; sourceTree = "<group>"; };
-		29FAAB2F2927E38600E9D812 /* VistaPerfilUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaPerfilUsuario.swift; sourceTree = "<group>"; };
+		6A93879429567BDF00E9B38E /* RegistroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistroView.swift; sourceTree = "<group>"; };
+		6A93879529567BDF00E9B38E /* InicioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InicioView.swift; sourceTree = "<group>"; };
+		6A93879629567BDF00E9B38E /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		6A9B59A3295529AF0023D088 /* VistaPerfilUsuario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VistaPerfilUsuario.swift; sourceTree = "<group>"; };
+		6A9B59A5295529C50023D088 /* VistaEliminacionExperimento.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VistaEliminacionExperimento.swift; sourceTree = "<group>"; };
+		6A9B59A6295529C50023D088 /* VistaExperimentoUsuario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VistaExperimentoUsuario.swift; sourceTree = "<group>"; };
+		6A9B59A7295529C50023D088 /* VistaEdicionPerfilUsuario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VistaEdicionPerfilUsuario.swift; sourceTree = "<group>"; };
+		6A9B59A8295529C60023D088 /* VistaFilaHistoricoUsuario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VistaFilaHistoricoUsuario.swift; sourceTree = "<group>"; };
+		6A9B59A9295529C60023D088 /* VistaHistoricoUsuario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VistaHistoricoUsuario.swift; sourceTree = "<group>"; };
+		6A9B59AA295529C60023D088 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		6AA136A32927F11A006C1D4F /* NuevoExperimentoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuevoExperimentoView.swift; sourceTree = "<group>"; };
+		6AB481B6292E3D2A00558179 /* VistaMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaMain.swift; sourceTree = "<group>"; usesTabs = 0; };
+		6ABE5F65293A714300615DFE /* ControlVistasNuevoExp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlVistasNuevoExp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,28 +64,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		29269DC0293115FE00A24F37 /* Usuario */ = {
-			isa = PBXGroup;
-			children = (
-				29FAAB2F2927E38600E9D812 /* VistaPerfilUsuario.swift */,
-				29269DC929311B8D00A24F37 /* VistaEdicionPerfilUsuario.swift */,
-				29269DC52931188700A24F37 /* VistaHistoricoUsuario.swift */,
-				29269DC3293117F400A24F37 /* VistaFilaHistoricoUsuario.swift */,
-				29269DC729311B5700A24F37 /* VistaExperimentoUsuario.swift */,
-				29269DC1293117CF00A24F37 /* VistaEliminacionExperimento.swift */,
-				295D3DD12942422300043F49 /* ImagePicker.swift */,
-			);
-			path = Usuario;
-			sourceTree = "<group>";
-		};
 		29DC4238291EC43D0067B0A8 = {
 			isa = PBXGroup;
 			children = (
-				29DC4252291EC4690067B0A8 /* Model */,
+				6A93878D29567A8D00E9B38E /* Inicio */,
+				6A9B59A2295529700023D088 /* Usuario */,
+				6AA136A22927F0DC006C1D4F /* Experimento */,
 				29DC4253291EC4790067B0A8 /* ViewModel */,
-				29269DC0293115FE00A24F37 /* Usuario */,
 				29DC4243291EC43D0067B0A8 /* GlassyFy */,
 				29DC4242291EC43D0067B0A8 /* Products */,
+				6A74D79D295A6A1300ABE4CD /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,8 +88,9 @@
 		29DC4243291EC43D0067B0A8 /* GlassyFy */ = {
 			isa = PBXGroup;
 			children = (
-				299BAF13294477C8003BDF9E /* VistaMain.swift */,
+				6AB481B6292E3D2A00558179 /* VistaMain.swift */,
 				29DC4244291EC43D0067B0A8 /* GlassyFyApp.swift */,
+				29DC4246291EC43D0067B0A8 /* PerfilUsuarioView.swift */,
 				29DC4248291EC43E0067B0A8 /* Assets.xcassets */,
 				29DC424A291EC43E0067B0A8 /* Preview Content */,
 			);
@@ -104,13 +105,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		29DC4252291EC4690067B0A8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		29DC4253291EC4790067B0A8 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +113,46 @@
 				29DC4254291EC5100067B0A8 /* ViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6A74D79D295A6A1300ABE4CD /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		6A93878D29567A8D00E9B38E /* Inicio */ = {
+			isa = PBXGroup;
+			children = (
+				6A93879529567BDF00E9B38E /* InicioView.swift */,
+				6A93879629567BDF00E9B38E /* LoginView.swift */,
+				6A93879429567BDF00E9B38E /* RegistroView.swift */,
+			);
+			path = Inicio;
+			sourceTree = "<group>";
+		};
+		6A9B59A2295529700023D088 /* Usuario */ = {
+			isa = PBXGroup;
+			children = (
+				6A9B59AA295529C60023D088 /* ImagePicker.swift */,
+				6A9B59A7295529C50023D088 /* VistaEdicionPerfilUsuario.swift */,
+				6A9B59A5295529C50023D088 /* VistaEliminacionExperimento.swift */,
+				6A9B59A6295529C50023D088 /* VistaExperimentoUsuario.swift */,
+				6A9B59A8295529C60023D088 /* VistaFilaHistoricoUsuario.swift */,
+				6A9B59A9295529C60023D088 /* VistaHistoricoUsuario.swift */,
+				6A9B59A3295529AF0023D088 /* VistaPerfilUsuario.swift */,
+			);
+			path = Usuario;
+			sourceTree = "<group>";
+		};
+		6AA136A22927F0DC006C1D4F /* Experimento */ = {
+			isa = PBXGroup;
+			children = (
+				6AA136A32927F11A006C1D4F /* NuevoExperimentoView.swift */,
+				6ABE5F65293A714300615DFE /* ControlVistasNuevoExp.swift */,
+			);
+			path = Experimento;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,18 +225,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29269DC4293117F400A24F37 /* VistaFilaHistoricoUsuario.swift in Sources */,
-				29269DC829311B5700A24F37 /* VistaExperimentoUsuario.swift in Sources */,
-				29FAAB302927E38600E9D812 /* VistaPerfilUsuario.swift in Sources */,
+				6A9B59AC295529C60023D088 /* VistaExperimentoUsuario.swift in Sources */,
+				6A9B59A4295529AF0023D088 /* VistaPerfilUsuario.swift in Sources */,
 				29DC425A291EC90D0067B0A8 /* GestionGlassyFyModel.xcdatamodeld in Sources */,
-				29269DC2293117CF00A24F37 /* VistaEliminacionExperimento.swift in Sources */,
-				29269DCA29311B8D00A24F37 /* VistaEdicionPerfilUsuario.swift in Sources */,
-				299BAF14294477C8003BDF9E /* VistaMain.swift in Sources */,
+				29DC4247291EC43D0067B0A8 /* PerfilUsuarioView.swift in Sources */,
 				29DC4245291EC43D0067B0A8 /* GlassyFyApp.swift in Sources */,
-				295D3DD22942422300043F49 /* ImagePicker.swift in Sources */,
+				6ABE5F66293A714300615DFE /* ControlVistasNuevoExp.swift in Sources */,
+				6A9B59AD295529C60023D088 /* VistaEdicionPerfilUsuario.swift in Sources */,
+				6A93879829567BDF00E9B38E /* InicioView.swift in Sources */,
+				6A93879729567BDF00E9B38E /* RegistroView.swift in Sources */,
+				6A9B59AF295529C60023D088 /* VistaHistoricoUsuario.swift in Sources */,
 				29DC4257291EC6BA0067B0A8 /* CoreDataManager.swift in Sources */,
+				6AA136A42927F11A006C1D4F /* NuevoExperimentoView.swift in Sources */,
+				6A93879929567BDF00E9B38E /* LoginView.swift in Sources */,
+				6A9B59AB295529C60023D088 /* VistaEliminacionExperimento.swift in Sources */,
 				29DC4255291EC5100067B0A8 /* ViewModel.swift in Sources */,
-				29269DC62931188700A24F37 /* VistaHistoricoUsuario.swift in Sources */,
+				6A9B59B0295529C60023D088 /* ImagePicker.swift in Sources */,
+				6AB481B7292E3D2A00558179 /* VistaMain.swift in Sources */,
+				6A9B59AE295529C60023D088 /* VistaFilaHistoricoUsuario.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,8 +371,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GlassyFy/Preview Content\"";
+				DEVELOPMENT_TEAM = 8T699DK3TL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GlassyFy/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -345,9 +387,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ual.GlassyFy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -359,8 +404,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GlassyFy/Preview Content\"";
+				DEVELOPMENT_TEAM = 8T699DK3TL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GlassyFy/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -373,9 +420,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ual.GlassyFy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

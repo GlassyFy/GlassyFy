@@ -31,7 +31,7 @@ struct VistaExperimentoUsuario: View {
       .ignoresSafeArea()
       .overlay(
       VStack {
-        Text(experimentoCurrent.nombre!)
+          Text(experimentoCurrent.nombre ?? "")
             .font(.custom("Arial", size:24))
             .foregroundColor(.white)
             .frame(width: 419, height: 57, alignment: .center)
@@ -53,7 +53,7 @@ struct VistaExperimentoUsuario: View {
               //}.frame(width: 380, alignment: .leading)
               /*Label("Fecha de la toma:", systemImage: "calendar")
                   //.foregroundColor(colorLabel)*/
-              Text(fecha1.string(from: experimentoCurrent.fechaToma!))//Text(fecha1.string(from: experimentoCurrent.fechaToma!))
+              Text(fecha1.string(from: experimentoCurrent.fechaToma ?? Date()))//Text(fecha1.string(from: experimentoCurrent.fechaToma!))
                   .foregroundColor(.white)
                   .frame(alignment: .trailing)
           }
@@ -67,7 +67,7 @@ struct VistaExperimentoUsuario: View {
                 .foregroundColor(colorLabel)
               /*Label("Creado el día: ", systemImage: "calendar.badge.plus")
                   //.foregroundColor(colorLabel)*/
-              Text(fecha1.string(from: experimentoCurrent.fechaCreacion!))//Text("\(fecha1.string(from: experimentoCurrent.fechaCreacion!))")
+              Text(fecha1.string(from: experimentoCurrent.fechaCreacion ?? Date()))//Text("\(fecha1.string(from: experimentoCurrent.fechaCreacion!))")
                   .foregroundColor(.white)
                   .frame(alignment: .trailing)
           }
@@ -91,43 +91,43 @@ struct VistaExperimentoUsuario: View {
                   Text("Iíndice de refracción (IR): ")
                     .font(.custom("Arial", size:24))
                     .foregroundColor(colorLabel)
-                  Text("\(String(format: "%.2f", experimentoCurrent.iR!))")
+                  Text("\(String(format: "%.2f", experimentoCurrent.iR))")
               }.frame(width: 380, height:26, alignment: .trailing)
   
                HStack{
                   Text("Magnesio (Mg): ")
                     .foregroundColor(colorLabel)
-                   Text("\(String(format: "%.2f", experimentoCurrent.magnesio!))")
+                   Text("\(String(format: "%.2f", experimentoCurrent.magnesio))")
               }.frame(width: 380, height:26, alignment: .trailing)
 
               HStack{
                   Text("Aluminio (Al): ")
                     .foregroundColor(colorLabel)
-                  Text("\(String(format: "%.2f", experimentoCurrent.aluminio!))")
+                  Text("\(String(format: "%.2f", experimentoCurrent.aluminio))")
               }.frame(width: 380, height:26, alignment: .trailing)
 
               HStack{
                   Text("Potasio (K): ")
                     .foregroundColor(colorLabel)
-                  Text("\(String(format: "%.2f", experimentoCurrent.potasio!))")
+                  Text("\(String(format: "%.2f", experimentoCurrent.potasio))")
               }.frame(width: 380, height:26, alignment: .trailing)
 
               HStack{
                   Text("Calcio (Ca): ")
                     .foregroundColor(colorLabel)
-                  Text("\(String(format: "%.2f", experimentoCurrent.calcio!))")
+                  Text("\(String(format: "%.2f", experimentoCurrent.calcio))")
               }.frame(width: 380, height:26, alignment: .trailing)
 
               HStack{
                   Text("Bario (Ba): ")
                     .foregroundColor(colorLabel)
-                  Text("\(String(format: "%.2f", experimentoCurrent.bario!))")
+                  Text("\(String(format: "%.2f", experimentoCurrent.bario))")
               }.frame(width: 380, height:26, alignment: .trailing)
 
               HStack{
                   Text("Tipo: ")
                     .foregroundColor(colorLabel)
-                  Text(experimentoCurrent.tipo!)
+                  //Text(experimentoCurrent.tipo!)
               }.frame(width: 380, height:26, alignment: .trailing)
           } //VStack
           .frame(width: 419, height: 283, alignment:.top)//  .leading)//, height: 303)
@@ -146,7 +146,7 @@ struct VistaExperimentoUsuario: View {
                     .font(.custom("Arial", size:24))
                     //.foregroundColor(colorLabel)
                     .frame(width: 380, alignment: .leading)*/
-              Text(experimentoCurrent.descripcion!)
+              Text(experimentoCurrent.descripcion ?? "")
                .frame(width: 400, alignment: .leading)
           }
           .frame(width: 419, height: 184, alignment:.top)// .leading)//, height: 184)

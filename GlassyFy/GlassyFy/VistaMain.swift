@@ -2,45 +2,60 @@
 //  VistaMain.swift
 //  GlassyFy
 //
-//  Created by Aula11 10/12/22.
+//  Created by Antonio González Capel on 23/11/22.
 //
+
 import SwiftUI
+
+var tabcolor = Color(red: 120/255, green: 57/255, blue: 62/255)
 
 struct VistaMain: View {
     @EnvironmentObject var vm: ViewModel
     @State var seleccion : Int = 0
+    
     var colorSeleccion: Color = Color(red: 73 / 255, green: 82 / 255, blue: 189 / 255)
     
+    init(){
+        UITabBar.appearance().barTintColor  = UIColor(red: 56/255, green: 57/255, blue: 62/255, alpha: 1)
+        UITabBar.appearance().backgroundColor  = UIColor(red: 56/255, green: 57/255, blue: 62/255, alpha: 1)
+    }
+    
+    
     var body: some View {
+        Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
+            .ignoresSafeArea()
+            .overlay(
         TabView(selection: $seleccion){
-            VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[0], foto: UIImage(data: vm.usuariosArray[0].foto!)!)//Historico()
-            .tabItem{
-                Image(systemName: "list.bullet.rectangle")
-                Text("Historial")
+            NavigationView{
+                AnadirDatosExpView()
+            }.tabItem{
+                Image(systemName: "list.bullet.rectangle.portrait")
             }
             .tag(0)
-            VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[0], foto: UIImage(data: vm.usuariosArray[0].foto!)!)//NuevoExperimentoView()
-            .tabItem{
-                Image(systemName: "calendar.badge.plus") //"signature")
-                Text("Nuevo experimento")
+            
+            NavigationView{
+                AnadirDatosExpView()
             }
-            .tag(1)
-            .background(.white)
-            .foregroundColor(.red)
-            VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[0], foto: UIImage(data: vm.usuariosArray[0].foto!)!)//Usuarios()
-            .tabItem{
-                Image(systemName: "person.3")
-                Text("Usuarios")
+                .tabItem{
+                    Image(systemName: "note.text.badge.plus")
+                }
+                .tag(1)
+            NavigationView{
+                AnadirDatosExpView()
             }
-            .tag(2)
-            VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[0], foto: UIImage(data: vm.usuariosArray[0].foto!)!)
-            .tabItem{
-                Image(systemName: "person.circle")
-                Text("Perfil Usuario")
-            }
-            .tag(3)
+                .tabItem{
+                    Image(systemName: "person.3")
+                }
+                .tag(2)
+
+            VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[0], foto: UIImage(data: vm.usuariosArray[0].foto!)!).environmentObject(ViewModel())
+                .tabItem{
+                    //Label("Perfil", systemImage: "person.circle.fill")
+                    Image(systemName: "person.circle.fill")
+                }
+                .tag(4)
         }
-        .colorMultiply(Color(red: 127 / 255, green: 127 / 255, blue: 127 / 255))
+        )
     }
 }
 
@@ -48,4 +63,18 @@ struct VistaMain_Previews: PreviewProvider {
     static var previews: some View {
         VistaMain()
     }
+}
+
+
+extension UIImage {
+
+   class func imageWithColor(color: UIColor, size: CGSize) -> UIImage {
+    let rect: CGRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+    UIGraphicsBeginImageContextWithOptions(size, false, 0)
+    color.setFill()
+    UIRectFill(rect)
+    let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+    UIGraphicsEndImageContext()
+    return image
+   }
 }
