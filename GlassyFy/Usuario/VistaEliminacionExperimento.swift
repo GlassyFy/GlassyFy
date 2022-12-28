@@ -44,7 +44,7 @@ struct VistaEliminacionExperimento: View {
                   .cornerRadius(10)
 
                 VStack(alignment: .leading){
-                    Text(experimentoCurrent.nombre!)
+                    Text(experimentoCurrent.nombre ?? "nombreEXP")
                         .frame(width: 305, alignment: .center)
                         .font(.custom("Arial", size:20))
                         .multilineTextAlignment(.center)
