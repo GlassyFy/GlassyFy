@@ -16,35 +16,42 @@ struct VistaMain: View {
     var colorSeleccion: Color = Color(red: 73 / 255, green: 82 / 255, blue: 189 / 255)
     
     init(){
-        UITabBar.appearance().barTintColor  = UIColor(red: 56/255, green: 57/255, blue: 62/255, alpha: 0)
+        UITabBar.appearance().barTintColor  = UIColor(red: 56/255, green: 57/255, blue: 62/255, alpha: 1)
         UITabBar.appearance().backgroundColor  = UIColor(red: 56/255, green: 57/255, blue: 62/255, alpha: 1)
     }
     
+    
     var body: some View {
-        //InicioView()
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
             .ignoresSafeArea()
             .overlay(
         TabView(selection: $seleccion){
-            NuevoExperimentoView()
+            NavigationView{
+                AnadirDatosExpView()
+            }.tabItem{
+                Image(systemName: "list.bullet.rectangle.portrait")
+            }
+            .tag(0)
+            
+            NavigationView{
+                AnadirDatosExpView()
+            }
                 .tabItem{
-                    Label("Nuevo exp", systemImage: "list.bullet.rectangle.portrait")//.background( frame(width: 30, height: 30))
-                }
-                .tag(0)
-            NuevoExperimentoView()
-                .tabItem{
-                    Label("Nuevo exp", systemImage: "list.bullet.rectangle.portrait")
+                    Image(systemName: "note.text.badge.plus")
                 }
                 .tag(1)
-            NuevoExperimentoView()
+            NavigationView{
+                AnadirDatosExpView()
+            }
                 .tabItem{
-                    Label("Nuevo exp", systemImage: "list.bullet.rectangle.portrait")
+                    Image(systemName: "person.3")
                 }
                 .tag(2)
 
             VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[0], foto: UIImage(data: vm.usuariosArray[0].foto!)!).environmentObject(ViewModel())
                 .tabItem{
-                    Label("Perfil", systemImage: "person.circle.fill")
+                    //Label("Perfil", systemImage: "person.circle.fill")
+                    Image(systemName: "person.circle.fill")
                 }
                 .tag(4)
         }
@@ -56,4 +63,18 @@ struct VistaMain_Previews: PreviewProvider {
     static var previews: some View {
         VistaMain()
     }
+}
+
+
+extension UIImage {
+
+   class func imageWithColor(color: UIColor, size: CGSize) -> UIImage {
+    let rect: CGRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+    UIGraphicsBeginImageContextWithOptions(size, false, 0)
+    color.setFill()
+    UIRectFill(rect)
+    let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+    UIGraphicsEndImageContext()
+    return image
+   }
 }
