@@ -23,9 +23,9 @@ class ViewModel: ObservableObject {
            // addExperimento(usuario: UsuarioEntity, nombre: String, descripcion: String, tipo: String, fechaToma: Date, fechaCreacion: Date,iR: Decimal, al: Decimal, ba: Decimal, ca: Decimal, mg: Decimal, k: Decimal)
             addUsuario(nombre: "obalova", descripcion: "La descripción", telefono: "+34 123 456 789" , email: "Correo@dominio.com", contrasena: "usuario", foto: UIImage(imageLiteralResourceName: "person1"))//UIImage(systemName: "person")!)
             
-        addExperimento(usuario: usuariosArray[0], nombre: "Exp1", fechaToma: Date(), descripcion: "exp1 hola", fechaCreacion: Date(), inRef: 1.1, magnesio: 1.2, aluminio: 1.3, potasio: 1.4, Calcio: 1.5, Bario: 1.6, tipo: "Cristal")
-        guardarDatos()
-        cargarDatos()
+      //  addExperimento(usuario: usuariosArray[0], nombre: "Exp1", fechaToma: Date(), descripcion: "exp1 hola", fechaCreacion: Date(), inRef: 1.1, magnesio: 1.2, aluminio: 1.3, potasio: 1.4, Calcio: 1.5, Bario: 1.6, tipo: "Cristal")
+      //  guardarDatos()
+      //  cargarDatos()
             //addExperimento(usuario: usuariosArray[0], nombre: "Exp1", descripcion: "Descripción del experimento 1", tipo: "Tipo 1", fechaToma: Date(), fechaCreacion: Date(), iR: 1.1, al: 0.01, ba: 0.02, ca: 0.03, mg: 0.04, k: 0.05)
             //addExperimento(usuario: usuariosArray[0], nombre: "Exp2", descripcion: "Descripción del experimento 2", tipo: "Tipo 2", fechaToma: Date(), fechaCreacion: Date(), iR: 1.1, al: 0.01, ba: 0.02, ca: 0.03, mg: 0.04, k: 0.05)
             //addExperimento(usuario: usuariosArray[0], nombre: "Exp3", descripcion: "Descripción del experimento 2", tipo: "Tipo 3", fechaToma: Date(), fechaCreacion: Date(), iR: 1.1, al: 0.01, ba: 0.02, ca: 0.03, mg: 0.04, k: 0.05)
@@ -56,7 +56,9 @@ class ViewModel: ObservableObject {
 
   
     func addExperimento(usuario: UsuarioEntity, nombre: String, fechaToma: Date, descripcion: String, fechaCreacion: Date, inRef: Double, magnesio: Double, aluminio: Double, potasio: Double, Calcio: Double, Bario: Double, tipo: String){
+        
         let nuevoExperimento = ExperimentoEntity(context: gestorCoreData.contexto)
+        nuevoExperimento.usuariosRelation = usuario
         nuevoExperimento.nombre = nombre
         nuevoExperimento.usuariosRelation = usuario
         nuevoExperimento.fechaToma = fechaToma

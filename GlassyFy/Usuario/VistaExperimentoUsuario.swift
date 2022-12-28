@@ -146,7 +146,7 @@ struct VistaExperimentoUsuario: View {
                     .font(.custom("Arial", size:24))
                     //.foregroundColor(colorLabel)
                     .frame(width: 380, alignment: .leading)*/
-              Text(experimentoCurrent.descripcion!)
+              Text(experimentoCurrent.descripcion ?? "")
                .frame(width: 400, alignment: .leading)
           }
           .frame(width: 419, height: 184, alignment:.top)// .leading)//, height: 184)
