@@ -487,3 +487,9 @@ struct NuevoExperimentoView_Previews: PreviewProvider {
         RevisionDatosExp()
     }
 }
+
+
+func calcularTipo(iR: Double, mag: Double, alu: Double, pot: Double, cal: Double, bar: Double) -> String{
+    
+    return "def"
+}
