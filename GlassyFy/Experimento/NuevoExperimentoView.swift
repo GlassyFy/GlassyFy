@@ -147,7 +147,7 @@ struct AnadirDatosExpB: View {
             .ignoresSafeArea()
             .overlay(
                 VStack{
-                    Spacer()
+                    //Spacer()
                     Text("Datos de la muestra")
                         .font(.title)
                     Spacer()
@@ -332,6 +332,10 @@ struct RevisionDatosExp: View{
             .ignoresSafeArea()
             .overlay(
                 VStack{
+                    Text("Revision de los datos")
+                        .font(.title)
+                        //.padding(.bottom, 10)
+                    Spacer()
                 ScrollView(showsIndicators: false){
                 VStack{
 //                    Text("Repaso de la información")
@@ -368,11 +372,23 @@ struct RevisionDatosExp: View{
                                 .font(.headline)
                             Spacer()
                         }
+                        
                         Text("\(datos.descripcion)")
-                            .frame(width:295,height: 250)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .multilineTextAlignment(.leading)
+                            //.padding(.top, 10)
+                            .padding(.all, 10)
+                            .frame(width:295, alignment: .topLeading)
                             .background(colorcampostxt)
                             .clipShape(RoundedRectangle(cornerRadius: 15))
-
+                            //.multilineTextAlignment(.leading)
+                        
+                        HStack{
+                        Text("Datos")
+                            .foregroundColor(.white)
+                            .font(.headline)
+                        Spacer()
+                        }
                         
                         HStack{
                             Text("Indice Refracción (IR)")
