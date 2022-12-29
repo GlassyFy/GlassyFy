@@ -17,22 +17,20 @@ var colorStroke: Color = Color(red: 101/255, green: 101/255, blue: 101/255)
 var colorLabel: Color = Color(red: 150/255, green: 152/255, blue: 157/255)
 var colorRojoTxt: Color = Color(red: 199/255, green: 73/255, blue: 69/255) //var colorSalir
 var colorRojoBoton: Color = Color(red: 237/255, green: 106/255, blue: 94/255) //var colorBTNSi
+var contrariofondotxt: Color = Color(red: 190 / 255, green: 187 / 255, blue: 181 / 255)
 */
 
 struct VistaHistoricoUsuario: View {
     @EnvironmentObject var vm: ViewModel
     var usuarioCurrent: UsuarioEntity //= usuario
     @State var query: String = ""
-    @State var enEdicion: Bool = false
-    //@State var eliminar: Bool = false  //para solucionar problema de eliminar
+    @State private var showingDeleteAlert = false
     var body: some View {
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
         .ignoresSafeArea()
         .overlay(
-            //NavigationView{
                 VStack {
                     HStack{
-                        //Spacer()
                         Text("Tu histórico")
                             .frame(width:373, alignment: .center)
                             .foregroundColor(.white)
@@ -42,29 +40,41 @@ struct VistaHistoricoUsuario: View {
                     .font(.custom("Arial", size:24))
 
                     BusquedaView(text: $query)  //llama a la subvista para BARRA DE BÚSQUEDA
-                    //Spacer()
+                    
                     List(){
                         ForEach(vm.experimentosArray){experimento in
                             if (query.isEmpty || experimento.nombre!.contains(query)) {
-                            //if (!eliminar && (query.isEmpty || experimento.nombre!.contains(query))) {
-                                //NavigationLink(destination: VistaExperimentoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento)){
-                                   //VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento)
-                                //}
                                 VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento)
+                                    .swipeActions {
+                                            Button(role: .destructive) {
+                                                showingDeleteAlert = true
+                                            } label: {
+                                                Image(systemName: "trash.circle.fill")
+                                                    .resizable()
+                                                    .background(colorFondo)
+                                                    .foregroundColor(colorRojoTxt)
+                                                    .clipShape(Circle())
+                                                    //.frame(width: 70, height: 70)
+                                            }
+                                    }
+                                    .alert(isPresented:$showingDeleteAlert) {
+                                        Alert(
+                                            title: Text("¿Seguro desea eliminar el experimento?"),
+                                            message: Text(experimento.nombre!),
+                                            primaryButton: .destructive(Text("Sí").bold()) {
+                                                vm.deleteExperimento(experimento: experimento)
+                                            },
+                                            secondaryButton: .cancel(Text("No").bold())
+                                        )
+                                    }
                             }  //if
                         } // ForEach
                     }// List
-                    //.scrollContentBackground(.hidden)
-                    //.background(colorFondo)
-                    .colorMultiply(Color(red: 127 / 255, green: 127 / 255, blue: 127 / 255))//.colorMultiply(colorFondo)
+                    .colorMultiply(Color(red: 127 / 255, green: 127 / 255, blue: 127 / 255))
                     .frame(width:455,  height:649, alignment: .center)
                 }// VStack
                 .background(colorFondo)
                 .frame(width:455,  height:769, alignment: .top)
-                //Spacer()
-            
-           // } // NavigationView
-            //.navigationBarBackButtonHidden(true)
         )
     } // body
 }
@@ -83,9 +93,9 @@ struct BusquedaView: View {   // Subvista BARRA DE BÚSQUEDA   EJERCICIO 2
                         .frame(width: 34, height: 33)
                         .foregroundColor(text.isEmpty ? Color(UIColor.gray).opacity(0.4) : Color(UIColor.gray).opacity(0.9))
                     TextField("Buscar experimento...", text:$text)
-                        .redacted(reason: .placeholder)
                         .font(.custom("Arial", size:24))
                         .multilineTextAlignment(.leading)
+                        .foregroundColor(.white)
                     Button(){
                         text = ""
                     }label:{
@@ -96,9 +106,7 @@ struct BusquedaView: View {   // Subvista BARRA DE BÚSQUEDA   EJERCICIO 2
                 .frame(width: 409, height: 50, alignment:.center)
                 .background(colorRect)
                 .foregroundColor(.white)
-                //.clipShape(RoundedRectangle(cornerRadius: 10))
                 .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
-                //.shadow(color: colorStroke, radius:2)
             }
             .frame(width:455,  height:50, alignment: .top)
         )

@@ -17,24 +17,18 @@ var colorStroke: Color = Color(red: 101/255, green: 101/255, blue: 101/255)
 var colorLabel: Color = Color(red: 150/255, green: 152/255, blue: 157/255)
 var colorRojoTxt: Color = Color(red: 199/255, green: 73/255, blue: 69/255) //var colorSalir
 var colorRojoBoton: Color = Color(red: 237/255, green: 106/255, blue: 94/255) //var colorBTNSi
+var contrariofondotxt: Color = Color(red: 190 / 255, green: 187 / 255, blue: 181 / 255)
 */
 
 struct VistaFilaHistoricoUsuario: View {
     @EnvironmentObject var vm: ViewModel
     var usuarioCurrent: UsuarioEntity  //¿?
     var experimentoCurrent: ExperimentoEntity
-    @State var mostrarConfirmarEliminarExperimento: Bool = false
-    @State var cancelar: Bool = true
-    @State var eliminar: Bool = false  //para solucionar problema de eliminar
-    let fecha1 = DateFormatter()
-    //fecha1.dateStyle = .short
     var body: some View {
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
         .ignoresSafeArea()
         .overlay(
-        //NavigationView {
         HStack {
-            HStack{
                 NavigationLink (destination: VistaExperimentoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimentoCurrent)) {
                     Image(systemName: "books.vertical.fill")
                         .resizable()
@@ -44,57 +38,24 @@ struct VistaFilaHistoricoUsuario: View {
                         .cornerRadius(10)
                         .offset(x:10, y:0)
                 }
-                
                 VStack{
-                    if (!eliminar) {
+                    if (experimentoCurrent.nombre != nil) {
                         Text(experimentoCurrent.nombre!)  //Tras eliminar, experimentoCurrent.nombre = nil
                             .font(.custom("Arial", size:20))
-                        Text("Fecha Creación: \(fecha1.string(from: experimentoCurrent.fechaCreacion!))")
+                        //Text("Fecha Creación: \(fecha1.string(from: experimentoCurrent.fechaCreacion!))")
+                        Text("Fecha Creación: \(experimentoCurrent.fechaCreacion!.formatted(.dateTime.day().month().year()))")
                             .font(.custom("Arial", size:14))
                     }
                 }
-                .frame(width:189,  height:40, alignment: .leading)
+                .frame(height:40, alignment: .leading) //width: 189,
                 .offset(x:5, y:0)
-            }
             Spacer()
-            Button() {
-                mostrarConfirmarEliminarExperimento.toggle()
-            } label: {
-                Image(systemName: "trash.circle.fill")
-                    .resizable()
-                    .background(colorFondo)
-                    .foregroundColor(colorRojoTxt)
-                    .clipShape(Circle())
-                    .frame(width: 40, height: 40)
-                    .offset(x:-10, y:0)
-                    .sheet (isPresented: $mostrarConfirmarEliminarExperimento,
-                        onDismiss: {
-                            if !cancelar {
-                                eliminar = true
-                                vm.deleteExperimento(experimento: experimentoCurrent )
-                                // Hay que hacer algo más porque experimentoCurrent ya no existe
-                                //guardarDatos()
-                            }
-                        }, content: {
-                            VistaEliminacionExperimento(experimentoCurrent: experimentoCurrent, cancelar: $cancelar)
-                        }
-                    )
-            }
         } //HStak
-        .frame(width:389,  height:40, alignment: .center) // 439x65
+        .frame(width:389,  height:40, alignment: .leading)// alignment: .center) //389 // 439x65
         .overlay(RoundedRectangle(cornerRadius: 10).stroke(colorStroke, lineWidth: 1))
         .background(colorRect)
         .foregroundColor(.white)
-        //} //NavigationView
-        //.navigationBarBackButtonHidden(true)
         )
     }
 }
 
-/*struct VistaFilaHistoricoUsuario_Previews: PreviewProvider {
-      @StateObject private var vm: ViewModel = ViewModel()
-      static var previews: some View {
-          VistaFilaHistoricoUsuario(experimentoCurrent: vm.experimentosArray[0])
-              .environmentObject(vm)   //Falla
-       }
-}*/
