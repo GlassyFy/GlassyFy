@@ -17,15 +17,13 @@ var colorStroke: Color = Color(red: 101/255, green: 101/255, blue: 101/255)
 var colorLabel: Color = Color(red: 150/255, green: 152/255, blue: 157/255)
 var colorRojoTxt: Color = Color(red: 199/255, green: 73/255, blue: 69/255) //var colorSalir
 var colorRojoBoton: Color = Color(red: 237/255, green: 106/255, blue: 94/255) //var colorBTNSi
+var contrariofondotxt: Color = Color(red: 190 / 255, green: 187 / 255, blue: 181 / 255)
 */
 
 struct VistaExperimentoUsuario: View {
   @EnvironmentObject var vm: ViewModel
   var usuarioCurrent: UsuarioEntity
   var experimentoCurrent: ExperimentoEntity
-  let fecha1 = DateFormatter()
-  //fecha1.dateStyle = .medium
-  //fecha1.dateFormat = "dd/MM/AAAA" //"YY/MM/dd"
   var body: some View {
       Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
       .ignoresSafeArea()
@@ -43,17 +41,12 @@ struct VistaExperimentoUsuario: View {
               .foregroundColor(.white)
               .frame(width: 419, height: 40, alignment: .leading)
               .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
-              //.offset(x:10)
           HStack {
-              //HStack{
                   Image(systemName: "calendar")
                   Text("Fecha de la toma: ")
                     .font(.custom("Arial", size:24))
                     .foregroundColor(colorLabel)
-              //}.frame(width: 380, alignment: .leading)
-              /*Label("Fecha de la toma:", systemImage: "calendar")
-                  //.foregroundColor(colorLabel)*/
-              Text(fecha1.string(from: experimentoCurrent.fechaToma ?? Date()))//Text(fecha1.string(from: experimentoCurrent.fechaToma!))
+              Text("\(experimentoCurrent.fechaToma!.formatted(.dateTime.day().month().year()))")//Text(fecha1.string(from: experimentoCurrent.fechaToma!))
                   .foregroundColor(.white)
                   .frame(alignment: .trailing)
           }
@@ -62,12 +55,10 @@ struct VistaExperimentoUsuario: View {
 
           HStack {
               Image(systemName: "calendar.badge.plus")
-              Text("Creado eldía: ")
+              Text("Creado el día: ")
                 .font(.custom("Arial", size:24))
                 .foregroundColor(colorLabel)
-              /*Label("Creado el día: ", systemImage: "calendar.badge.plus")
-                  //.foregroundColor(colorLabel)*/
-              Text(fecha1.string(from: experimentoCurrent.fechaCreacion ?? Date()))//Text("\(fecha1.string(from: experimentoCurrent.fechaCreacion!))")
+              Text("\(experimentoCurrent.fechaCreacion!.formatted(.dateTime.day().month().year()))")//Text("\(fecha1.string(from: experimentoCurrent.fechaCreacion!))")
                   .foregroundColor(.white)
                   .frame(alignment: .trailing)
           }
@@ -83,12 +74,8 @@ struct VistaExperimentoUsuario: View {
               }
               .frame(width: 380, height:26, alignment: .leading)
               .offset(x: -15, y:0)
-              /*Label("Datos:", systemImage: "doc.plaintext.fill")
-                  //.foregroundColor(colorLabel)
-                  .frame(width: 380, alignment: .leading)*/
-
               HStack{
-                  Text("Iíndice de refracción (IR): ")
+                  Text("Índice de refracción (IR): ")
                     .font(.custom("Arial", size:24))
                     .foregroundColor(colorLabel)
                   Text("\(String(format: "%.2f", experimentoCurrent.iR))")
@@ -127,7 +114,7 @@ struct VistaExperimentoUsuario: View {
               HStack{
                   Text("Tipo: ")
                     .foregroundColor(colorLabel)
-                  //Text(experimentoCurrent.tipo!)
+                  Text(experimentoCurrent.tipo!)
               }.frame(width: 380, height:26, alignment: .trailing)
           } //VStack
           .frame(width: 419, height: 283, alignment:.top)//  .leading)//, height: 303)
@@ -142,23 +129,16 @@ struct VistaExperimentoUsuario: View {
               }
               .frame(width: 380, height:26, alignment: .leading)
               .offset(x: -15, y:0)
-              /*Label("Descripción:", systemImage: "text.alignleft")
-                    .font(.custom("Arial", size:24))
-                    //.foregroundColor(colorLabel)
-                    .frame(width: 380, alignment: .leading)*/
               Text(experimentoCurrent.descripcion ?? "")
                .frame(width: 400, alignment: .leading)
           }
           .frame(width: 419, height: 184, alignment:.top)// .leading)//, height: 184)
           .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
-            //Spacer()
     }
      .frame(width: 425, height: 625, alignment: .leading)
     .background(colorFondo)
     .font(.custom("Arial", size:20))
     .foregroundColor(.white)
-          
-          
     }
     .frame(width: 435, height: 749, alignment: .top)
     )

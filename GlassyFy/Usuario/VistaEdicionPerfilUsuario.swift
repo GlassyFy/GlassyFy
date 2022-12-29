@@ -17,6 +17,7 @@ var colorStroke: Color = Color(red: 101/255, green: 101/255, blue: 101/255)
 var colorLabel: Color = Color(red: 150/255, green: 152/255, blue: 157/255)
 var colorRojoTxt: Color = Color(red: 199/255, green: 73/255, blue: 69/255) //var colorSalir
 var colorRojoBoton: Color = Color(red: 237/255, green: 106/255, blue: 94/255) //var colorBTNSi
+var contrariofondotxt: Color = Color(red: 190 / 255, green: 187 / 255, blue: 181 / 255)
 */
 
 struct VistaEdicionPerfilUsuario: View {
@@ -72,7 +73,6 @@ struct VistaEdicionPerfilUsuario: View {
                             .scaledToFit()
                             .frame(width:234, height:215)
                             .clipShape(Circle())
-                            //.overlay(Circle())
                         Button() {
                             mostrarCambiarFoto.toggle()
                         } label: {
@@ -83,8 +83,6 @@ struct VistaEdicionPerfilUsuario: View {
                                 .sheet (isPresented: $mostrarCambiarFoto) {
                                     ImagePicker(sourceType: .photoLibrary) {imageSeleccionada in
                                         foto = imageSeleccionada
-                                    //ImagePicker(sourceType: .photoLibrary) {imageSeleccionada in
-                                        //foto = UIImage(imageLiteralResourceName: imageSeleccionada)
                                     }
                                 }
                         }
@@ -98,7 +96,6 @@ struct VistaEdicionPerfilUsuario: View {
                     .font(.custom("Arial", size:36))
                     .offset(y:-70)
 
-                //Form () {
                     HStack {  //Cambiar email
                         Image(systemName: "envelope.fill")
                             //.foregroundColor(.white)
@@ -149,28 +146,23 @@ struct VistaEdicionPerfilUsuario: View {
                     .offset(y:-20)
 
                     VStack {
-                        TextEditor (text: $descripcion) //Cambiar descripcion
+                        TextEditor (text: $descripcion)
                             .frame(width:409, alignment: .leading) //439
-                            .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                             .clipShape(RoundedRectangle(cornerRadius:10))
-                            //.scrollContentBackground(.hidden)
-                            .colorMultiply(Color(red: 127 / 255, green: 127 / 255, blue: 127 / 255))//.colorMultiply(colorRect)
-                            .foregroundColor(Color.black)
-                            //.background(colorRect)
-                            .disableAutocorrection(true)
                             .onChange(of: self.descripcion) {value in
                                 if Int(descripcion.count) > 150 {
                                     self.descripcion = String(descripcion.prefix(150))
                                 }
                             }
+                            .colorMultiply(contrariofondotxt)
+                            .foregroundColor(.black)
+                            .colorInvert()
                     }
-                    .frame(width:409, height:80, alignment:.leading)
+                    .frame(width:409, height:90, alignment:.leading)
                     .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                     .background(colorRect)
                     .font(.custom("HelveticaNeue", size:16))
                     .offset(y:-10)
-
-                //} //Form
             } //VStack
             .frame(width:475,  height:729, alignment: .center) //475x729
             .background(colorFondo)
