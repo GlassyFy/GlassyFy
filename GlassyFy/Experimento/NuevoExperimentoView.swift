@@ -8,17 +8,7 @@
 import SwiftUI
 
 
-//var colorFondo: Color = Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
 
-var colorboton: Color = Color(red: 73 / 255, green: 82 / 255, blue: 189 / 255)
-
-//var colorcampostxt: Color = Color(red: 65 / 255, green: 68 / 255, blue: 74 / 255)
-
-var rojotxt: Color = Color(red: 199 / 255, green: 73 / 255, blue: 69 / 255)
-
-var rojoboton: Color = Color(red: 237 / 255, green: 106 / 255, blue: 94 / 255)
-
-var contrariofondotxt: Color = Color(red: 190 / 255, green: 187 / 255, blue: 181 / 255)
 //MARK: CLASE DATOS EXP
 class DatosExp: ObservableObject{
     @Published var nombre: String = ""
@@ -30,19 +20,16 @@ class DatosExp: ObservableObject{
     @Published var potasio: Double = 0
     @Published var calcio: Double = 0
     @Published var bario: Double = 0
+    @Published var tipo: String = ""
 }
 
 //MARK: Primera vista
 struct AnadirDatosExpView: View {
     @EnvironmentObject var vm: ViewModel
     @ObservedObject var datos = DatosExp()
-    //@Binding var nombre: String
-    //@Binding var fechaToma: Date
-    //@Binding var descripcion: String
-    
-    
     
     var body: some View {
+        
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
             .ignoresSafeArea()
             .overlay(
@@ -135,10 +122,6 @@ struct AnadirDatosExpB: View {
     @State var selectCa: Bool = false
     @State var selectBa: Bool = false
     
-//    @Binding var nombre: String
-//    @Binding var fechaToma: Date
-//    @Binding var descripcion: String
-    
     @State var minValue: Double = 0
     @State var maxValue: Double = 0
     
@@ -147,7 +130,6 @@ struct AnadirDatosExpB: View {
             .ignoresSafeArea()
             .overlay(
                 VStack{
-                    //Spacer()
                     Text("Datos de la muestra")
                         .font(.title)
                     Spacer()
@@ -315,16 +297,7 @@ struct RevisionDatosExp: View{
     @EnvironmentObject var vm: ViewModel
     @ObservedObject var datos = DatosExp()
     
-    //@State var nombre: String = ""
-    //@State var descripcion: String = "DESCRIPCION"
-    //@State var fechaToma: Date = Date()
-    
-    @State var indiceRef: Double = 0
-    @State var magnesio: Double = 0
-    @State var aluminio: Double = 0
-    @State var potasio: Double = 0
-    @State var calcio: Double = 0
-    @State var bario: Double = 0
+    @State var popUpVisible = false
     
     
     var body: some View{
@@ -338,11 +311,6 @@ struct RevisionDatosExp: View{
                     Spacer()
                 ScrollView(showsIndicators: false){
                 VStack{
-//                    Text("Repaso de la información")
-//                        .foregroundColor(.white)
-//                        .font(.custom("g" ,size: 26))
-//                    Spacer()
-                    
                     VStack{
                         HStack{
                             Text("Nombre del experimento")
@@ -357,10 +325,12 @@ struct RevisionDatosExp: View{
                             .foregroundColor(.white)
                         
                         HStack{
+                            
                             Text("Fecha de toma")
                                 .foregroundColor(.white)
                                 .font(.headline)
-                            Text("\(datos.fechaToma.formatted())")
+                            
+                            Text("\(datos.fechaToma.formatted(date: .numeric, time: .omitted))")
                                 .frame(width: 170, height: 42)
                                 .background(colorcampostxt)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -373,7 +343,7 @@ struct RevisionDatosExp: View{
                             Spacer()
                         }
                         
-                        Text("\(datos.descripcion)")
+                        Text(datos.descripcion == "" ? "Sin descripción. " : "\(datos.descripcion)")
                             .fixedSize(horizontal: false, vertical: true)
                             .multilineTextAlignment(.leading)
                             //.padding(.top, 10)
@@ -479,13 +449,21 @@ struct RevisionDatosExp: View{
                         .foregroundColor(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 30))
                         
-                        NavigationLink(destination:AnadirDatosExpView()){
-                            Text("Confirmar")
+                       
+                        Text("Confirmar").onTapGesture {
+                                self.popUpVisible = true
+                                vm.addExperimento(usuario: vm.usuariosArray[0], nombre: datos.nombre, fechaToma: datos.fechaToma, descripcion: datos.descripcion, fechaCreacion: Date(), inRef: datos.inref, magnesio: datos.magnesio, aluminio: datos.aluminio, potasio: datos.potasio, Calcio: datos.calcio, Bario: datos.bario, tipo: datos.tipo)
+                            }
                                 .frame(width: 150, height: 55)
                                 .background(colorboton)
                                 .foregroundColor(.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 30))
-                            
+                            //Aqui navegamos al popup
+                                
+                        NavigationLink(destination:AnadirDatosExpView(), isActive: $popUpVisible){
+                            EmptyView()
+                        }.sheet(isPresented: $popUpVisible){
+                            popUpExito( visible: self.$popUpVisible)
                         }
                     }
                     Spacer()
@@ -498,14 +476,50 @@ struct RevisionDatosExp: View{
 }
 
 
-struct NuevoExperimentoView_Previews: PreviewProvider {
-    static var previews: some View {
-        RevisionDatosExp()
-    }
-}
+//MARK: POPUP DE ÉXITO
 
-
-func calcularTipo(iR: Double, mag: Double, alu: Double, pot: Double, cal: Double, bar: Double) -> String{
+struct popUpExito: View{
     
-    return "def"
+    @Environment(\.presentationMode) var presentation
+    @EnvironmentObject var vm: ViewModel
+    @ObservedObject var datos = DatosExp()
+    
+    @Binding var visible: Bool
+    
+    var body: some View{
+        Color(red: 90 / 255, green: 163 / 255, blue: 100 / 255)
+            .ignoresSafeArea()
+            .overlay(
+                VStack{
+                    Spacer()
+                    Text("Guardado con éxito")
+                        .font(.title)
+                    Spacer()
+                    Text("El cristal es de tipo:")
+                        .font(.title3)
+                    //TODO: Implementar el tipo de cristal tras el calculo
+                    Text("TIPO_CRISTAL")
+                        .font(.title2)
+                    //Aqui podríamos poner una foto del tipo de cristal, para hacer la vista más completa.
+                    //Image(systemName: "wineglass.fill")
+                    
+                    Spacer()
+                    //TODO: No se pq pero el botón no cierra el popup al haber incluido el metodo para anadir el experimento a la bbdd.
+                    Button("Aceptar"){
+                        visible = false
+                    }
+                    .frame(width: 150, height: 55)
+                    .background(.green)
+                    .foregroundColor(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 30))
+                    Spacer()
+                }
+                
+            )    }
 }
+
+//struct NuevoExperimentoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        popUpExito()
+//    }
+//}
