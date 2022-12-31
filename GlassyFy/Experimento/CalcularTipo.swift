@@ -9,6 +9,35 @@ import Foundation
 
 private var tipoCristal: [String : Double] = [:]
 
+
+func calcularTipo(RI: Double, Mg: Double, Al: Double, K: Double, Ca: Double, Ba: Double) -> String {
+    if (Ba > 0.27){
+        return hoja7(RI: RI, Mg: Mg, Al: Al, K: K, Ca: Ca, Ba: Ba)
+    } else {
+        if (Mg <= 2.41){
+            return hoja1(RI: RI, Mg: Mg, Al: Al, K: K, Ca: Ca, Ba: Ba)
+        }else{
+            if (Al > 1.41){
+                if (Ca <= 3.45){
+                    return hoja5(RI: RI, Mg: Mg, Al: Al, K: K, Ca: Ca, Ba: Ba)
+                }else{
+                    return hoja6(RI: RI, Mg: Mg, Al: Al, K: K, Ca: Ca, Ba: Ba)
+                }
+            }else{
+                if (RI <= 1.51707){
+                    return hoja2(RI: RI, Mg: Mg, Al: Al, K: K, Ca: Ca, Ba: Ba)
+                }else{
+                    if(K <= 0.23){
+                        return hoja3(RI: RI, Mg: Mg, Al: Al, K: K, Ca: Ca, Ba: Ba)
+                    }else{
+                        return hoja4(RI: RI, Mg: Mg, Al: Al, K: K, Ca: Ca, Ba: Ba)
+                    }
+                }
+            }
+        }
+    }
+}
+
 /*
  Las funciones reciben los atributos y simplemente retorna un String con el nombre del tipo de cristal.
  Para trabajar con los datos, he optado por montar diccionarios, cuya clave es el tipo, y el valor el
@@ -42,6 +71,7 @@ func hoja1(RI: Double, Mg: Double, Al: Double, K: Double, Ca: Double, Ba: Double
       }
     }
     
+    tipoCristal.removeAll()
     return claveMaxima
 }
 
@@ -72,6 +102,7 @@ func hoja2(RI: Double, Mg: Double, Al: Double, K: Double, Ca: Double, Ba: Double
       }
     }
     
+    tipoCristal.removeAll()
     return claveMaxima
 }
 
@@ -79,11 +110,17 @@ func hoja2(RI: Double, Mg: Double, Al: Double, K: Double, Ca: Double, Ba: Double
 /*Si Ba  <= 0.27 && Mg > 2.41 && Al <= 1.41 && RI > 1.51707 && K <= 0.23 */
 func hoja3(RI: Double, Mg: Double, Al: Double, K: Double, Ca: Double, Ba: Double) -> String {
     tipoCristal["buildWindFloat"] = -145.54 + RI * 90.16 + Mg * 1.32 + Al * -4.5 + K * 0.78 + Ca * 0.06 + Ba * -9.19
+    
     tipoCristal["buildWindNonFloat"] = -786.27 + RI * 519.68 + Mg * -0.4 + Al * -1.28 + K * 0.8 + Ca * -0.11 + Ba * 8.25
+    
     tipoCristal["vehicWindFloat"] = 460.78 + RI * -316.05 + Mg * 1.76 + Al * -2.75 + K * -2.68 + Ca * 0.87
+    
     tipoCristal["vehicWindNonFloat"] = -31.08 + Mg * 0.01 + Al * -0
+    
     tipoCristal["containers"] = 871.16 + RI * -584.24 + Mg * -0.57 + Al * 4.56 + K * 0.86 + Ca * 1.09 + Ba * 2.46
+    
     tipoCristal["tableware"] = -824.35 + RI * 553.91 + Mg * -0.21 + Al * 4.65 + K * -113.95 + Ca * -1.65 + Ba * -3.04
+    
     tipoCristal["headlamps"] = -1444.01 + RI * 966.12 + Mg * -0.84 + Al * 0.36 + K * 1.46 + Ca * -2.49 + Ba * -7.47
     
     var claveMaxima = ""
@@ -96,6 +133,7 @@ func hoja3(RI: Double, Mg: Double, Al: Double, K: Double, Ca: Double, Ba: Double
       }
     }
     
+    tipoCristal.removeAll()
     return claveMaxima
 }
 
@@ -120,6 +158,7 @@ func hoja4(RI: Double, Mg: Double, Al: Double, K: Double, Ca: Double, Ba: Double
       }
     }
     
+    tipoCristal.removeAll()
     return claveMaxima
 }
 
@@ -144,6 +183,7 @@ func hoja5(RI: Double, Mg: Double, Al: Double, K: Double, Ca: Double, Ba: Double
       }
     }
     
+    tipoCristal.removeAll()
     return claveMaxima
 }
 
@@ -168,6 +208,7 @@ func hoja6(RI: Double, Mg: Double, Al: Double, K: Double, Ca: Double, Ba: Double
       }
     }
     
+    tipoCristal.removeAll()
     return claveMaxima
 }
 
@@ -192,5 +233,6 @@ func hoja7(RI: Double, Mg: Double, Al: Double, K: Double, Ca: Double, Ba: Double
       }
     }
     
+    tipoCristal.removeAll()
     return claveMaxima
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-
+private var tipoNombre = "Holas"
 //MARK: CLASE DATOS EXP
 class DatosExp: ObservableObject{
     @Published var nombre: String = ""
@@ -452,6 +452,9 @@ struct RevisionDatosExp: View{
                        
                         Text("Confirmar").onTapGesture {
                                 self.popUpVisible = true
+                            
+                            datos.tipo = calcularTipo(RI: datos.inref, Mg: datos.magnesio, Al: datos.aluminio, K: datos.potasio, Ca: datos.calcio, Ba: datos.bario)
+                            tipoNombre = datos.tipo
                                 vm.addExperimento(usuario: vm.usuariosArray[0], nombre: datos.nombre, fechaToma: datos.fechaToma, descripcion: datos.descripcion, fechaCreacion: Date(), inRef: datos.inref, magnesio: datos.magnesio, aluminio: datos.aluminio, potasio: datos.potasio, Calcio: datos.calcio, Bario: datos.bario, tipo: datos.tipo)
                             }
                                 .frame(width: 150, height: 55)
@@ -498,7 +501,7 @@ struct popUpExito: View{
                     Text("El cristal es de tipo:")
                         .font(.title3)
                     //TODO: Implementar el tipo de cristal tras el calculo
-                    Text("TIPO_CRISTAL")
+                    Text("\(tipoNombre)")
                         .font(.title2)
                     //Aqui podríamos poner una foto del tipo de cristal, para hacer la vista más completa.
                     //Image(systemName: "wineglass.fill")
