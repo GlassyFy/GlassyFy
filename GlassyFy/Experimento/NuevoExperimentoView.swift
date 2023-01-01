@@ -14,13 +14,47 @@ class DatosExp: ObservableObject{
     @Published var nombre: String = ""
     @Published var fechaToma: Date = Date()
     @Published var descripcion: String = ""
-    @Published var inref: Double = 0
+    @Published var inref: Double = 0.0
     @Published var magnesio: Double = 0
     @Published var aluminio: Double = 0
     @Published var potasio: Double = 0
     @Published var calcio: Double = 0
     @Published var bario: Double = 0
     @Published var tipo: String = ""
+    
+    @Published var inrefStr: String = ""
+    @Published var mgStr: String = ""
+    @Published var alStr: String = ""
+    @Published var kStr: String = ""
+    @Published var caStr: String = ""
+    @Published var baStr: String = ""
+    
+    
+    //Si el valor proporcionado no es numerico, se pondrá el valor medio que tiene en el estudio
+    func updateInRef(){
+        inref = Double(inrefStr) ?? 1.5184
+    }
+    
+    func updateMg(){
+        magnesio = Double(mgStr) ?? 2.6845
+    }
+    
+    func updateAl(){
+        aluminio = Double(alStr) ?? 1.4449
+    }
+    
+    func updateK(){
+        potasio = Double(kStr) ?? 0.4971
+    }
+    
+    func updateCa(){
+        calcio = Double(caStr) ?? 8.9570
+    }
+    
+    func updateBa(){
+        bario = Double(baStr) ?? 0.1750
+    }
+    
 }
 
 //MARK: Primera vista
@@ -114,6 +148,7 @@ struct AnadirDatosExpB: View {
     @ObservedObject var datos = DatosExp()
     
     @State var parametro: Double = 0
+    @State var parStr: String = ""
     
     @State var selectIR: Bool = false
     @State var selectMG: Bool = false
@@ -252,15 +287,57 @@ struct AnadirDatosExpB: View {
                             datos.bario = 0
                         }.foregroundColor(rojotxt)
                         
+                        if(selectIR || selectMG || selectK || selectAL || selectBa || selectCa){
                         HStack{
                             Spacer()
+                            
                             Text("\(String(format: "%.2f", minValue))")
+                            
                             Slider(value: selectIR ? $datos.inref : selectMG ? $datos.magnesio : selectAL ? $datos.aluminio : selectK ? $datos.potasio : selectCa ? $datos.calcio : selectBa ? $datos.bario : $parametro, in: minValue...maxValue)
                             Text("\(String(format: "%.2f", maxValue))")
+                            
                             Spacer()
                         }.frame(width: 310, height: 50)
                             .background(colorcampostxt)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
+                        
+                        //Campo de texto para INREF
+                        HStack{
+                            //if(selectIR){
+                                VStack{
+                                    Text("Puedes escribirlo para mayor precisión")
+                                        .foregroundColor(.white)
+                                
+                                    //TextField("", text: $datos.inrefStr)
+                                    TextField("", text: selectIR ? $datos.inrefStr : selectMG ? $datos.mgStr : selectAL ? $datos.alStr : selectK ? $datos.kStr : selectCa ? $datos.caStr : selectBa ? $datos.baStr : $parStr)
+                                        .keyboardType(.decimalPad)
+                                    .frame(width: 310, height: 50)
+                                    .background(colorcampostxt)
+                                    .foregroundColor(.white)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .onChange(of: datos.inrefStr){ value in
+                                        datos.updateInRef()
+                                    }
+                                    .onChange(of: datos.mgStr){ value in
+                                        datos.updateMg()
+                                    }
+                                    .onChange(of: datos.alStr){ value in
+                                        datos.updateAl()
+                                    }
+                                    .onChange(of: datos.kStr){ value in
+                                        datos.updateK()
+                                    }
+                                    .onChange(of: datos.caStr){ value in
+                                        datos.updateCa()
+                                    }
+                                    .onChange(of: datos.baStr){ value in
+                                        datos.updateBa()
+                                    }
+                                    
+                                    
+                                }
+                            }
+                        }
                     }
                     Spacer()
                     HStack{
