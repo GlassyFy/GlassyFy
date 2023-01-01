@@ -140,7 +140,7 @@ struct AnadirDatosExpB: View {
                                 .background(selectIR ?  colorboton :colorcampostxt)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                             
-                            Text("\(String(format: "%.2f", datos.inref))")
+                            Text("\(String(format: "%.5f", datos.inref))")
                                 .frame(width: 99,  height: 34)
                                 .background(colorcampostxt)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))

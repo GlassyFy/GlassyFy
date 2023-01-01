@@ -18,7 +18,7 @@ func calcularTipo(RI: Double, Mg: Double, Al: Double, K: Double, Ca: Double, Ba:
             return hoja1(RI: RI, Mg: Mg, Al: Al, K: K, Ca: Ca, Ba: Ba)
         }else{
             if (Al > 1.41){
-                if (Ca <= 3.45){
+                if (Mg <= 3.45){
                     return hoja5(RI: RI, Mg: Mg, Al: Al, K: K, Ca: Ca, Ba: Ba)
                 }else{
                     return hoja6(RI: RI, Mg: Mg, Al: Al, K: K, Ca: Ca, Ba: Ba)
@@ -33,7 +33,7 @@ func calcularTipo(RI: Double, Mg: Double, Al: Double, K: Double, Ca: Double, Ba:
                         return hoja4(RI: RI, Mg: Mg, Al: Al, K: K, Ca: Ca, Ba: Ba)
                     }
                 }
-            }
+            }   
         }
     }
 }
@@ -195,7 +195,7 @@ func hoja5(RI: Double, Mg: Double, Al: Double, K: Double, Ca: Double, Ba: Double
     tipoCristal.removeAll()
     return claveMaxima
 }
-
+//TODO: CORREGIR ESTA HOJA PQ PARECE QUE DA FALLOS
 /*Si Ba  <= 0.27 && Mg > 2.41 && Al > 1.41 && Ca > 3.45 */
 func hoja6(RI: Double, Mg: Double, Al: Double, K: Double, Ca: Double, Ba: Double) -> String {
     tipoCristal["buildWindFloat"] = 1312.41 + RI * -880.94 + Mg * -0.29 + Al * -4.62 + K * -1.24 + Ca * 4.07 + Ba * -37.59
@@ -230,11 +230,17 @@ func hoja6(RI: Double, Mg: Double, Al: Double, K: Double, Ca: Double, Ba: Double
 /*Si Ba > 0.27*/
 func hoja7(RI: Double, Mg: Double, Al: Double, K: Double, Ca: Double, Ba: Double) -> String {
     tipoCristal["buildWindFloat"] = -103.78 + RI * 90.07 + Mg * 3.08 + Al * -19.31 + K * 0.3  + Ba * -11.22
+    
     tipoCristal["buildWindNonFloat"] = -276.97 + RI * 158.76 + Mg * 0.28 + Al * -0.38 + K * 0.47 + Ca * 2.43 + Ba * 4.83
+    
     tipoCristal["vehicWindFloat"] = 195.39 + RI * -137.22 + Mg * 1.1  + Al * -2.5 + K * -1.77 + Ca * 0.34
+    
     tipoCristal["vehicWindNonFloat"] = -20.79 + Mg * 0.01 + Al * -0
+    
     tipoCristal["containers"] = -54.49 + Mg * -0.67 + Al * 15.15 + K * 3.08 + Ca * 0.37 + Ba * 4.04
+    
     tipoCristal["tableware"] = 174.85 + RI * -118.9 + Mg * -0.32 + K * -22.56 + Ca * -0.22 + Ba * -3.04
+    
     tipoCristal["headlamps"] = 121.08 + RI * -66.07 + Mg * -2.54 + Al * -1.06 + Ca * -0.9 + Ba * -1.17
     
     var claveMaxima = ""
