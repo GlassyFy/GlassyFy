@@ -20,11 +20,16 @@ var colorRojoBoton: Color = Color(red: 237/255, green: 106/255, blue: 94/255) //
 var contrariofondotxt: Color = Color(red: 190 / 255, green: 187 / 255, blue: 181 / 255)
 */
 
+
+
 struct VistaHistoricoUsuario: View {
     @EnvironmentObject var vm: ViewModel
     var usuarioCurrent: UsuarioEntity //= usuario
     @State var query: String = ""
     @State private var showingDeleteAlert = false
+    
+    
+    
     var body: some View {
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
         .ignoresSafeArea()
@@ -40,40 +45,45 @@ struct VistaHistoricoUsuario: View {
                     .font(.custom("Arial", size:24))
 
                     BusquedaView(text: $query)  //llama a la subvista para BARRA DE BÚSQUEDA
+                    ZStack{
+                        List(){
+                            ForEach(vm.experimentosArray){experimento in
+                                if (query.isEmpty || experimento.nombre!.contains(query)) {
+                                    VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento)
+                                        .swipeActions {
+                                                Button(role: .destructive) {
+                                                    showingDeleteAlert = true
+                                                } label: {
+                                                    Image(systemName: "trash.circle.fill")
+                                                        .resizable()
+                                                        .background(colorFondo)
+                                                        .foregroundColor(colorRojoTxt)
+                                                        .clipShape(Circle())
+                                                        //.frame(width: 70, height: 70)
+                                                }
+                                        }
+                                        .alert(isPresented:$showingDeleteAlert) {
+                                            Alert(
+                                                title: Text("¿Seguro desea eliminar el experimento?"),
+                                                message: Text(experimento.nombre!),
+                                                primaryButton: .destructive(Text("Sí").bold()) {
+                                                    vm.deleteExperimento(experimento: experimento)
+                                                },
+                                                secondaryButton: .cancel(Text("No").bold())
+                                            )
+                                        }
+                                }  //if
+                            }.listRowBackground(colorFondo) // ForEach
+                        }// List
+                        
+                        .frame(width:455,  height:649, alignment: .center)
+                    }
                     
-                    List(){
-                        ForEach(vm.experimentosArray){experimento in
-                            if (query.isEmpty || experimento.nombre!.contains(query)) {
-                                VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento)
-                                    .swipeActions {
-                                            Button(role: .destructive) {
-                                                showingDeleteAlert = true
-                                            } label: {
-                                                Image(systemName: "trash.circle.fill")
-                                                    .resizable()
-                                                    .background(colorFondo)
-                                                    .foregroundColor(colorRojoTxt)
-                                                    .clipShape(Circle())
-                                                    //.frame(width: 70, height: 70)
-                                            }
-                                    }
-                                    .alert(isPresented:$showingDeleteAlert) {
-                                        Alert(
-                                            title: Text("¿Seguro desea eliminar el experimento?"),
-                                            message: Text(experimento.nombre!),
-                                            primaryButton: .destructive(Text("Sí").bold()) {
-                                                vm.deleteExperimento(experimento: experimento)
-                                            },
-                                            secondaryButton: .cancel(Text("No").bold())
-                                        )
-                                    }
-                            }  //if
-                        } // ForEach
-                    }// List
-                    .colorMultiply(Color(red: 127 / 255, green: 127 / 255, blue: 127 / 255))
-                    .frame(width:455,  height:649, alignment: .center)
+                    //.colorMultiply(Color(red: 127 / 255, green: 127 / 255, blue: 127 / 255))
+                    
+                    
                 }// VStack
-                .background(colorFondo)
+                
                 .frame(width:455,  height:769, alignment: .top)
         )
     } // body
