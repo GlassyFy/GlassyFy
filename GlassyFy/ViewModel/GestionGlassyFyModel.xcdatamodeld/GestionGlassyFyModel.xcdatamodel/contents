@@ -4,7 +4,10 @@
         <attribute name="aluminio" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="bario" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="calcio" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="descripcion" optional="YES" attributeType="String"/>
         <attribute name="fecha" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fechaCreacion" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fechaToma" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iR" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="magnesio" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="nombre" optional="YES" attributeType="String"/>
@@ -18,11 +21,11 @@
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="foto" optional="YES" attributeType="Binary"/>
         <attribute name="nombre" optional="YES" attributeType="String"/>
-        <attribute name="telefono" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="telefono" optional="YES" attributeType="String"/>
         <relationship name="experimentosRelation" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExperimentoEntity" inverseName="usuariosRelation" inverseEntity="ExperimentoEntity"/>
     </entity>
     <elements>
-        <element name="ExperimentoEntity" positionX="-54" positionY="-9" width="128" height="179"/>
+        <element name="ExperimentoEntity" positionX="-54" positionY="-9" width="128" height="224"/>
         <element name="UsuarioEntity" positionX="-63" positionY="-18" width="128" height="134"/>
     </elements>
 </model>

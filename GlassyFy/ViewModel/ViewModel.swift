@@ -16,13 +16,6 @@ class ViewModel: ObservableObject {
     
     init(){
         cargarDatos()
-        //addUsuario(nombre: String, descripcion: String, telefono: String, email: String, contrasena: String, foto: UIImage(systemName: "person")!) //
-        //addExperimento(usuario: UsuarioEntity, nombre: String, descripcion: String, tipo: String, fechaToma: Date, fechaCreacion: Date,iR: Decimal, al: Decimal, ba: Decimal, ca: Decimal, mg: Decimal, k: Decimal)
-        //addUsuario(nombre: "usuario1", descripcion: "La descripción", telefono: "+34 123 456 789" , email: "Correo@dominio.com", contrasena: "usuario", foto: UIImage(systemName: "person")!)
-        //cargarDatos()
-        //addExperimento(usuario: usuariosArray[0], nombre: "Exp1", descripcion: "Descripción del experimento 1", tipo: "Tipo 1", fechaToma: Date.now, fechaCreacion: Date.now, iR: 1.1, al: 0.01, ba: 0.02, ca: 0.03, mg: 0.04, k: 0.05)
-        //addExperimento(usuario: usuariosArray[0], nombre: "Exp2", descripcion: "Descripción del experimento 2", tipo: "Tipo 2", fechaToma: Date.now, fechaCreacion: Date.now, iR: 1.1, al: 0.01, ba: 0.02, ca: 0.03, mg: 0.04, k: 0.05)
-        
     }
     
     func cargarDatos(){
@@ -38,7 +31,7 @@ class ViewModel: ObservableObject {
         }
     }
     
-    func guardarDatos(){   //no eficiente, pero hay pocos datos
+    func guardarDatos(){   //no es eficiente, pero hay pocos datos
         gestorCoreData.save()
         cargarDatos()
     }
@@ -53,15 +46,15 @@ class ViewModel: ObservableObject {
         let nuevoUsuario = UsuarioEntity(context: gestorCoreData.contexto)
         nuevoUsuario.nombre = nombre
         nuevoUsuario.descripcion = descripcion
-//        nuevoUsuario.telefono = telefono
-//        nuevoUsuario.email = email
+        nuevoUsuario.telefono = telefono
+        nuevoUsuario.email = email
         nuevoUsuario.contrasena = contrasena
         nuevoUsuario.foto = foto.pngData()
         guardarDatos()
     }
 
     func deleteUsuario(indexSet: IndexSet){
-        for index in indexSet{  //podrÌa eliminar varios a lavez
+        for index in indexSet{  //podria eliminar varios a la vez
             gestorCoreData.contexto.delete(usuariosArray[index])
         }
         guardarDatos()
@@ -71,10 +64,10 @@ class ViewModel: ObservableObject {
         iR: NSDecimalNumber, al: NSDecimalNumber, ba: NSDecimalNumber, ca: NSDecimalNumber, mg: NSDecimalNumber, k: NSDecimalNumber){
         let nuevoExperimento = ExperimentoEntity(context: gestorCoreData.contexto)
         nuevoExperimento.nombre = nombre
-//        nuevoExperimento.descripcion = descripcion
+        nuevoExperimento.descripcion = descripcion
         nuevoExperimento.tipo = tipo
-//        nuevoExperimento.fechaToma = fechaToma
-//        nuevoExperimento.fechaCreacion = fechaCreacion
+        nuevoExperimento.fechaToma = fechaToma
+        nuevoExperimento.fechaCreacion = fechaCreacion
         nuevoExperimento.iR = iR
         nuevoExperimento.aluminio = al
         nuevoExperimento.bario = ba
@@ -82,7 +75,6 @@ class ViewModel: ObservableObject {
         nuevoExperimento.magnesio = mg
         nuevoExperimento.potasio = k
         nuevoExperimento.usuariosRelation = usuario
-        //nuevaMascota.personasRelation = persona   // atributo de relaciÛn
         guardarDatos()
     }
     

@@ -19,14 +19,13 @@ struct RegistroView: View {
                     .scaledToFit()
                     .frame(width: 400, height:300)
                     .padding(-100)
-                
                 VStack{
                     Text("Nombre de usuario")
                         .foregroundColor(.white)
                         .frame(width: 295, height: 42, alignment: .bottomLeading)
                     TextField("", text: $usuario)
                         .placeholder(Text("Introduzca su nombre de usuario")
-                            .foregroundColor(.white), show: usuario.isEmpty)
+                        .foregroundColor(.white), show: usuario.isEmpty)
                         .padding()
                         .frame(width: 295, height: 42)
                         .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
@@ -80,14 +79,15 @@ struct RegistroView: View {
                 
                 Group {
                     Button("Registrarse"){
-                        
-                        //Hay que completar la funcionalidad del boton para que añada usuarios a base de datos
-                        //una vez que haya validado el registro (contraseñas que coincidan, nombre de usuario
-                        //no repetido, correo no repetido, correo con @, contraseña con mayuscula...)
-                        //Registro de ejemplo:
+                        //A implementar: avisos de contraseñas no coincidan, nombre de usuario
+                        //repetido, correo repetido, correo tiene que ir con @)
                         validarRegistro(usuario: usuario, clave: clave, clave2: clave2, correo: correo)
                         if(registroCorrecto == true){
-                            vm.registrarUsuario(nombre: usuario, contrasena: clave, email: correo)
+                            vm.registrarUsuario(nombre: usuario, contrasena: clave, email: correo.lowercased())
+                            usuario = ""
+                            clave = ""
+                            clave2 = ""
+                            correo = ""
                         }
                     }
                     .frame(width: 144 , height: 53)
@@ -97,12 +97,17 @@ struct RegistroView: View {
                     .padding(.top, 20)
                     .disabled(usuario.isEmpty ||  clave.isEmpty ||  clave2.isEmpty || correo.isEmpty)
                     .opacity(usuario.isEmpty ||  clave.isEmpty ||  clave2.isEmpty || correo.isEmpty ? 0.5 : 1.0)
+                    .sheet(isPresented: $registroCorrecto, onDismiss: {registroCorrecto = false}, content: {
+                        ZStack{
+                            Color.blue.ignoresSafeArea()
+                            Text("¡Registro realizado :D!")
+                        }
+                    })
                     
-                    
-                    NavigationLink(destination: Text("Registro relizado :D")
-                                   ,isActive: $registroCorrecto){
-                        EmptyView()
-                    }
+//                    NavigationLink(destination: Text("Registro relizado :D")
+//                                   ,isActive: $registroCorrecto){
+//                        EmptyView()
+//                    }
                     
                     
                     HStack{
@@ -133,10 +138,8 @@ struct RegistroView: View {
         .navigationBarHidden(true)
     }
     func validarRegistro(usuario: String, clave: String, clave2: String, correo: String){
-        //Aquí habría que hacer conexión con la base de datos...
-        //Validacion de registro de ejemplo
         if(!(usuario.isEmpty || clave.isEmpty || clave2.isEmpty || correo.isEmpty)){
-            if(!clave.elementsEqual(clave2)){
+            if(clave.elementsEqual(clave2)){
                 registroCorrecto = true
             }
         }
