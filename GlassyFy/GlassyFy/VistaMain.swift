@@ -61,12 +61,12 @@ struct VistaMain: View {
 
             //DDD
             NavigationView{
-            VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[0], foto: UIImage(data: vm.usuariosArray[0].foto!)!).environmentObject(ViewModel())
+            VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[0]).environmentObject(ViewModel())
             }//.background(colorFondo)
                 .tabItem{
                     //Label("Perfil", systemImage: "person.circle.fill")
                     Image(systemName: "person.circle.fill")
-                }
+                }//.navigationTitle(vm.usuariosArray[0].nombre ?? "NOMBRE")
                 .tag(4)
         }
         )

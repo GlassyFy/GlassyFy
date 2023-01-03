@@ -43,8 +43,11 @@ struct VistaHistoricoUsuario: View {
                     .frame(width:475,  height:37, alignment: .center)
                     .background(colorRect)
                     .font(.custom("Arial", size:24))
+                    .zIndex(3)
 
+                    
                     BusquedaView(text: $query)  //llama a la subvista para BARRA DE BÚSQUEDA
+                        .frame(width: 350)
                     ZStack{
                         List(){
                             ForEach(vm.experimentosArray){experimento in
@@ -113,12 +116,13 @@ struct BusquedaView: View {   // Subvista BARRA DE BÚSQUEDA   EJERCICIO 2
                     }
                     .opacity(text.isEmpty ? 0.0 : 1.0)   // Desaparece o aparece el botón
                 } //HStack
-                .frame(width: 409, height: 50, alignment:.center)
+                
+                //.frame(width: 409, height: 50, alignment:.center)
                 .background(colorRect)
                 .foregroundColor(.white)
                 .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
             }
-            .frame(width:455,  height:50, alignment: .top)
+                .frame(minWidth: 0, idealWidth: 250, maxWidth: 400, minHeight: 0, idealHeight: 50, maxHeight: .infinity, alignment: .center)
         )
     }
 }
