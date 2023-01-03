@@ -19,7 +19,7 @@ class ViewModel: ObservableObject {
     init(){
         cargarDatos()
         //addUsuario(nombre: "obalova globa globa", descripcion: "La descripción", telefono: "+34 123 456 789" , email: "Correo@dominio.com", contrasena: "usuario", foto: UIImage(imageLiteralResourceName: "person1"))//UIImage(systemName: "person")!)
-        //addExperimento(usuario: usuariosArray[0], nombre: "Exp1", fechaToma: Date(), descripcion: "exp1 hola", fechaCreacion: Date(), inRef: 1.1, magnesio: 1.2, aluminio: 1.3, potasio: 1.4, Calcio: 1.5, Bario: 1.6, tipo: "Cristal")
+       // addExperimento(usuario: usuariosArray[0], nombre: "Exp1", fechaToma: Date(), descripcion: "exp1 hola", fechaCreacion: Date(), inRef: 1.1, magnesio: 1.2, aluminio: 1.3, potasio: 1.4, Calcio: 1.5, Bario: 1.6, tipo: "Cristal")
        //guardarDatos()
        //  cargarDatos()
         //addExperimento(usuario: usuariosArray[0], nombre: "Exp2", fechaToma: Date(), descripcion: "exp3 hola", fechaCreacion: Date(), inRef: 1.1, magnesio: 1.2, aluminio: 1.3, potasio: 1.4, Calcio: 1.5, Bario: 1.6, tipo: "Tipo 2")

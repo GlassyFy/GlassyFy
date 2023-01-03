@@ -7,140 +7,145 @@
 
 import SwiftUI
 
-/*
-var colorFondo: Color = Color(red: 48/255, green: 49/255, blue: 54/255)
-var colorRect: Color = Color(red: 56/255, green: 57/255, blue: 62/255)
-var colorcampostxt: Color = Color(red: 65 / 255, green: 68 / 255, blue: 74 / 255)
-var colorBlue: Color = Color(red: 73/255, green: 82/255, blue: 189/255)  //var colorSeleccion
-var colorGreen: Color = Color(red: 90/255, green: 163/255, blue: 100/255)
-var colorStroke: Color = Color(red: 101/255, green: 101/255, blue: 101/255)
-var colorLabel: Color = Color(red: 150/255, green: 152/255, blue: 157/255)
-var colorRojoTxt: Color = Color(red: 199/255, green: 73/255, blue: 69/255) //var colorSalir
-var colorRojoBoton: Color = Color(red: 237/255, green: 106/255, blue: 94/255) //var colorBTNSi
-*/
-
 struct VistaPerfilUsuario: View {
     @EnvironmentObject var vm: ViewModel
     var usuarioCurrent: UsuarioEntity
     @State var email: String = ""
     @State var telefono: String = ""
     @State var descripcion: String = ""
-    @State var foto: UIImage //= UIImage(data: usuarioCurrent.foto!)!
+    @State var foto:UIImage
     @State var mostrarEdicion: Bool = false
     @State var cancelar: Bool = true
+    
+    init(usuarioCurrent: UsuarioEntity) {
+            self.usuarioCurrent = usuarioCurrent
+            self.foto = UIImage(data: self.usuarioCurrent.foto!)!
+        }
+    
     var body: some View {
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
             .ignoresSafeArea()
         .overlay(
-            //NavigationView(){
                 VStack { //Todo
-                    
-                    //Aquí va la barra superior, con el nombre y el boton de salir
-                    HStack{
-                        Text(usuarioCurrent.nombre!)
-                            
-                            .font(.custom("Arial", size:24))
-                            .foregroundColor(.white)
 
-                    }.frame(minWidth: 0, maxWidth: .infinity, maxHeight: 50, alignment: .center)
-                        .overlay(
-                            HStack{
+                    //Aquí va la barra superior, con el nombre y el boton de salir
+//                    HStack{
+//                        Text(usuarioCurrent.nombre!)
+//
+//                            .font(.custom("Arial", size:24))
+//                            .foregroundColor(.white)
+//
+//                    }.frame(minWidth: 0, maxWidth: .infinity,minHeight: 0, maxHeight: 50, alignment: .center)
+//                        .overlay(
+//                            HStack{
+//                                NavigationLink(destination: RevisionDatosExp()){
+//                                    Text("Salir")
+//                                        .frame(width:51)
+//                                    .font(.custom("Arial", size:24))
+//                                    .padding(.leading)
+//                                    .foregroundColor(colorRojoTxt)
+//                                }
+//
+//                                Spacer()
+//                            }
+//                        )
+//                        .background(colorRect)
+//                        //.padding(.top, -35)
+//                        .zIndex(1)
+//                        //.offset(y:20)
+                    
+                    Image("kraken")
+                        .resizable()
+                        .frame(height:200, alignment: .center)
+                        .offset(y: 150)
+                        .padding(.top, -100)
+                    
+                    
+                    VStack{
+                        
+                        //MARK: HSTACK CON CONTENIDO BOTON HISTORICO, FOTO PERFIL Y BOTÓN EDICION
+                        HStack{
+                            NavigationLink(destination:VistaHistoricoUsuario(usuarioCurrent: usuarioCurrent)){
+                                Image(systemName: "books.vertical.fill")
+                                    .resizable()
+                                    .frame(width: 55, height: 45)
+                                    .padding(5)
+                                    .background(colorBlue)
+                                    .cornerRadius(10)
+                                    .foregroundColor(.white)
+                                    .padding(.top, 80)
+                            }
+                            .navigationBarItems(leading:
                                 NavigationLink(destination: RevisionDatosExp()){
-                                    Text("Salir")
-                                        .frame(width:51)
-                                    .font(.custom("Arial", size:24))
-                                    .padding(.leading)
-                                    .foregroundColor(colorRojoTxt)
-                                }
-                            
+                                Text("Salir")
+                                    .frame(width:51)
+                                .font(.custom("Arial", size:24))
+                                .padding(.leading)
+                                .foregroundColor(colorRojoTxt)
+                            },trailing:
+                                                    HStack{
+                                Text(usuarioCurrent.nombre!)
+                                                
+                                .font(.custom("Arial", size:24))
+                                .foregroundColor(.white)
                                 Spacer()
                             }
-                        )
-                        .background(colorRect)
-                        .padding(.top, -35)
-                        //.offset(y:-100)
-                    
-                    VStack{
-                        
-                    Image("paisaje")
-                        .frame(height:215, alignment: .center)
-                        .overlay(
-                            HStack{
-                                NavigationLink(destination:VistaHistoricoUsuario(usuarioCurrent: usuarioCurrent)){
-                                    Image(systemName: "books.vertical.fill")
-                                        .resizable()
-                                        .frame(width: 55, height: 45)
-                                        .padding(5)
-                                        .background(colorBlue)
-                                        .cornerRadius(10)
-                                        .foregroundColor(.white)
-                                        .padding(.top, 80)
-                                }
-                                VStack{
-                                    Image(uiImage: foto) //Image(uiImage: UIImage(data: usuarioCurrent.foto!)!)//("foto")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width:234)
-                                        .clipShape(Circle())
-                                    
-//                                    Text(usuarioCurrent.nombre!)
-//                                        .frame(height:44, alignment: .center)
-//                                        .font(.custom("Arial", size:28))
-//                                        .foregroundColor(.white)
-                                        
-                                }
+                                )
+                                                    
+                            
+                            Image(uiImage: foto) //Image(uiImage: UIImage(data: usuarioCurrent.foto!)!)//("foto")
+                                .resizable()
+                                //.scaledToFit()
+                                //.frame(width:234)
+                                .frame(minWidth: 0, maxWidth: 234, minHeight: 0, maxHeight: 234)
+                                .clipShape(Circle())
+                                //.offset(y: -50)
                                 
-                                
-                                    
-                                Button() {
-                                    mostrarEdicion.toggle()
-                                    email = usuarioCurrent.email!
-                                    telefono = usuarioCurrent.telefono!
-                                    descripcion = usuarioCurrent.descripcion!
-                                    foto = UIImage(data: usuarioCurrent.foto!)!
-                                } label: {
-                                    Image(systemName: "pencil")
-                                        .resizable()
-                                        .frame(width: 31, height: 32)
-                                        .padding(10)
-                                        .foregroundColor(colorGreen)
-                                        .border(colorGreen, width: 3) //
-                                        .cornerRadius(5) //
-                                        .padding(.top, 80)
-                                        //.offset(y:50)
-                                        .sheet (isPresented: $mostrarEdicion,
-                                            onDismiss: {
-                                                if !cancelar {
-                                                    usuarioCurrent.email = email
-                                                    usuarioCurrent.telefono = telefono
-                                                    usuarioCurrent.descripcion = descripcion
-                                                    usuarioCurrent.foto = foto.pngData()
-                                                    vm.guardarDatos()
-                                                }
-                                            }, content: {
-                                                VistaEdicionPerfilUsuario(usuarioCurrent: usuarioCurrent, email: $email, telefono: $telefono,
-                                                    descripcion: $descripcion, foto: $foto, cancelar: $cancelar)
+
+                            Button() {
+                                mostrarEdicion.toggle()
+                                email = usuarioCurrent.email!
+                                telefono = usuarioCurrent.telefono!
+                                descripcion = usuarioCurrent.descripcion!
+                                foto = UIImage(data: usuarioCurrent.foto!)!
+                            } label: {
+                                Image(systemName: "pencil")
+                                    .resizable()
+                                    .frame(width: 31, height: 32)
+                                    .padding(10)
+                                    .foregroundColor(colorGreen)
+                                    .border(colorGreen, width: 3) //
+                                    .cornerRadius(5) //
+                                    .padding(.top, 80)
+                                    //.offset(y:50)
+                                    .sheet (isPresented: $mostrarEdicion,
+                                        onDismiss: {
+                                            if !cancelar {
+                                                usuarioCurrent.email = email
+                                                usuarioCurrent.telefono = telefono
+                                                usuarioCurrent.descripcion = descripcion
+                                                usuarioCurrent.foto = foto.pngData()
+                                                vm.guardarDatos()
                                             }
-                                        )
-                                }
+                                        }, content: {
+                                            VistaEdicionPerfilUsuario(usuarioCurrent: usuarioCurrent, email: $email, telefono: $telefono,
+                                                descripcion: $descripcion, foto: $foto, cancelar: $cancelar)
+                                        }
+                                    )
+                                
                             }
-                        //} // foto y enlaces
-                        .frame(height:215, alignment: .center)
-                        //.background(.red)
-                            .offset(y:95)
-                        )//.padding(.top, -90)
-                    }//.offset(y: -90)
-                   // Spacer()
-                    
-                    //VStack {  //Foto y enlaces
-                    
-                    
-                    VStack{
+                        }//FIN HSTACK.
+                        .offset(y: -90)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                        
+                        
+                        //MARK: CONTENIDO INFORMACIÓN USUARIO
                         
                         Text(usuarioCurrent.nombre!)
-                            //.frame(alignment: .center)
                             .font(.custom("Arial", size:32))
                             .foregroundColor(.white)
+                            //.padding(.bottom, 10)
+                            .offset(y: -90)
                         
                         HStack{
                             Image(systemName: "envelope.fill")
@@ -152,6 +157,7 @@ struct VistaPerfilUsuario: View {
                         .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                         .background(colorRect)
                         .font(.custom("Arial", size:25))
+                        .offset(y: -90)
                         
                         HStack{
                             Image(systemName: "phone.fill")
@@ -163,6 +169,7 @@ struct VistaPerfilUsuario: View {
                         .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                         .background(colorRect)
                         .font(.custom("Arial", size:25))
+                        .offset(y: -90)
                         
                     HStack{  //Sobre mi
                         Image (systemName: "questionmark.app")
@@ -176,40 +183,33 @@ struct VistaPerfilUsuario: View {
                         Spacer()
                     }
                     .frame(height:65, alignment: .leading)
-                    //.offset(y:-75)
+                    .offset(y: -90)
 
-                    VStack {
+                    ScrollView {
                         Text (descripcion)//Text (usuarioCurrent.descripcion!)
                             .frame(width: 370, alignment: .leading) //419x110
                             .fixedSize(horizontal: false, vertical: true)
                             .padding(.all, 10)
                             .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                             .background(colorRect)
-                            .font(.custom("Arial", size:18))
-                            //.offset(x:5, y:5)
-                    }
-                    //.frame(height:90, alignment: .top)
-                    
-                    //.offset(y:-75)
-
+                            .font(.custom("Arial", size:26))
+                    }.frame(width: 370, height: 210, alignment: .center)
+                            .zIndex(-1)
+                            .offset(y:-90)
+                        
                 } //VStack Todo
                     .frame(width: 380)
-                //.background(.yellow)
+                    .background(colorFondo)
                 .foregroundColor(.white)
                 .onAppear(){
                     self.email = usuarioCurrent.email!
                     self.telefono = usuarioCurrent.telefono!
                     self.descripcion = usuarioCurrent.descripcion!
                     self.foto = UIImage(data: usuarioCurrent.foto!)!
-                }.offset(y: 90)
+                }.offset(y: 140)
                 }.navigationBarTitleDisplayMode(.inline)
-                    //.navigationBarBackButtonHidden(true)
-                    //.navigationBarHidden(true)
-                    .padding(.top, -100)//.offset(y: -100)
-                //}
-                //.background(colorFondo)
-
-            //}
+                    .navigationBarTitle("")
+                    
         )
     }
 }
@@ -223,3 +223,4 @@ struct VistaPerfilUsuario: View {
 //    }
 //}
 //
+

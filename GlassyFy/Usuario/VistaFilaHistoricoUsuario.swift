@@ -47,11 +47,14 @@ struct VistaFilaHistoricoUsuario: View {
                             .font(.custom("Arial", size:14))
                     }
                 }
-                .frame(height:40, alignment: .leading) //width: 189,
+                .frame(minHeight: 0, idealHeight: 50, maxHeight: .infinity, alignment: .leading)
+                //.frame(height:40, alignment: .leading) //width: 189,
                 .offset(x:5, y:0)
             Spacer()
         } //HStak
-        .frame(width:389,  height:40, alignment: .leading)// alignment: .center) //389 // 439x65
+            .frame(minWidth: 0, idealWidth: 389, maxWidth: .infinity, alignment: .leading)
+        
+        //.frame(width:389,  height:40, alignment: .leading)// alignment: .center) //389 // 439x65
         .overlay(RoundedRectangle(cornerRadius: 10).stroke(colorStroke, lineWidth: 1))
         .background(colorRect)
         .foregroundColor(.white)
