@@ -8,6 +8,10 @@ struct RegistroView: View {
     @State private var clave: String = ""
     @State private var clave2: String = ""
     @State private var correo: String = ""
+    @State private var aviso: String = ""
+    
+    //Mejorar avisos para que aparezcan debajo de su campo correspondiente
+    //Mostrar todos los avisos de una vez, en vez de uno a uno
     
     var body: some View {
         ZStack{
@@ -47,7 +51,7 @@ struct RegistroView: View {
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .autocapitalization(.none)
-                
+                    
                 
                 Text("Repita su contraseña")
                     .foregroundColor(.white)
@@ -61,7 +65,7 @@ struct RegistroView: View {
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .autocapitalization(.none)
-                
+
                 
                 Text("Correo electrónico")
                     .foregroundColor(.white)
@@ -76,14 +80,24 @@ struct RegistroView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .autocapitalization(.none)
                 
-                
                 Group {
+                    Text(aviso)
+                        .foregroundColor(.red)
+                        .font(.footnote)
+                    
                     Button("Registrarse"){
-                        //A implementar: avisos de contraseñas no coincidan, nombre de usuario
-                        //repetido, correo repetido, correo tiene que ir con @)
-                        validarRegistro(usuario: usuario, clave: clave, clave2: clave2, correo: correo)
-                        if(registroCorrecto == true){
+                        if(usuarioExistente(currentUser: usuario)) {
+                           textoAviso(tipoError: 1)
+                        }else if(clave != clave2){
+                            textoAviso(tipoError: 3)
+                        }else if(correoExistente(currentCorreo: correo)){
+                           textoAviso(tipoError: 2)
+                        }else if(!validarFormatoCorreo(currentCorreo: correo)){
+                            textoAviso(tipoError: 4)
+                        }else {
                             vm.registrarUsuario(nombre: usuario, contrasena: clave, email: correo.lowercased())
+                            registroCorrecto = true
+                            aviso = ""
                             usuario = ""
                             clave = ""
                             clave2 = ""
@@ -108,7 +122,6 @@ struct RegistroView: View {
 //                                   ,isActive: $registroCorrecto){
 //                        EmptyView()
 //                    }
-                    
                     
                     HStack{
                         Text("¿Ya tienes cuenta?")
@@ -137,12 +150,44 @@ struct RegistroView: View {
         }
         .navigationBarHidden(true)
     }
-    func validarRegistro(usuario: String, clave: String, clave2: String, correo: String){
-        if(!(usuario.isEmpty || clave.isEmpty || clave2.isEmpty || correo.isEmpty)){
-            if(clave.elementsEqual(clave2)){
-                registroCorrecto = true
+    
+    func usuarioExistente(currentUser: String) -> Bool {
+        for usuario in vm.usuariosArray{
+            if(usuario.nombre == currentUser){
+                return true
             }
         }
+        return false
+            
+    }
+    func correoExistente(currentCorreo: String) -> Bool {
+        for usuario in vm.usuariosArray{
+            if(usuario.email == currentCorreo){
+                return true
+            }
+        }
+        return false
+    }
+    
+    func validarFormatoCorreo(currentCorreo: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: currentCorreo)
+    }
+    
+    func textoAviso(tipoError: Int16){
+    switch(tipoError){
+        case 1:
+        aviso = "El usuario ya está en uso. Pruebe con otro o inicie sesión"
+        case 2:
+        aviso = "El correo electrónico ya existe"
+        case 3:
+        aviso = "Las contraseñas no coinciden"
+        case 4:
+        aviso = "El formato de correo electrónico no es válido"
+        default:
+        aviso = ""
+    }
     }
 }
 

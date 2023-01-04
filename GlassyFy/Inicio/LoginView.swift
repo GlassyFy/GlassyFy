@@ -7,9 +7,11 @@ struct LoginView: View {
     @State private var wrongCorreo = 0
     @State private var wrongClave = 0
     @State private var acceso = false
+    @State private var aviso: String = ""
     @State private var currentUsuario: String = ""
     //@State private var avisoDatosIncorrectos = false
-    //var iconClick = true //Implementar funcionalidad para un icono que muestre o no la contraseña
+    //var iconClick = true //Falta implementar funcionalidad para un icono que visibilice o no la contraseña
+    //Falta poner bordes redondos rojos si falla correo o clave
     var body: some View {
         
         ZStack{
@@ -56,11 +58,19 @@ struct LoginView: View {
                 //Avisos a implementar:
                 //-Campos no coinciden con la base de datos (usuario o contraseña incorrectos)
                 
+                Text (aviso)
+                    .foregroundColor(.red)
                 Button("Entrar"){
                     autenticarUsuario(correo: correo, clave: clave)
                     if(acceso == true){
                         wrongClave = 0
                         wrongCorreo = 0
+                        aviso = ""
+                    }
+                    else{
+                        wrongCorreo = 2
+                        wrongClave = 2
+                        aviso = "Correo electrónico o contraseña incorrectos"
                     }
                 }
                 .foregroundColor(.white)
@@ -114,14 +124,9 @@ struct LoginView: View {
     }
     func autenticarUsuario(correo: String, clave: String){
         for usuario in vm.usuariosArray {
-            if (correo.lowercased() == usuario.email && clave.lowercased() == usuario.contrasena){
-                wrongCorreo = 0
+            if (correo.lowercased() == usuario.email && clave == usuario.contrasena){
                 currentUsuario = usuario.nombre!
                 acceso = true
-            }
-            else{
-                wrongCorreo = 2
-                wrongClave = 2
             }
         }
         
