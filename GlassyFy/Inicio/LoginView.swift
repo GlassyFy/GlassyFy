@@ -1,12 +1,16 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject var vm: ViewModel
     @State private var correo: String = ""
     @State private var clave: String = ""
     @State private var wrongCorreo = 0
     @State private var wrongClave = 0
     @State private var acceso = false
-    //var iconClick = true //Implementar funcionalidad para un icono que muestre o no la contraseña
+    @State private var aviso: String = ""
+    @State private var currentUsuario: String = ""
+    //var iconClick = true //Falta implementar funcionalidad para un icono que visibilice o no la contraseña
+    //Falta poner bordes redondos rojos si falla correo o clave
     var body: some View {
         
         ZStack{
@@ -50,15 +54,24 @@ struct LoginView: View {
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .border(.red, width: CGFloat(wrongClave))
-                //Avisos a implementar:
-                //-El campo usuario está vacío o el campo contraseña está vacío,
-                //-Campos no coinciden con la base de datos (usuario o contraseña incorrectos)
                 
-                
+                Text (aviso)
+                    .foregroundColor(.red)
+                    .font(.footnote)
                 Button("Entrar"){
-                    //Autenticación del usuario... Hay que conectar con base de datos
-                    //Conexión de ejemplo
                     autenticarUsuario(correo: correo, clave: clave)
+                    if(acceso == true){
+                        wrongClave = 0
+                        wrongCorreo = 0
+                        aviso = ""
+                        correo = ""
+                        clave = ""
+                    }
+                    else{
+                        wrongCorreo = 2
+                        wrongClave = 2
+                        aviso = "Correo electrónico o contraseña incorrectos"
+                    }
                 }
                 .foregroundColor(.white)
                 .frame(width: 144 , height: 53)
@@ -67,11 +80,17 @@ struct LoginView: View {
                 .padding(.top, 40)
                 .disabled(correo.isEmpty || clave.isEmpty)
                 .opacity(correo.isEmpty || clave.isEmpty ? 0.5 : 1.0 )
+                .sheet(isPresented: $acceso, onDismiss: {acceso = false}, content: {
+                    ZStack{
+                        Color.green.ignoresSafeArea()
+                        Text("¡Bienvenido \(currentUsuario) :D!")
+                    }
+                })
                 
-                NavigationLink(destination: Text("Acceso a la app realizado :D"),
-                               isActive: $acceso){
-                    EmptyView()
-                }
+                //NavigationLink(destination: Text("Acceso a la app realizado :D"),
+                //      isActive: $acceso){
+                //         EmptyView()
+                //      }
                 
                 HStack{
                     Text("¿Aún no tienes cuenta?")
@@ -79,7 +98,7 @@ struct LoginView: View {
                         .font(.footnote)
                         .bold()
                     NavigationLink(destination: RegistroView()
-                        //.animation(.easeInOut(duration: 0.5))
+                                   //.animation(.easeInOut(duration: 0.5))
                         .navigationBarBackButtonHidden(true)
                         .navigationBarHidden(true)) {
                             Text("Regístrate aquí")
@@ -89,7 +108,7 @@ struct LoginView: View {
                             
                         }
                         .offset(x:-15, y:0)
-                        
+                    
                 }
                 Text("GlassyFy 2022")
                     .font(.footnote)
@@ -104,19 +123,14 @@ struct LoginView: View {
         .navigationBarHidden(true)
     }
     func autenticarUsuario(correo: String, clave: String){
-        //Aquí habría que hacer conexión con la base de datos...
-        //Usuario y contraseña de ejemplo
-        if correo.lowercased() == "admin"{
-            wrongCorreo = 0
-            if clave.lowercased() == "admin"{
-                wrongClave = 0
+        for usuario in vm.usuariosArray {
+            if (correo.lowercased() == usuario.email && clave == usuario.contrasena){
+                currentUsuario = usuario.nombre!
                 acceso = true
-            }else {
-                wrongClave = 2
             }
-        }else{
-            wrongCorreo = 2
         }
+        
+        
         
     }
 }
