@@ -3,16 +3,19 @@ import SwiftUI
 struct RegistroView: View {
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var vm: ViewModel
+    @State private var usuarioCurrent: UsuarioEntity = UsuarioEntity()
     @State private var registroCorrecto = false
     @State private var usuario: String = ""
     @State private var clave: String = ""
     @State private var clave2: String = ""
     @State private var correo: String = ""
-    @State private var aviso: String = ""
+    @State private var aviso: String = "" //Muestra mensajes de aviso
+    //Variables para controlar overlay() rojo en los campos
+    @State private var wrongUsuario = 0
+    @State private var wrongClave = 0
+    @State private var wrongCorreo = 0
     
-    //Mejorar avisos para que aparezcan debajo de su campo correspondiente
-    //Mostrar todos los avisos de una vez, en vez de uno a uno
-    
+    //Falta implementar restricciones para establecer una contraseña segura
     var body: some View {
         ZStack{
             Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
@@ -36,7 +39,10 @@ struct RegistroView: View {
                         .foregroundColor(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .autocapitalization(.none)
-                    
+                        .overlay(
+                              RoundedRectangle(cornerRadius: 10)
+                                  .stroke(.red, lineWidth: CGFloat(wrongUsuario))
+                          )
                 }
                 
                 Text("Contraseña")
@@ -51,7 +57,10 @@ struct RegistroView: View {
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .autocapitalization(.none)
-                
+                    .overlay(
+                          RoundedRectangle(cornerRadius: 10)
+                              .stroke(.red, lineWidth: CGFloat(wrongClave))
+                      )
                 
                 Text("Repita su contraseña")
                     .foregroundColor(.white)
@@ -65,7 +74,10 @@ struct RegistroView: View {
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .autocapitalization(.none)
-                
+                    .overlay(
+                          RoundedRectangle(cornerRadius: 10)
+                              .stroke(.red, lineWidth: CGFloat(wrongClave))
+                      )
                 
                 Text("Correo electrónico")
                     .foregroundColor(.white)
@@ -79,6 +91,14 @@ struct RegistroView: View {
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .autocapitalization(.none)
+                    .overlay(
+                          RoundedRectangle(cornerRadius: 10)
+                              .stroke(.red, lineWidth: CGFloat(wrongCorreo))
+                      )
+                    .onSubmit{
+                        wrongClave = 0; wrongCorreo = 0; wrongUsuario = 0;
+                        registrarUsuario()
+                    }
                 
                 Group {
                     Text(aviso)
@@ -86,23 +106,8 @@ struct RegistroView: View {
                         .font(.footnote)
                     
                     Button("Registrarse"){
-                        if(usuarioExistente(currentUser: usuario)) {
-                            textoAviso(tipoError: 1)
-                        }else if(clave != clave2){
-                            textoAviso(tipoError: 3)
-                        }else if(correoExistente(currentCorreo: correo)){
-                            textoAviso(tipoError: 2)
-                        }else if(!validarFormatoCorreo(currentCorreo: correo)){
-                            textoAviso(tipoError: 4)
-                        }else {
-                            vm.registrarUsuario(nombre: usuario, contrasena: clave, email: correo.lowercased())
-                            registroCorrecto = true
-                            aviso = ""
-                            usuario = ""
-                            clave = ""
-                            clave2 = ""
-                            correo = ""
-                        }
+                        wrongClave = 0; wrongCorreo = 0; wrongUsuario = 0;
+                        registrarUsuario()
                     }
                     .frame(width: 144 , height: 53)
                     .background(Color(red: 73 / 255, green: 82 / 255, blue: 189 / 255))
@@ -111,17 +116,15 @@ struct RegistroView: View {
                     .padding(.top, 20)
                     .disabled(usuario.isEmpty ||  clave.isEmpty ||  clave2.isEmpty || correo.isEmpty)
                     .opacity(usuario.isEmpty ||  clave.isEmpty ||  clave2.isEmpty || correo.isEmpty ? 0.5 : 1.0)
-                    .sheet(isPresented: $registroCorrecto, onDismiss: {registroCorrecto = false}, content: {
-                        ZStack{
-                            Color.blue.ignoresSafeArea()
-                            Text("¡Registro realizado :D!")
-                        }
-                    })
-                    
-                    //                    NavigationLink(destination: Text("Registro relizado :D")
-                    //                                   ,isActive: $registroCorrecto){
-                    //                        EmptyView()
-                    //                    }
+                    .fullScreenCover(isPresented: $registroCorrecto) {
+                        VistaMain().environmentObject(vm)
+                    }
+//                    .sheet(isPresented: $registroCorrecto, onDismiss: {registroCorrecto = false}, content: {
+//                        ZStack{
+//                            Color.blue.ignoresSafeArea()
+//                            Text("¡Registro realizado :D!")
+//                        }
+//                    })
                     
                     HStack{
                         Text("¿Ya tienes cuenta?")
@@ -187,6 +190,31 @@ struct RegistroView: View {
             aviso = "El formato de correo electrónico no es válido"
         default:
             aviso = ""
+        }
+    }
+    
+    func registrarUsuario(){
+        if(usuarioExistente(currentUser: usuario)) {
+            textoAviso(tipoError: 1)
+            wrongUsuario = 1
+        }else if(clave != clave2){
+            textoAviso(tipoError: 3)
+            wrongClave = 1
+        }else if(correoExistente(currentCorreo: correo)){
+            textoAviso(tipoError: 2)
+            wrongCorreo = 1
+        }else if(!validarFormatoCorreo(currentCorreo: correo)){
+            textoAviso(tipoError: 4)
+            wrongCorreo = 1
+        }else {
+            vm.registrarUsuario(nombre: usuario, contrasena: clave, email: correo.lowercased())
+            registroCorrecto = true
+            usuarioCurrent = vm.usuariosArray.last!
+            aviso = ""
+            usuario = ""
+            clave = ""
+            clave2 = ""
+            correo = ""
         }
     }
 }

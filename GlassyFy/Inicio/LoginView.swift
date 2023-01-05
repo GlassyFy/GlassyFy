@@ -8,9 +8,8 @@ struct LoginView: View {
     @State private var wrongClave = 0
     @State private var acceso = false
     @State private var aviso: String = ""
-    @State private var currentUsuario: String = ""
-    //var iconClick = true //Falta implementar funcionalidad para un icono que visibilice o no la contraseña
-    //Falta poner bordes redondos rojos si falla correo o clave
+    @State private var usuarioCurrent: UsuarioEntity = UsuarioEntity()
+    //Falta implementar showPassword visibility (toggle entre TextField y SecureField)
     var body: some View {
         
         ZStack{
@@ -37,7 +36,10 @@ struct LoginView: View {
                     .foregroundColor(.white)
                     .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .border(.red, width: CGFloat(wrongCorreo))
+                    .overlay(
+                          RoundedRectangle(cornerRadius: 10)
+                              .stroke(.red, lineWidth: CGFloat(wrongCorreo))
+                      )
                 
                 
                 Text("Contraseña")
@@ -53,25 +55,19 @@ struct LoginView: View {
                     .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .border(.red, width: CGFloat(wrongClave))
-                
+                    .overlay(
+                          RoundedRectangle(cornerRadius: 10)
+                              .stroke(.red, lineWidth: CGFloat(wrongClave))
+                      )
+                    .onSubmit {
+                        autenticarUsuario(correoAux: correo, claveAux: clave)
+                    }
                 Text (aviso)
                     .foregroundColor(.red)
                     .font(.footnote)
+                
                 Button("Entrar"){
-                    autenticarUsuario(correo: correo, clave: clave)
-                    if(acceso == true){
-                        wrongClave = 0
-                        wrongCorreo = 0
-                        aviso = ""
-                        correo = ""
-                        clave = ""
-                    }
-                    else{
-                        wrongCorreo = 2
-                        wrongClave = 2
-                        aviso = "Correo electrónico o contraseña incorrectos"
-                    }
+                    autenticarUsuario(correoAux: correo, claveAux: clave)
                 }
                 .foregroundColor(.white)
                 .frame(width: 144 , height: 53)
@@ -80,17 +76,18 @@ struct LoginView: View {
                 .padding(.top, 40)
                 .disabled(correo.isEmpty || clave.isEmpty)
                 .opacity(correo.isEmpty || clave.isEmpty ? 0.5 : 1.0 )
-                .sheet(isPresented: $acceso, onDismiss: {acceso = false}, content: {
-                    ZStack{
-                        Color.green.ignoresSafeArea()
-                        Text("¡Bienvenido \(currentUsuario) :D!")
-                    }
-                })
-                
-                //NavigationLink(destination: Text("Acceso a la app realizado :D"),
-                //      isActive: $acceso){
-                //         EmptyView()
-                //      }
+                .fullScreenCover(isPresented: $acceso) {
+                    VistaMain().environmentObject(vm)
+                    //VistaPerfilUsuario(sesionIniciada: $sesionIniciada, usuarioCurrent:
+                    //usuarioCurrent).environmentObject(vm)
+                }
+                                
+//                .sheet(isPresented: $acceso, onDismiss: {acceso = false}, content: {
+//                    ZStack{
+//                        Color.green.ignoresSafeArea()
+//                        Text("¡Bienvenido \(currentUsuario) :D!")
+//                    }
+//                })
                 
                 HStack{
                     Text("¿Aún no tienes cuenta?")
@@ -120,19 +117,38 @@ struct LoginView: View {
             .offset(x: 0 , y: -130)
             Spacer()
         }
+        .onDisappear(){
+            wrongClave = 0
+            wrongCorreo = 0
+            aviso = ""
+            correo = ""
+            clave = ""
+        }
         .navigationBarHidden(true)
     }
-    func autenticarUsuario(correo: String, clave: String){
+    func autenticarUsuario(correoAux: String, claveAux: String){
         for usuario in vm.usuariosArray {
-            if (correo.lowercased() == usuario.email && clave == usuario.contrasena){
-                currentUsuario = usuario.nombre!
+            if (correoAux.lowercased() == usuario.email && claveAux == usuario.contrasena){
+                usuarioCurrent = usuario
                 acceso = true
             }
         }
+        if(acceso == true){
+            wrongClave = 0
+            wrongCorreo = 0
+            aviso = ""
+            correo = ""
+            clave = ""
+        }
+        else{
+            wrongCorreo = 1
+            wrongClave = 1
+            aviso = "Correo electrónico o contraseña incorrectos"
+        }
         
-        
-        
+            
     }
+       
 }
 
 //Struct que implementa el protocolo ViewModifier que nos permite realizar modificaciones
