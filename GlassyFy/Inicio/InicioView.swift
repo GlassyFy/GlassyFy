@@ -38,13 +38,14 @@ struct InicioView: View {
                 pushNuevaVista = true
             }
         }
-        
     }
 }
+//
+//struct InicioView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        InicioView()
+//    }
+//}
 
-struct InicioView_Previews: PreviewProvider {
-    static var previews: some View {
-        InicioView()
     }
 }
-

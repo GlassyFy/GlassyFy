@@ -19,7 +19,24 @@ struct VistaPerfilUsuario: View {
     
     init(usuarioCurrent: UsuarioEntity) {
             self.usuarioCurrent = usuarioCurrent
+        if(self.usuarioCurrent.foto == nil){
+            self.foto = UIImage(systemName: "person.circle.fill")!
+        }else{
             self.foto = UIImage(data: self.usuarioCurrent.foto!)!
+        }
+        
+        if(self.usuarioCurrent.telefono == nil){
+            self.telefono = "+42 333 666 999"
+        }else{
+            self.telefono = self.usuarioCurrent.telefono!
+        }
+        
+        if(self.usuarioCurrent.descripcion == nil){
+            self.descripcion = "Nada por ahora "
+        }else{
+            self.descripcion = self.usuarioCurrent.descripcion!
+        }
+        
         }
     
     var body: some View {
@@ -106,7 +123,7 @@ struct VistaPerfilUsuario: View {
                                 mostrarEdicion.toggle()
                                 email = usuarioCurrent.email!
                                 telefono = usuarioCurrent.telefono!
-                                descripcion = usuarioCurrent.descripcion!
+                                descripcion = usuarioCurrent.descripcion ?? "Nada por ahora..."
                                 foto = UIImage(data: usuarioCurrent.foto!)!
                             } label: {
                                 Image(systemName: "pencil")
@@ -204,7 +221,7 @@ struct VistaPerfilUsuario: View {
                 .onAppear(){
                     self.email = usuarioCurrent.email!
                     self.telefono = usuarioCurrent.telefono!
-                    self.descripcion = usuarioCurrent.descripcion!
+                    self.descripcion = usuarioCurrent.descripcion ?? "Nada por ahora macho"
                     self.foto = UIImage(data: usuarioCurrent.foto!)!
                 }.offset(y: 140)
                 }.navigationBarTitleDisplayMode(.inline)

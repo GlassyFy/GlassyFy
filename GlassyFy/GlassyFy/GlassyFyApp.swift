@@ -31,7 +31,6 @@ struct GlassyFyApp: App {
     var body: some Scene {
         WindowGroup {
             InicioView().environmentObject(vm)
-            //VistaMain().environmentObject(vm)
         }
     }
 }

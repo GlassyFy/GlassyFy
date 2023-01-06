@@ -75,6 +75,10 @@ class ViewModel: ObservableObject {
         nuevoUsuario.nombre = nombre
         nuevoUsuario.email = email
         nuevoUsuario.contrasena = contrasena
+        nuevoUsuario.foto = UIImage(systemName: "person.circle.fill")!.pngData()
+        nuevoUsuario.telefono = "+42 333 666 999"
+        nuevoUsuario.descripcion = "Nada por ahora :P"
+        
         guardarDatos()
     }
     
