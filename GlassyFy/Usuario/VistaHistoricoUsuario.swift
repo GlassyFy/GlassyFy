@@ -27,6 +27,7 @@ struct VistaHistoricoUsuario: View {
     var usuarioCurrent: UsuarioEntity //= usuario
     @State var query: String = ""
     @State private var showingDeleteAlert = false
+    @State private var itemToDelete: ExperimentoEntity? = nil
     
     
     
@@ -56,6 +57,7 @@ struct VistaHistoricoUsuario: View {
                                     VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento)
                                         .swipeActions {
                                                 Button(role: .destructive) {
+                                                    itemToDelete = experimento
                                                     showingDeleteAlert = true
                                                 } label: {
                                                     Image(systemName: "trash.circle.fill")
@@ -69,9 +71,9 @@ struct VistaHistoricoUsuario: View {
                                         .alert(isPresented:$showingDeleteAlert) {
                                             Alert(
                                                 title: Text("¿Seguro desea eliminar el experimento?"),
-                                                message: Text(experimento.nombre!),
+                                                message: Text(itemToDelete!.nombre!),
                                                 primaryButton: .destructive(Text("Sí").bold()) {
-                                                    vm.deleteExperimento(experimento: experimento)
+                                                    vm.deleteExperimento(experimento: itemToDelete!)
                                                 },
                                                 secondaryButton: .cancel(Text("No").bold())
                                             )

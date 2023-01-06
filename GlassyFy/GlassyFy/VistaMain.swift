@@ -62,7 +62,7 @@ struct VistaMain: View {
 
             //DDD
             NavigationView{
-            VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[0]).environmentObject(ViewModel())
+            VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[1]).environmentObject(ViewModel())
             }//.background(colorFondo)
                 .tabItem{
                     //Label("Perfil", systemImage: "person.circle.fill")
