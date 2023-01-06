@@ -78,7 +78,7 @@ struct VistaExperimentoUsuario: View {
                   Text("Índice de refracción (IR): ")
                     .font(.custom("Arial", size:24))
                     .foregroundColor(colorLabel)
-                  Text("\(String(format: "%.2f", experimentoCurrent.iR))")
+                  Text("\(String(format: "%.5f", experimentoCurrent.iR))")
               }.frame(width: 380, height:26, alignment: .trailing)
   
                HStack{

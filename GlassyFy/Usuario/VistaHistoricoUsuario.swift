@@ -53,7 +53,6 @@ struct VistaHistoricoUsuario: View {
                             ForEach(vm.experimentosArray){experimento in
                                 if (experimento.usuariosRelation==usuarioCurrent && (query.isEmpty || experimento.nombre!.contains(query))) {
                                 //if (query.isEmpty || experimento.nombre!.contains(query)) {
-
                                     VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento)
                                         .swipeActions {
                                                 Button(role: .destructive) {

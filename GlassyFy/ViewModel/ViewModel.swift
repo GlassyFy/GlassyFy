@@ -26,7 +26,7 @@ class ViewModel: ObservableObject {
         //addExperimento(usuario: usuariosArray[0], nombre: "Exp3", fechaToma: Date(), descripcion: "exp3 hola", fechaCreacion: Date(), inRef: 1.1, magnesio: 1.2, aluminio: 1.3, potasio: 1.4, Calcio: 1.5, Bario: 1.6, tipo: "Tipo 3")
         //addExperimento(usuario: usuariosArray[0], nombre: "Exp4", fechaToma: Date(), descripcion: "exp4 hola", fechaCreacion: Date(), inRef: 1.1, magnesio: 1.2, aluminio: 1.3, potasio: 1.4, Calcio: 1.5, Bario: 1.6, tipo: "Tipo 4")
         
-        addUsuario(nombre: "usuario1", descripcion: "La descripción 1", telefono: "+34 123 456 789" , email: "correo1@gmail.com", contrasena: "usuario1", foto: UIImage(imageLiteralResourceName: "person1"))//UIImage(systemName: "person")!)
+        /*addUsuario(nombre: "usuario1", descripcion: "La descripción 1", telefono: "+34 123 456 789" , email: "correo1@gmail.com", contrasena: "usuario1", foto: UIImage(imageLiteralResourceName: "person1"))//UIImage(systemName: "person")!)
         addUsuario(nombre: "usuario2", descripcion: "La descripción 2", telefono: "+34 123 456 789" , email: "correo2@gmail.com", contrasena: "usuario2", foto: UIImage(imageLiteralResourceName: "person1"))//UIImage(systemName: "person")!)
         addUsuario(nombre: "usuario3", descripcion: "La descripción 3", telefono: "+34 123 456 789" , email: "correo3@gmail.com", contrasena: "usuario3", foto: UIImage(imageLiteralResourceName: "person1"))//UIImage(systemName: "person")!)
         guardarDatos()
@@ -34,12 +34,12 @@ class ViewModel: ObservableObject {
         addExperimento(usuario: usuariosArray[0], nombre: "Exp1_Usuario1", fechaToma: Date(), descripcion: "exp1 hola", fechaCreacion: Date(), inRef: 1.51793, magnesio: 3.5, aluminio: 1.12, potasio: 0.64, Calcio: 8.77, Bario: 0.0, tipo: "buildWindFloat")
         addExperimento(usuario: usuariosArray[0], nombre: "Exp2_Usuario1", fechaToma: Date(), descripcion: "exp2 hola", fechaCreacion: Date(), inRef: 1.53393, magnesio: 0, aluminio: 1, potasio: 0.12, Calcio: 16.19, Bario: 0.0, tipo: "buildWindNonFloat")
         addExperimento(usuario: usuariosArray[0], nombre: "Exp3_Usuario1", fechaToma: Date(), descripcion: "exp2 hola", fechaCreacion: Date(), inRef: 1.51643, magnesio: 3.52, aluminio: 1.35, potasio: 0.57, Calcio: 8.53, Bario: 0.0, tipo: "vehicWindFloat")
-        addExperimento(usuario: usuariosArray[1], nombre: "Exp1_Usuario2", fechaToma: Date(), descripcion: "exp1 hola", fechaCreacion: Date(), inRef: 1.1, magnesio: 1.2, aluminio: 1.3, potasio: 1.4, Calcio: 1.5, Bario: 1.6, tipo: "vehicWindNonFloat")
+        addExperimento(usuario: usuariosArray[1], nombre: "Exp1_Usuario2", fechaToma: Date(), descripcion: "exp1 hola", fechaCreacion: Date(), inRef: 1.51299, magnesio: 1.74, aluminio: 1.54, potasio: 0.0, Calcio: 7.59, Bario: 0.0, tipo: "vehicWindNonFloat")
         addExperimento(usuario: usuariosArray[1], nombre: "Exp2_Usuario2", fechaToma: Date(), descripcion: "exp2 hola", fechaCreacion: Date(), inRef: 1.51994, magnesio: 0, aluminio: 1.76, potasio: 0.47, Calcio: 11.32, Bario: 0.0, tipo: "containers")
-        addExperimento(usuario: usuariosArray[1], nombre: "Exp3_Usuario2", fechaToma: Date(), descripcion: "exp3 hola", fechaCreacion: Date(), inRef: 1.51299, magnesio: 1.74, aluminio: 1.54, potasio: 0, Calcio: 7.59, Bario: 0.0, tipo: "tableware")
+        addExperimento(usuario: usuariosArray[1], nombre: "Exp3_Usuario2", fechaToma: Date(), descripcion: "exp3 hola", fechaCreacion: Date(), inRef: 1.51299, magnesio: 1.74, aluminio: 1.54, potasio: 0.0, Calcio: 7.59, Bario: 0.0, tipo: "tableware")
         addExperimento(usuario: usuariosArray[2], nombre: "Exp1_Usuario3", fechaToma: Date(), descripcion: "exp1 hola", fechaCreacion: Date(), inRef: 1.51545, magnesio: 0.0, aluminio: 2.68, potasio: 0.08, Calcio: 9.07, Bario: 0.61, tipo: "headlamps")
          addExperimento(usuario: usuariosArray[2], nombre: "Exp2_Usuario3", fechaToma: Date(), descripcion: "exp2 hola", fechaCreacion: Date(), inRef: 1.51994, magnesio: 0, aluminio: 1.76, potasio: 0.47, Calcio: 11.32, Bario: 0.0, tipo: "containers")
-         addExperimento(usuario: usuariosArray[2], nombre: "Exp3_Usuario3", fechaToma: Date(), descripcion: "exp3 hola", fechaCreacion: Date(), inRef: 1.51299, magnesio: 1.74, aluminio: 1.54, potasio: 0, Calcio: 7.59, Bario: 0.0, tipo: "tableware")
+         addExperimento(usuario: usuariosArray[2], nombre: "Exp3_Usuario3", fechaToma: Date(), descripcion: "exp3 hola", fechaCreacion: Date(), inRef: 1.51299, magnesio: 1.74, aluminio: 1.54, potasio: 0, Calcio: 7.59, Bario: 0.0, tipo: "tableware")*/
                 
                 
                     
