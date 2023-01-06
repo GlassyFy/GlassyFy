@@ -30,7 +30,7 @@ struct GlassyFyApp: App {
     @StateObject var vm: ViewModel = ViewModel()
     var body: some Scene {
         WindowGroup {
-            VistaMain().environmentObject(vm)
+            InicioView().environmentObject(vm)
         }
     }
 }

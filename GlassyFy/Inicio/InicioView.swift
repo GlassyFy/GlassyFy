@@ -26,7 +26,7 @@ struct InicioView: View {
                 NavigationLink(destination: LoginView()
                     .navigationBarBackButtonHidden(true)
                     .navigationBarHidden(true)
-                    //.animation(.easeInOut(duration: 2.5))
+                               //.animation(.easeInOut(duration: 2.5))
                                ,isActive: $pushNuevaVista){
                     EmptyView()
                 }
@@ -38,12 +38,12 @@ struct InicioView: View {
                 pushNuevaVista = true
             }
         }
-       
+        
     }
 }
-
-struct InicioView_Previews: PreviewProvider {
-    static var previews: some View {
-        InicioView()
-    }
-}
+//
+//struct InicioView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        InicioView()
+//    }
+//}
