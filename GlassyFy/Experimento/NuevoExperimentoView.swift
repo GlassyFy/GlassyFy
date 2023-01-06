@@ -443,7 +443,7 @@ struct RevisionDatosExp: View{
                                 .background(colorcampostxt)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                             
-                            Text("\(String(format: "%.2f", datos.inref))")
+                            Text("\(String(format: "%.5f", datos.inref))")
                                 .frame(width: 99,  height: 34)
                                 .background(colorcampostxt)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -538,18 +538,20 @@ struct RevisionDatosExp: View{
                                 .background(colorboton)
                                 .foregroundColor(.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 30))
+                                .popover(isPresented: $popUpVisible){
+                                    popUpExito( visible: self.$popUpVisible)
+                                }
                             //Aqui navegamos al popup
                                 
                         NavigationLink(destination:AnadirDatosExpView(), isActive: $popUpVisible){
                             EmptyView()
-                        }.sheet(isPresented: $popUpVisible){
-                            popUpExito( visible: self.$popUpVisible)
                         }
                     }
                     Spacer()
                 }.frame(width: 295)
                     .foregroundColor(Color(red: 255 / 255, green: 255 / 255, blue: 255 / 255))
                     .navigationBarBackButtonHidden(true)
+                    
                 
             )
     }
@@ -579,19 +581,23 @@ struct popUpExito: View{
                         .font(.title3)
                     //TODO: Implementar el tipo de cristal tras el calculo
                     Text("\(tipoNombre)")
-                        .font(.title2)
+                        .font(.largeTitle)
+                        .padding()
                     //Aqui podríamos poner una foto del tipo de cristal, para hacer la vista más completa.
                     //Image(systemName: "wineglass.fill")
                     
                     Spacer()
+                    Text("Deslice hacia abajo...")
+                        .font(.system(size: 10))
                     //TODO: No se pq pero el botón no cierra el popup al haber incluido el metodo para anadir el experimento a la bbdd.
-                    Button("Aceptar"){
-                        visible = false
-                    }
-                    .frame(width: 150, height: 55)
-                    .background(.green)
-                    .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 30))
+//                    Button("Aceptar"){
+//                        presentation.wrappedValue.dismiss()
+//                        visible = true
+//                    }
+//                    .frame(width: 150, height: 55)
+//                    .background(.green)
+//                    .foregroundColor(.white)
+//                    .clipShape(RoundedRectangle(cornerRadius: 30))
                     Spacer()
                 }
                 
