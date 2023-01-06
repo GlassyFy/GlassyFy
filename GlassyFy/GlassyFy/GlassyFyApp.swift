@@ -32,6 +32,7 @@ struct GlassyFyApp: App {
         WindowGroup {
             //InicioView().environmentObject(vm)
             VistaMain().environmentObject(vm)
+
         }
     }
 }

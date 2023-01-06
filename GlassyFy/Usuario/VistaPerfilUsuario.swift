@@ -13,11 +13,13 @@ struct VistaPerfilUsuario: View {
     @State var email: String = ""
     @State var telefono: String = ""
     @State var descripcion: String = ""
+
     @State var foto:UIImage = UIImage(systemName: "person.circle.fill")! //@State var foto:UIImage
     @State var mostrarEdicion: Bool = false
     @State var cancelar: Bool = true
     
     /*init(usuarioCurrent: UsuarioEntity) {
+
             self.usuarioCurrent = usuarioCurrent
         if(self.usuarioCurrent.foto == nil){
             self.foto = UIImage(systemName: "person.circle.fill")!
@@ -37,6 +39,7 @@ struct VistaPerfilUsuario: View {
             self.descripcion = self.usuarioCurrent.descripcion!
         }
     }*/
+
     
     var body: some View {
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
@@ -90,6 +93,7 @@ struct VistaPerfilUsuario: View {
                                     .cornerRadius(10)
                                     .foregroundColor(.white)
                                     .padding(.top, 80)
+
                             }
                             .navigationBarItems(leading:
                                 NavigationLink(destination: RevisionDatosExp()){
@@ -106,6 +110,7 @@ struct VistaPerfilUsuario: View {
                                 .foregroundColor(.white)
                                 Spacer()
                             }
+
                                 )
                                                     
                             
@@ -219,6 +224,7 @@ struct VistaPerfilUsuario: View {
                 .foregroundColor(.white)
                 .onAppear(){
                     self.email = usuarioCurrent.email!
+
                     //self.telefono = usuarioCurrent.telefono! ??
                     self.telefono = usuarioCurrent.telefono ?? "950 000 000"
                     self.descripcion = usuarioCurrent.descripcion ?? "Nada por ahora macho"
@@ -228,6 +234,7 @@ struct VistaPerfilUsuario: View {
                         self.foto = UIImage(data: self.usuarioCurrent.foto!)!
                     }
                     //self.foto = UIImage(data: usuarioCurrent.foto!)?? ?? UIImage(systemName: "person.circle.fill")!
+
                 }.offset(y: 140)
                 }.navigationBarTitleDisplayMode(.inline)
                     .navigationBarTitle("")
