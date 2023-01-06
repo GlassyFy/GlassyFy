@@ -97,10 +97,12 @@ struct VistaPerfilUsuarioAjeno: View {
                                     .foregroundColor(colorRojoTxt)
                                 },trailing:
                                 HStack{
-                                    Text(usuarioCurrent.nombre!)
-                                        .font(.custom("Arial", size:24))
-                                        .foregroundColor(.white)
+                                    if (usuarioCurrent.nombre != nil) {
+                                        Text(usuarioCurrent.nombre!)
+                                            .font(.custom("Arial", size:24))
+                                            .foregroundColor(.white)
                                         Spacer()
+                                    }
                                 }
                             )
                             

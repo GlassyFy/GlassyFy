@@ -13,13 +13,11 @@ struct VistaPerfilUsuario: View {
     @State var email: String = ""
     @State var telefono: String = ""
     @State var descripcion: String = ""
-
     @State var foto:UIImage = UIImage(systemName: "person.circle.fill")! //@State var foto:UIImage
     @State var mostrarEdicion: Bool = false
     @State var cancelar: Bool = true
     
     /*init(usuarioCurrent: UsuarioEntity) {
-
             self.usuarioCurrent = usuarioCurrent
         if(self.usuarioCurrent.foto == nil){
             self.foto = UIImage(systemName: "person.circle.fill")!
@@ -39,7 +37,6 @@ struct VistaPerfilUsuario: View {
             self.descripcion = self.usuarioCurrent.descripcion!
         }
     }*/
-
     
     var body: some View {
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
@@ -93,7 +90,6 @@ struct VistaPerfilUsuario: View {
                                     .cornerRadius(10)
                                     .foregroundColor(.white)
                                     .padding(.top, 80)
-
                             }
                             .navigationBarItems(leading:
                                 NavigationLink(destination: RevisionDatosExp()){
@@ -110,11 +106,11 @@ struct VistaPerfilUsuario: View {
                                 .foregroundColor(.white)
                                 Spacer()
                             }
-
                                 )
                                                     
                             
-                            Image(uiImage: foto) //Image(uiImage: UIImage(data: usuarioCurrent.foto!)!)//("foto")
+                            //Image(uiImage: foto) //Image(uiImage: UIImage(data: usuarioCurrent.foto!)!)//("foto")
+                            Image (uiImage: UIImage(data: usuarioCurrent.foto!) ?? UIImage(systemName: "person.circle.fill")!)
                                 .resizable()
                                 //.scaledToFit()
                                 //.frame(width:234)
@@ -127,7 +123,7 @@ struct VistaPerfilUsuario: View {
                                 mostrarEdicion.toggle()
                                 email = usuarioCurrent.email!
                                 telefono = usuarioCurrent.telefono!
-                                descripcion = usuarioCurrent.descripcion ?? "Nada por ahora..."
+                                descripcion = usuarioCurrent.descripcion ?? "Nada por ahora :P"
                                 foto = UIImage(data: usuarioCurrent.foto!)!
                             } label: {
                                 Image(systemName: "pencil")
@@ -171,7 +167,7 @@ struct VistaPerfilUsuario: View {
                         HStack{
                             Image(systemName: "envelope.fill")
                                 .padding(.leading, 10)
-                            Text(email)
+                            Text(usuarioCurrent.email ?? "42 333 666 999") //email
                             
                         }
                         .frame(width: 380, height: 60, alignment: .leading)
@@ -183,8 +179,7 @@ struct VistaPerfilUsuario: View {
                         HStack{
                             Image(systemName: "phone.fill")
                                 .padding(.leading, 10)
-                            Text(telefono)
-                            
+                            Text(usuarioCurrent.telefono ?? "42 333 666 999")  //telefono
                         }
                         .frame(width: 380, height: 60, alignment: .leading)
                         .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
@@ -207,7 +202,7 @@ struct VistaPerfilUsuario: View {
                     .offset(y: -90)
 
                     ScrollView {
-                        Text (descripcion)//Text (usuarioCurrent.descripcion!)
+                        Text (usuarioCurrent.descripcion ?? "Nada por ahora :P") //Text (descripcion)
                             .frame(width: 370, alignment: .leading) //419x110
                             .fixedSize(horizontal: false, vertical: true)
                             .padding(.all, 10)
@@ -224,9 +219,8 @@ struct VistaPerfilUsuario: View {
                 .foregroundColor(.white)
                 .onAppear(){
                     self.email = usuarioCurrent.email!
-
                     //self.telefono = usuarioCurrent.telefono! ??
-                    self.telefono = usuarioCurrent.telefono ?? "950 000 000"
+                    telefono = usuarioCurrent.telefono ?? "950 000 000"
                     self.descripcion = usuarioCurrent.descripcion ?? "Nada por ahora macho"
                     if(self.usuarioCurrent.foto == nil){
                         self.foto = UIImage(systemName: "person.circle.fill")!
@@ -234,7 +228,6 @@ struct VistaPerfilUsuario: View {
                         self.foto = UIImage(data: self.usuarioCurrent.foto!)!
                     }
                     //self.foto = UIImage(data: usuarioCurrent.foto!)?? ?? UIImage(systemName: "person.circle.fill")!
-
                 }.offset(y: 140)
                 }.navigationBarTitleDisplayMode(.inline)
                     .navigationBarTitle("")

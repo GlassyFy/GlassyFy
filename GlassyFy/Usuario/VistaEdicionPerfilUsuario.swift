@@ -33,7 +33,8 @@ struct VistaEdicionPerfilUsuario: View {
     var body: some View {
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
         .ignoresSafeArea(.all)
-        .overlay( VStack{
+        .overlay(
+            VStack{
             HStack { //Navegacion a VistaPerfilUsuario
                 Button() {
                     cancelar = true
