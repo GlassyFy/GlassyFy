@@ -46,6 +46,3 @@ struct InicioView: View {
 //        InicioView()
 //    }
 //}
-
-    }
-}

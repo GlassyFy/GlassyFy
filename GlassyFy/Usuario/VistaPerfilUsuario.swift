@@ -93,7 +93,7 @@ struct VistaPerfilUsuario: View {
                                     .padding(.top, 80)
                             }
                             .navigationBarItems(leading:
-                                NavigationLink(destination: RevisionDatosExp()){
+                                NavigationLink(destination: GlassyFyApp()){
                                 Text("Salir")
                                     .frame(width:51)
                                 .font(.custom("Arial", size:24))
