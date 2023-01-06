@@ -226,3 +226,4 @@ struct RegistroView_Previews: PreviewProvider {
         RegistroView()
     }
 }
+

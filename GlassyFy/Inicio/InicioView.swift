@@ -38,7 +38,6 @@ struct InicioView: View {
                 pushNuevaVista = true
             }
         }
-        
     }
 }
 //
@@ -47,3 +46,6 @@ struct InicioView: View {
 //        InicioView()
 //    }
 //}
+
+    }
+}
