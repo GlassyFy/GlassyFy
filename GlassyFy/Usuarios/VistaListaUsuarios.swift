@@ -25,6 +25,7 @@ struct VistaListaUsuarios: View {
     //var usuarioCurrent: UsuarioEntity //= usuario
     @State var query: String = ""
     @State private var showingDeleteAlert = false
+    @State private var itemToDelete: UsuarioEntity? = nil
     var body: some View {
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
         .ignoresSafeArea()
@@ -50,6 +51,7 @@ struct VistaListaUsuarios: View {
                                     VistaFilaUsuario(usuarioCurrent: usuario)
                                         .swipeActions {
                                                 Button(role: .destructive) {
+                                                    itemToDelete = usuario
                                                     showingDeleteAlert = true
                                                 } label: {
                                                     Image(systemName: "trash.circle.fill")
@@ -63,9 +65,9 @@ struct VistaListaUsuarios: View {
                                         .alert(isPresented:$showingDeleteAlert) {
                                             Alert(
                                                 title: Text("¿Seguro desea eliminar el usuario?"),
-                                                message: Text(usuario.nombre!),
+                                                message: Text(itemToDelete!.nombre!),
                                                 primaryButton: .destructive(Text("Sí").bold()) {
-                                                    vm.deleteUsuario(usuario: usuario)
+                                                    vm.deleteUsuario(usuario: itemToDelete!)
                                                 },
                                                 secondaryButton: .cancel(Text("No").bold())
                                             )

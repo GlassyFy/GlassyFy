@@ -26,8 +26,8 @@ class ViewModel: ObservableObject {
         //addExperimento(usuario: usuariosArray[0], nombre: "Exp3", fechaToma: Date(), descripcion: "exp3 hola", fechaCreacion: Date(), inRef: 1.1, magnesio: 1.2, aluminio: 1.3, potasio: 1.4, Calcio: 1.5, Bario: 1.6, tipo: "Tipo 3")
         //addExperimento(usuario: usuariosArray[0], nombre: "Exp4", fechaToma: Date(), descripcion: "exp4 hola", fechaCreacion: Date(), inRef: 1.1, magnesio: 1.2, aluminio: 1.3, potasio: 1.4, Calcio: 1.5, Bario: 1.6, tipo: "Tipo 4")
         
-        /*addUsuario(nombre: "usuario1", descripcion: "La descripción 1", telefono: "+34 123 456 789" , email: "correo1@gmail.com", contrasena: "usuario1", foto: UIImage(imageLiteralResourceName: "person1"))//UIImage(systemName: "person")!)
-        addUsuario(nombre: "usuario2", descripcion: "La descripción 2", telefono: "+34 123 456 789" , email: "correo2@gmail.com", contrasena: "usuario2", foto: UIImage(imageLiteralResourceName: "person1"))//UIImage(systemName: "person")!)
+        //addUsuario(nombre: "usuario1", descripcion: "La descripción 1", telefono: "+34 123 456 789" , email: "correo1@gmail.com", contrasena: "usuario1", foto: UIImage(imageLiteralResourceName: "person1"))//UIImage(systemName: "person")!)
+        /*addUsuario(nombre: "usuario2", descripcion: "La descripción 2", telefono: "+34 123 456 789" , email: "correo2@gmail.com", contrasena: "usuario2", foto: UIImage(imageLiteralResourceName: "person1"))//UIImage(systemName: "person")!)
         addUsuario(nombre: "usuario3", descripcion: "La descripción 3", telefono: "+34 123 456 789" , email: "correo3@gmail.com", contrasena: "usuario3", foto: UIImage(imageLiteralResourceName: "person1"))//UIImage(systemName: "person")!)
         guardarDatos()
         cargarDatos()
