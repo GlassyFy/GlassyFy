@@ -52,7 +52,8 @@ struct VistaMain: View {
             
             //CCC
             NavigationView{
-                AnadirDatosExpView()
+                //AnadirDatosExpView()
+                VistaListaUsuarios()
             }
                 .tabItem{
                     Image(systemName: "person.3")

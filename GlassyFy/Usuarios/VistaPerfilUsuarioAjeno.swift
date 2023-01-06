@@ -1,52 +1,46 @@
 //
-//  VistaPerfilUsuarioLogueado.swift
+//  VistaPerfilUsuarioAjeno.swift
 //  GlassyFy
 //
-//  Created by Aula11 on 18/11/22.
+//  Created by Aula11 on 6/1/23.
 //
 
 import SwiftUI
 
-struct VistaPerfilUsuario: View {
+struct VistaPerfilUsuarioAjeno: View {
     @EnvironmentObject var vm: ViewModel
     var usuarioCurrent: UsuarioEntity
     @State var email: String = ""
     @State var telefono: String = ""
     @State var descripcion: String = ""
-
-    @State var foto:UIImage = UIImage(systemName: "person.circle.fill")! //@State var foto:UIImage
+    @State var foto:UIImage
     @State var mostrarEdicion: Bool = false
     @State var cancelar: Bool = true
     
-    /*init(usuarioCurrent: UsuarioEntity) {
-
+    init(usuarioCurrent: UsuarioEntity) {
             self.usuarioCurrent = usuarioCurrent
         if(self.usuarioCurrent.foto == nil){
             self.foto = UIImage(systemName: "person.circle.fill")!
         }else{
             self.foto = UIImage(data: self.usuarioCurrent.foto!)!
         }
-        
         if(self.usuarioCurrent.telefono == nil){
             self.telefono = "+42 333 666 999"
         }else{
             self.telefono = self.usuarioCurrent.telefono!
         }
-        
         if(self.usuarioCurrent.descripcion == nil){
             self.descripcion = "Nada por ahora "
         }else{
             self.descripcion = self.usuarioCurrent.descripcion!
         }
-    }*/
-
+    }
     
     var body: some View {
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
             .ignoresSafeArea()
         .overlay(
                 VStack { //Todo
-
                     //Aquí va la barra superior, con el nombre y el boton de salir
 //                    HStack{
 //                        Text(usuarioCurrent.nombre!)
@@ -84,7 +78,7 @@ struct VistaPerfilUsuario: View {
                         
                         //MARK: HSTACK CON CONTENIDO BOTON HISTORICO, FOTO PERFIL Y BOTÓN EDICION
                         HStack{
-                            NavigationLink(destination:VistaHistoricoUsuario(usuarioCurrent: usuarioCurrent)){
+                            NavigationLink(destination:VistaHistoricoUsuarioAjeno(usuarioCurrent: usuarioCurrent)){
                                 Image(systemName: "books.vertical.fill")
                                     .resizable()
                                     .frame(width: 55, height: 45)
@@ -93,26 +87,22 @@ struct VistaPerfilUsuario: View {
                                     .cornerRadius(10)
                                     .foregroundColor(.white)
                                     .padding(.top, 80)
-
                             }
                             .navigationBarItems(leading:
                                 NavigationLink(destination: RevisionDatosExp()){
-                                Text("Salir")
+                                    Text("Salir")
                                     .frame(width:51)
-                                .font(.custom("Arial", size:24))
-                                .padding(.leading)
-                                .foregroundColor(colorRojoTxt)
-                            },trailing:
-                                                    HStack{
-                                Text(usuarioCurrent.nombre!)
-                                                
-                                .font(.custom("Arial", size:24))
-                                .foregroundColor(.white)
-                                Spacer()
-                            }
-
-                                )
-                                                    
+                                    .font(.custom("Arial", size:24))
+                                    .padding(.leading)
+                                    .foregroundColor(colorRojoTxt)
+                                },trailing:
+                                HStack{
+                                    Text(usuarioCurrent.nombre!)
+                                        .font(.custom("Arial", size:24))
+                                        .foregroundColor(.white)
+                                        Spacer()
+                                }
+                            )
                             
                             Image(uiImage: foto) //Image(uiImage: UIImage(data: usuarioCurrent.foto!)!)//("foto")
                                 .resizable()
@@ -121,47 +111,12 @@ struct VistaPerfilUsuario: View {
                                 .frame(minWidth: 0, maxWidth: 234, minHeight: 0, maxHeight: 234)
                                 .clipShape(Circle())
                                 //.offset(y: -50)
-                                
-
-                            Button() {
-                                mostrarEdicion.toggle()
-                                email = usuarioCurrent.email!
-                                telefono = usuarioCurrent.telefono!
-                                descripcion = usuarioCurrent.descripcion ?? "Nada por ahora..."
-                                foto = UIImage(data: usuarioCurrent.foto!)!
-                            } label: {
-                                Image(systemName: "pencil")
-                                    .resizable()
-                                    .frame(width: 31, height: 32)
-                                    .padding(10)
-                                    .foregroundColor(colorGreen)
-                                    .border(colorGreen, width: 3) //
-                                    .cornerRadius(5) //
-                                    .padding(.top, 80)
-                                    //.offset(y:50)
-                                    .sheet (isPresented: $mostrarEdicion,
-                                        onDismiss: {
-                                            if !cancelar {
-                                                usuarioCurrent.email = email
-                                                usuarioCurrent.telefono = telefono
-                                                usuarioCurrent.descripcion = descripcion
-                                                usuarioCurrent.foto = foto.pngData()
-                                                vm.guardarDatos()
-                                            }
-                                        }, content: {
-                                            VistaEdicionPerfilUsuario(usuarioCurrent: usuarioCurrent, email: $email, telefono: $telefono,
-                                                descripcion: $descripcion, foto: $foto, cancelar: $cancelar)
-                                        }
-                                    )
-                                
-                            }
                         }//FIN HSTACK.
                         .offset(y: -90)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                         
                         
                         //MARK: CONTENIDO INFORMACIÓN USUARIO
-                        
                         Text(usuarioCurrent.nombre!)
                             .font(.custom("Arial", size:32))
                             .foregroundColor(.white)
@@ -224,17 +179,13 @@ struct VistaPerfilUsuario: View {
                 .foregroundColor(.white)
                 .onAppear(){
                     self.email = usuarioCurrent.email!
-
-                    //self.telefono = usuarioCurrent.telefono! ??
                     self.telefono = usuarioCurrent.telefono ?? "950 000 000"
-                    self.descripcion = usuarioCurrent.descripcion ?? "Nada por ahora macho"
+                    self.descripcion = usuarioCurrent.descripcion ?? "Nada por ahora "
                     if(self.usuarioCurrent.foto == nil){
                         self.foto = UIImage(systemName: "person.circle.fill")!
                     }else{
                         self.foto = UIImage(data: self.usuarioCurrent.foto!)!
                     }
-                    //self.foto = UIImage(data: usuarioCurrent.foto!)?? ?? UIImage(systemName: "person.circle.fill")!
-
                 }.offset(y: 140)
                 }.navigationBarTitleDisplayMode(.inline)
                     .navigationBarTitle("")
@@ -242,14 +193,3 @@ struct VistaPerfilUsuario: View {
         )
     }
 }
-
-//struct VistaPerfilUsuario_Previews: PreviewProvider {
-//    @StateObject private var vm: ViewModel = ViewModel()
-//    static var previews: some View {
-//        VistaPerfilUsuario
-//        VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[0], foto: UIImage(data: vm.usuariosArray[0].foto!)!)
-//
-//    }
-//}
-//
-
