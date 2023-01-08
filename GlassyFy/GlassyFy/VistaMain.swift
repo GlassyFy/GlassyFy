@@ -10,19 +10,16 @@ import SwiftUI
 var tabcolor = Color(red: 120/255, green: 57/255, blue: 62/255)
 
 struct VistaMain: View {
+   
+    
+    
     @EnvironmentObject var vm: ViewModel
     @State var seleccion : Int = 0
-    
     var colorSeleccion: Color = Color(red: 73 / 255, green: 82 / 255, blue: 189 / 255)
-    
-    init(){
-        UITabBar.appearance().barTintColor  = UIColor(red: 56/255, green: 57/255, blue: 62/255, alpha: 1)
-        UITabBar.appearance().backgroundColor  = UIColor(red: 56/255, green: 57/255, blue: 62/255, alpha: 1)
-        UITableView.appearance().separatorStyle = .none
-         UITableViewCell.appearance().backgroundColor = UIColor(red: 48 / 255, green: 49 / 255, blue: 54 / 255, alpha: 0)
-         UITableView.appearance().backgroundColor = UIColor(red: 48 / 255, green: 49 / 255, blue: 54 / 255, alpha: 0)
+    @Binding var acceso: Bool
+    @Binding var usuarioCurrent: UsuarioEntity
 
-    }
+    
     
     
     var body: some View {
@@ -33,7 +30,7 @@ struct VistaMain: View {
             
             //AAA
             NavigationView{
-                AnadirDatosExpView()
+                AnadirDatosExpView(usuarioCurrent: $usuarioCurrent)
             }.navigationBarHidden(true)
                 .navigationBarTitle(Text("Título de la vista"), displayMode: .inline)
             .tabItem{
@@ -43,7 +40,7 @@ struct VistaMain: View {
             
             //BBB
             NavigationView{
-                AnadirDatosExpView()
+                AnadirDatosExpView(usuarioCurrent: $usuarioCurrent)
             }
                 .tabItem{
                     Image(systemName: "note.text.badge.plus")
@@ -62,7 +59,7 @@ struct VistaMain: View {
 
             //DDD
             NavigationView{
-            VistaPerfilUsuario(usuarioCurrent: vm.usuariosArray[1]).environmentObject(ViewModel())
+                VistaPerfilUsuario(acceso: $acceso, usuarioCurrent: $usuarioCurrent).environmentObject(ViewModel())
             }//.background(colorFondo)
                 .tabItem{
                     //Label("Perfil", systemImage: "person.circle.fill")

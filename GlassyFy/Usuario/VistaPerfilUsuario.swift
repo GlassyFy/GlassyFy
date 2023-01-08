@@ -4,12 +4,12 @@
 //
 //  Created by Aula11 on 18/11/22.
 //
-
 import SwiftUI
 
 struct VistaPerfilUsuario: View {
     @EnvironmentObject var vm: ViewModel
-    var usuarioCurrent: UsuarioEntity
+    @Binding var acceso: Bool
+    @Binding var usuarioCurrent: UsuarioEntity
     @State var email: String = ""
     @State var telefono: String = ""
     @State var descripcion: String = ""
@@ -43,7 +43,6 @@ struct VistaPerfilUsuario: View {
             .ignoresSafeArea()
         .overlay(
                 VStack { //Todo
-
                     //Aquí va la barra superior, con el nombre y el boton de salir
 //                    HStack{
 //                        Text(usuarioCurrent.nombre!)
@@ -81,7 +80,7 @@ struct VistaPerfilUsuario: View {
                         
                         //MARK: HSTACK CON CONTENIDO BOTON HISTORICO, FOTO PERFIL Y BOTÓN EDICION
                         HStack{
-                            NavigationLink(destination:VistaHistoricoUsuario(usuarioCurrent: usuarioCurrent)){
+                            NavigationLink(destination:VistaHistoricoUsuario(usuarioCurrent: $usuarioCurrent)){
                                 Image(systemName: "books.vertical.fill")
                                     .resizable()
                                     .frame(width: 55, height: 45)
@@ -92,13 +91,16 @@ struct VistaPerfilUsuario: View {
                                     .padding(.top, 80)
                             }
                             .navigationBarItems(leading:
-                                NavigationLink(destination: RevisionDatosExp()){
+                                
                                 Text("Salir")
                                     .frame(width:51)
                                 .font(.custom("Arial", size:24))
                                 .padding(.leading)
                                 .foregroundColor(colorRojoTxt)
-                            },trailing:
+                                .onTapGesture {
+                                    acceso = false
+                                }
+                            ,trailing:
                                                     HStack{
                                 Text(usuarioCurrent.nombre!)
                                                 
@@ -145,7 +147,7 @@ struct VistaPerfilUsuario: View {
                                                 vm.guardarDatos()
                                             }
                                         }, content: {
-                                            VistaEdicionPerfilUsuario(usuarioCurrent: usuarioCurrent, email: $email, telefono: $telefono,
+                                            VistaEdicionPerfilUsuario(usuarioCurrent: $usuarioCurrent, email: $email, telefono: $telefono,
                                                 descripcion: $descripcion, foto: $foto, cancelar: $cancelar)
                                         }
                                     )
@@ -245,4 +247,3 @@ struct VistaPerfilUsuario: View {
 //    }
 //}
 //
-

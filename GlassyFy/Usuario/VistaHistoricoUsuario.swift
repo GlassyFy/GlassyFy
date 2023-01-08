@@ -24,7 +24,7 @@ var contrariofondotxt: Color = Color(red: 190 / 255, green: 187 / 255, blue: 181
 
 struct VistaHistoricoUsuario: View {
     @EnvironmentObject var vm: ViewModel
-    var usuarioCurrent: UsuarioEntity //= usuario
+    @Binding var usuarioCurrent: UsuarioEntity //= usuario
     @State var query: String = ""
     @State private var showingDeleteAlert = false
     @State private var itemToDelete: ExperimentoEntity? = nil

@@ -27,11 +27,26 @@ var contrariofondotxt: Color = Color(red: 190 / 255, green: 187 / 255, blue: 181
 
 @main
 struct GlassyFyApp: App {
+    @State var usuarioCurrent: UsuarioEntity = UsuarioEntity()
+    @State var acceso:Bool = false
+    init(){
+        UITabBar.appearance().barTintColor  = UIColor(red: 56/255, green: 57/255, blue: 62/255, alpha: 1)
+        UITabBar.appearance().backgroundColor  = UIColor(red: 56/255, green: 57/255, blue: 62/255, alpha: 1)
+        UITableView.appearance().separatorStyle = .none
+         UITableViewCell.appearance().backgroundColor = UIColor(red: 48 / 255, green: 49 / 255, blue: 54 / 255, alpha: 0)
+         UITableView.appearance().backgroundColor = UIColor(red: 48 / 255, green: 49 / 255, blue: 54 / 255, alpha: 0)
+    }
     @StateObject var vm: ViewModel = ViewModel()
     var body: some Scene {
         WindowGroup {
-            //InicioView().environmentObject(vm)
-            VistaMain().environmentObject(vm)
+            
+            if(acceso == false){
+                InicioView(usuarioCurrent: $usuarioCurrent, acceso: $acceso).environmentObject(vm)
+            }
+            if(acceso == true){
+                VistaMain(acceso: $acceso, usuarioCurrent: $usuarioCurrent).environmentObject(vm)
+            }
+            //VistaMain().environmentObject(vm)
         }
     }
 }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct InicioView: View {
+    @Binding var usuarioCurrent: UsuarioEntity
+    @Binding var acceso: Bool
     @EnvironmentObject var vm: ViewModel
     @State private var fadeInOut = false
     @State private var pushNuevaVista: Bool = false
@@ -23,7 +25,7 @@ struct InicioView: View {
                         .opacity(0.5)
                 }
                 //Falta la animación de disolución o fade
-                NavigationLink(destination: LoginView()
+                NavigationLink(destination: LoginView(acceso: $acceso, usuarioCurrent: $usuarioCurrent)
                     .navigationBarBackButtonHidden(true)
                     .navigationBarHidden(true)
                                //.animation(.easeInOut(duration: 2.5))

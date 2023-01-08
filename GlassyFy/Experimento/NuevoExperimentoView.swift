@@ -61,6 +61,7 @@ class DatosExp: ObservableObject{
 struct AnadirDatosExpView: View {
     @EnvironmentObject var vm: ViewModel
     @ObservedObject var datos = DatosExp()
+    @Binding var usuarioCurrent: UsuarioEntity
     
     var body: some View {
         
@@ -123,7 +124,7 @@ struct AnadirDatosExpView: View {
                         }
                     }
                         
-                    NavigationLink(destination: AnadirDatosExpB(datos: datos)){
+                    NavigationLink(destination: AnadirDatosExpB(datos: datos, usuarioCurrent: $usuarioCurrent)){
                     Text("Siguiente")
                         .frame(width: 100, height: 55)
                             .background(colorboton)
@@ -146,6 +147,7 @@ struct AnadirDatosExpB: View {
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var vm: ViewModel
     @ObservedObject var datos = DatosExp()
+    @Binding var usuarioCurrent: UsuarioEntity
     
     @State var parametro: Double = 0
     @State var parStr: String = ""
@@ -350,7 +352,7 @@ struct AnadirDatosExpB: View {
                                 .foregroundColor(.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 30))
                             
-                        NavigationLink(destination:RevisionDatosExp(datos: datos)){
+                        NavigationLink(destination:RevisionDatosExp(datos: datos, usuarioCurrent: $usuarioCurrent)){
                                 Text("Siguiente")
                                     .frame(width: 150, height: 55)
                                     .background(colorboton)
@@ -375,7 +377,7 @@ struct RevisionDatosExp: View{
     @ObservedObject var datos = DatosExp()
     
     @State var popUpVisible = false
-    
+    @Binding var usuarioCurrent: UsuarioEntity
     
     var body: some View{
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
@@ -532,7 +534,7 @@ struct RevisionDatosExp: View{
                             
                             datos.tipo = calcularTipo(RI: datos.inref, Mg: datos.magnesio, Al: datos.aluminio, K: datos.potasio, Ca: datos.calcio, Ba: datos.bario)
                             tipoNombre = datos.tipo
-                                vm.addExperimento(usuario: vm.usuariosArray[0], nombre: datos.nombre, fechaToma: datos.fechaToma, descripcion: datos.descripcion, fechaCreacion: Date(), inRef: datos.inref, magnesio: datos.magnesio, aluminio: datos.aluminio, potasio: datos.potasio, Calcio: datos.calcio, Bario: datos.bario, tipo: datos.tipo)
+                                vm.addExperimento(usuario: usuarioCurrent, nombre: datos.nombre, fechaToma: datos.fechaToma, descripcion: datos.descripcion, fechaCreacion: Date(), inRef: datos.inref, magnesio: datos.magnesio, aluminio: datos.aluminio, potasio: datos.potasio, Calcio: datos.calcio, Bario: datos.bario, tipo: datos.tipo)
                             }
                                 .frame(width: 150, height: 55)
                                 .background(colorboton)
@@ -543,7 +545,7 @@ struct RevisionDatosExp: View{
                                 }
                             //Aqui navegamos al popup
                                 
-                        NavigationLink(destination:AnadirDatosExpView(), isActive: $popUpVisible){
+                        NavigationLink(destination:AnadirDatosExpView(usuarioCurrent: $usuarioCurrent), isActive: $popUpVisible){
                             EmptyView()
                         }
                     }

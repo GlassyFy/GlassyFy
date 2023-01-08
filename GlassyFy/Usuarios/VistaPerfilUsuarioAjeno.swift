@@ -89,13 +89,8 @@ struct VistaPerfilUsuarioAjeno: View {
                                     .padding(.top, 80)
                             }
                             .navigationBarItems(leading:
-                                NavigationLink(destination: RevisionDatosExp()){
-                                    Text("Salir")
-                                    .frame(width:51)
-                                    .font(.custom("Arial", size:24))
-                                    .padding(.leading)
-                                    .foregroundColor(colorRojoTxt)
-                                },trailing:
+                                Spacer()
+                                ,trailing:
                                 HStack{
                                     if (usuarioCurrent.nombre != nil) {
                                         Text(usuarioCurrent.nombre!)

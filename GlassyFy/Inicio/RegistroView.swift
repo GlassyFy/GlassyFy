@@ -3,8 +3,9 @@ import SwiftUI
 struct RegistroView: View {
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var vm: ViewModel
-    @State private var usuarioCurrent: UsuarioEntity = UsuarioEntity()
-    @State private var registroCorrecto = false
+//    @Binding var usuarioCurrent: UsuarioEntity
+//    @Binding var acceso: Bool
+    @Binding var registroCorrecto: Bool
     @State private var usuario: String = ""
     @State private var clave: String = ""
     @State private var clave2: String = ""
@@ -15,7 +16,7 @@ struct RegistroView: View {
     @State private var wrongClave = 0
     @State private var wrongCorreo = 0
     
-    //Falta implementar restricciones para establecer una contraseña segura
+    //Falta implementar restricciones para establecer una contraseña segura y popUp de registro realizado
     var body: some View {
         ZStack{
             Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
@@ -98,6 +99,9 @@ struct RegistroView: View {
                     .onSubmit{
                         wrongClave = 0; wrongCorreo = 0; wrongUsuario = 0;
                         registrarUsuario()
+                        if(registroCorrecto == true){
+                            self.presentation.wrappedValue.dismiss()
+                        }
                     }
                 
                 Group {
@@ -108,6 +112,9 @@ struct RegistroView: View {
                     Button("Registrarse"){
                         wrongClave = 0; wrongCorreo = 0; wrongUsuario = 0;
                         registrarUsuario()
+                        if(registroCorrecto == true){
+                            self.presentation.wrappedValue.dismiss()
+                        }
                     }
                     .frame(width: 144 , height: 53)
                     .background(Color(red: 73 / 255, green: 82 / 255, blue: 189 / 255))
@@ -116,13 +123,14 @@ struct RegistroView: View {
                     .padding(.top, 20)
                     .disabled(usuario.isEmpty ||  clave.isEmpty ||  clave2.isEmpty || correo.isEmpty)
                     .opacity(usuario.isEmpty ||  clave.isEmpty ||  clave2.isEmpty || correo.isEmpty ? 0.5 : 1.0)
-                    .fullScreenCover(isPresented: $registroCorrecto) {
-                        VistaMain().environmentObject(vm)
-                    }
+//                    .fullScreenCover(isPresented: $acceso) {
+//                        VistaMain(acceso: $acceso, usuarioCurrent: $usuarioCurrent).environmentObject(vm)
+//                    }
+                    
 //                    .sheet(isPresented: $registroCorrecto, onDismiss: {registroCorrecto = false}, content: {
 //                        ZStack{
-//                            Color.blue.ignoresSafeArea()
-//                            Text("¡Registro realizado :D!")
+//                            Color.green.ignoresSafeArea()
+//                            Text("¡Registro realizado con éxito de \(usuarioCurrent.nombre!) :D!")
 //                        }
 //                    })
                     
@@ -152,6 +160,14 @@ struct RegistroView: View {
             
         }
         .navigationBarHidden(true)
+        .onAppear{
+            aviso = ""
+            usuario = ""
+            clave = ""
+            clave2 = ""
+            correo = ""
+            //acceso = false
+        }
     }
     
     func usuarioExistente(currentUser: String) -> Bool {
@@ -209,21 +225,21 @@ struct RegistroView: View {
         }else {
             vm.registrarUsuario(nombre: usuario, contrasena: clave, email: correo.lowercased())
             registroCorrecto = true
-            usuarioCurrent = vm.usuariosArray.last!
-            aviso = ""
-            usuario = ""
-            clave = ""
-            clave2 = ""
-            correo = ""
+//            acceso = true
+//            for usuario in vm.usuariosArray{
+//                if(usuario.nombre == self.usuario && usuario.contrasena == self.clave && usuario.email == self.correo){
+//                    usuarioCurrent = usuario
+//                }
+//            }
         }
     }
 }
 
 
 
-struct RegistroView_Previews: PreviewProvider {
-    static var previews: some View {
-        RegistroView()
-    }
-}
+//struct RegistroView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RegistroView(usuarioCurrent: usuarioCurrent, acceso: acceso).environmentObject(vm)
+//    }
+//}
 

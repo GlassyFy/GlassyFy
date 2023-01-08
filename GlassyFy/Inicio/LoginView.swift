@@ -6,10 +6,11 @@ struct LoginView: View {
     @State private var clave: String = ""
     @State private var wrongCorreo = 0
     @State private var wrongClave = 0
-    @State private var acceso = false
     @State private var aviso: String = ""
-    @State private var usuarioCurrent: UsuarioEntity = UsuarioEntity()
-    //Falta implementar showPassword visibility (toggle entre TextField y SecureField)
+    @Binding var acceso: Bool
+    @Binding var usuarioCurrent: UsuarioEntity
+    @State var registroCorrecto: Bool = false
+    //Falta implementar showPassword visibility (toggle entre TextField y SecureField) y popUp de login realizado
     var body: some View {
         
         ZStack{
@@ -36,10 +37,11 @@ struct LoginView: View {
                     .foregroundColor(.white)
                     .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .overlay(
-                          RoundedRectangle(cornerRadius: 10)
-                              .stroke(.red, lineWidth: CGFloat(wrongCorreo))
-                      )
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                              .stroke(.red, lineWidth: CGFloat(wrongCorreo)))
+                    .onSubmit {
+                        autenticarUsuario(correoAux: correo, claveAux: clave)
+                    }
                 
                 
                 Text("Contraseña")
@@ -76,25 +78,26 @@ struct LoginView: View {
                 .padding(.top, 40)
                 .disabled(correo.isEmpty || clave.isEmpty)
                 .opacity(correo.isEmpty || clave.isEmpty ? 0.5 : 1.0 )
-                .fullScreenCover(isPresented: $acceso) {
-                    VistaMain().environmentObject(vm)
-                    //VistaPerfilUsuario(sesionIniciada: $sesionIniciada, usuarioCurrent:
-                    //usuarioCurrent).environmentObject(vm)
-                }
-                                
+//                .fullScreenCover(isPresented: $acceso) {
+//                    VistaMain(acceso: $acceso, usuarioCurrent: $usuarioCurrent).environmentObject(vm)
+//                    //VistaPerfilUsuario(sesionIniciada: $sesionIniciada, usuarioCurrent:
+//                    //usuarioCurrent).environmentObject(vm)
+//                }
+                
 //                .sheet(isPresented: $acceso, onDismiss: {acceso = false}, content: {
 //                    ZStack{
 //                        Color.green.ignoresSafeArea()
-//                        Text("¡Bienvenido \(currentUsuario) :D!")
+//                        Text("¡Bienvenido \(usuarioCurrent.email!) :D!")
 //                    }
 //                })
-                
                 HStack{
                     Text("¿Aún no tienes cuenta?")
                         .foregroundColor(Color.white)
                         .font(.footnote)
                         .bold()
-                    NavigationLink(destination: RegistroView()
+//                    NavigationLink(destination: RegistroView(usuarioCurrent: $usuarioCurrent, acceso: $acceso).environmentObject(vm)
+                    NavigationLink(destination:
+                                    RegistroView(registroCorrecto: $registroCorrecto).environmentObject(vm)
                                    //.animation(.easeInOut(duration: 0.5))
                         .navigationBarBackButtonHidden(true)
                         .navigationBarHidden(true)) {
@@ -117,12 +120,13 @@ struct LoginView: View {
             .offset(x: 0 , y: -130)
             Spacer()
         }
-        .onDisappear(){
+        .onAppear(){
             wrongClave = 0
             wrongCorreo = 0
             aviso = ""
             correo = ""
             clave = ""
+            //acceso = false
         }
         .navigationBarHidden(true)
     }
@@ -133,19 +137,11 @@ struct LoginView: View {
                 acceso = true
             }
         }
-        if(acceso == true){
-            wrongClave = 0
-            wrongCorreo = 0
-            aviso = ""
-            correo = ""
-            clave = ""
-        }
-        else{
+        if(acceso == false){
             wrongCorreo = 1
             wrongClave = 1
             aviso = "Correo electrónico o contraseña incorrectos"
         }
-        
             
     }
        
@@ -174,8 +170,8 @@ extension View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
-}
+//struct LoginView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LoginView()
+//    }
+//}

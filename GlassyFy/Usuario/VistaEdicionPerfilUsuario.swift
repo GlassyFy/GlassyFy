@@ -22,7 +22,7 @@ var contrariofondotxt: Color = Color(red: 190 / 255, green: 187 / 255, blue: 181
 
 struct VistaEdicionPerfilUsuario: View {
     @EnvironmentObject var vm: ViewModel
-    var usuarioCurrent: UsuarioEntity
+    @Binding var usuarioCurrent: UsuarioEntity
     @Binding var email: String
     @Binding var telefono: String
     @Binding var descripcion: String
