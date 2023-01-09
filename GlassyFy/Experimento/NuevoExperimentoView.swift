@@ -126,7 +126,7 @@ struct AnadirDatosExpView: View {
                             
                         NavigationLink(destination: AnadirDatosExpB(datos: datos, usuarioCurrent: $usuarioCurrent)){
                         Text("Siguiente")
-                            .frame(width: 100, height: 55)
+                            .frame(width: 150, height: 55)
                                 .background(colorboton)
                                 .foregroundColor(.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 30))
@@ -139,7 +139,7 @@ struct AnadirDatosExpView: View {
 
                 )
             Spacer()
-        }
+        }.navigationTitle("Nuevo experimento")
         
     }
 }
@@ -582,39 +582,41 @@ struct popUpExito: View{
     @Binding var visible: Bool
     
     var body: some View{
-        Color(red: 90 / 255, green: 163 / 255, blue: 100 / 255)
-            .ignoresSafeArea()
-            .overlay(
-                VStack{
-                    Spacer()
-                    Text("Guardado con éxito")
-                        .font(.title)
-                    Spacer()
-                    Text("El cristal es de tipo:")
-                        .font(.title3)
-                    //TODO: Implementar el tipo de cristal tras el calculo
-                    Text("\(tipoNombre)")
-                        .font(.largeTitle)
-                        .padding()
-                    //Aqui podríamos poner una foto del tipo de cristal, para hacer la vista más completa.
-                    //Image(systemName: "wineglass.fill")
-                    
-                    Spacer()
-                    Text("Deslice hacia abajo...")
-                        .font(.system(size: 10))
-                    //TODO: No se pq pero el botón no cierra el popup al haber incluido el metodo para anadir el experimento a la bbdd.
-//                    Button("Aceptar"){
-//                        presentation.wrappedValue.dismiss()
-//                        visible = true
-//                    }
-//                    .frame(width: 150, height: 55)
-//                    .background(.green)
-//                    .foregroundColor(.white)
-//                    .clipShape(RoundedRectangle(cornerRadius: 30))
-                    Spacer()
-                }.navigationBarTitleDisplayMode(.inline)
-                
-            )    }
+        GeometryReader{ gemr in
+            Color(red: 90 / 255, green: 163 / 255, blue: 100 / 255)
+                .ignoresSafeArea()
+                .overlay(
+                    VStack{
+                        Spacer()
+                        Text("Guardado con éxito")
+                            .font(.title)
+                        Spacer()
+                        Text("El cristal es de tipo:")
+                            .font(.title3)
+                        //TODO: Implementar el tipo de cristal tras el calculo
+                        Text("\(tipoNombre)")
+                            .font(.largeTitle)
+                            .padding()
+                        //Aqui podríamos poner una foto del tipo de cristal, para hacer la vista más completa.
+                        //Image(systemName: "wineglass.fill")
+                        
+                        Spacer()
+                        Text("Deslice hacia abajo...")
+                            .font(.system(size: 10))
+                        //TODO: No se pq pero el botón no cierra el popup al haber incluido el metodo para anadir el experimento a la bbdd.
+    //                    Button("Aceptar"){
+    //                        presentation.wrappedValue.dismiss()
+    //                        visible = true
+    //                    }
+    //                    .frame(width: 150, height: 55)
+    //                    .background(.green)
+    //                    .foregroundColor(.white)
+    //                    .clipShape(RoundedRectangle(cornerRadius: 30))
+                        Spacer()
+                    }.navigationBarTitleDisplayMode(.inline)
+                )    }
+        }
+        
 }
 
 //struct NuevoExperimentoView_Previews: PreviewProvider {
