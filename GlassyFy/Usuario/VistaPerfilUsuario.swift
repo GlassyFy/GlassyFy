@@ -42,122 +42,79 @@ struct VistaPerfilUsuario: View {
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
             .ignoresSafeArea()
         .overlay(
+            GeometryReader{ gemr in
                 VStack { //Todo
-                    //Aquí va la barra superior, con el nombre y el boton de salir
-//                    HStack{
-//                        Text(usuarioCurrent.nombre!)
-//
-//                            .font(.custom("Arial", size:24))
-//                            .foregroundColor(.white)
-//
-//                    }.frame(minWidth: 0, maxWidth: .infinity,minHeight: 0, maxHeight: 50, alignment: .center)
-//                        .overlay(
-//                            HStack{
-//                                NavigationLink(destination: RevisionDatosExp()){
-//                                    Text("Salir")
-//                                        .frame(width:51)
-//                                    .font(.custom("Arial", size:24))
-//                                    .padding(.leading)
-//                                    .foregroundColor(colorRojoTxt)
-//                                }
-//
-//                                Spacer()
-//                            }
-//                        )
-//                        .background(colorRect)
-//                        //.padding(.top, -35)
-//                        .zIndex(1)
-//                        //.offset(y:20)
                     
                     Image("kraken")
                         .resizable()
-                        .frame(height:200, alignment: .center)
-                        .offset(y: 150)
-                        .padding(.top, -100)
+                        .frame(width:gemr.size.width ,height:gemr.size.height*0.25, alignment: .center)
                     
+                    //MARK: HSTACK CON CONTENIDO BOTON HISTORICO, FOTO PERFIL Y BOTÓN EDICION
+                    HStack{
+                        Spacer()
+                        NavigationLink(destination:VistaHistoricoUsuario(usuarioCurrent: $usuarioCurrent)){
+                            Image(systemName: "books.vertical.fill")
+                                .resizable()
+                                .frame(width: 55, height: 45)
+                                .padding(5)
+                                .background(colorBlue)
+                                .cornerRadius(10)
+                                .foregroundColor(.white)
+                                .padding(.top, 80)
+                        }
+                        
+                                                
+                        Spacer()
+                        //Image(uiImage: foto) //Image(uiImage: UIImage(data: usuarioCurrent.foto!)!)//("foto")
+                        Image (uiImage: UIImage(data: usuarioCurrent.foto!) ?? UIImage(systemName: "person.circle.fill")!)
+                            .resizable()
+                            //.scaledToFit()
+                            //.frame(width:234)
+                            .frame(width: gemr.size.width*0.3, height: gemr.size.height*0.3, alignment: .center)
+                            .clipShape(Circle())
+                            .overlay(Circle().stroke(.white, lineWidth: 1))
+                            //.offset(y: -50)
+                            
+                        Spacer()
+                        
+                        Button() {
+                            mostrarEdicion.toggle()
+                            email = usuarioCurrent.email!
+                            telefono = usuarioCurrent.telefono!
+                            descripcion = usuarioCurrent.descripcion ?? "Nada por ahora :P"
+                            foto = UIImage(data: usuarioCurrent.foto!)!
+                        } label: {
+                            Image(systemName: "pencil")
+                                .resizable()
+                                .frame(width: 31, height: 32)
+                                .padding(10)
+                                .foregroundColor(colorGreen)
+                                .border(colorGreen, width: 3) //
+                                .cornerRadius(5) //
+                                .padding(.top, 80)
+                                //.offset(y:50)
+                                .sheet (isPresented: $mostrarEdicion,
+                                    onDismiss: {
+                                        if !cancelar {
+                                            usuarioCurrent.email = email
+                                            usuarioCurrent.telefono = telefono
+                                            usuarioCurrent.descripcion = descripcion
+                                            usuarioCurrent.foto = foto.pngData()
+                                            vm.guardarDatos()
+                                        }
+                                    }, content: {
+                                        VistaEdicionPerfilUsuario(usuarioCurrent: $usuarioCurrent, email: $email, telefono: $telefono,
+                                            descripcion: $descripcion, foto: $foto, cancelar: $cancelar)
+                                    }
+                                )
+                            
+                        }
+                        Spacer()
+                    }//FIN HSTACK.
+                    .offset(y: -gemr.size.height*0.15)
+                    .frame(width: gemr.size.width, alignment: .center)
                     
                     VStack{
-                        
-                        //MARK: HSTACK CON CONTENIDO BOTON HISTORICO, FOTO PERFIL Y BOTÓN EDICION
-                        HStack{
-                            NavigationLink(destination:VistaHistoricoUsuario(usuarioCurrent: $usuarioCurrent)){
-                                Image(systemName: "books.vertical.fill")
-                                    .resizable()
-                                    .frame(width: 55, height: 45)
-                                    .padding(5)
-                                    .background(colorBlue)
-                                    .cornerRadius(10)
-                                    .foregroundColor(.white)
-                                    .padding(.top, 80)
-                            }
-                            .navigationBarItems(leading:
-                                
-                                Text("Salir")
-                                    .frame(width:51)
-                                .font(.custom("Arial", size:24))
-                                .padding(.leading)
-                                .foregroundColor(colorRojoTxt)
-                                .onTapGesture {
-                                    acceso = false
-                                }
-                            ,trailing:
-                                                    HStack{
-                                Text(usuarioCurrent.nombre!)
-                                                
-                                .font(.custom("Arial", size:24))
-                                .foregroundColor(.white)
-                                Spacer()
-                            }
-                                )
-                                                    
-                            
-                            //Image(uiImage: foto) //Image(uiImage: UIImage(data: usuarioCurrent.foto!)!)//("foto")
-                            Image (uiImage: UIImage(data: usuarioCurrent.foto!) ?? UIImage(systemName: "person.circle.fill")!)
-                                .resizable()
-                                //.scaledToFit()
-                                //.frame(width:234)
-                                .frame(minWidth: 0, maxWidth: 234, minHeight: 0, maxHeight: 234)
-                                .clipShape(Circle())
-                                //.offset(y: -50)
-                                
-
-                            Button() {
-                                mostrarEdicion.toggle()
-                                email = usuarioCurrent.email!
-                                telefono = usuarioCurrent.telefono!
-                                descripcion = usuarioCurrent.descripcion ?? "Nada por ahora :P"
-                                foto = UIImage(data: usuarioCurrent.foto!)!
-                            } label: {
-                                Image(systemName: "pencil")
-                                    .resizable()
-                                    .frame(width: 31, height: 32)
-                                    .padding(10)
-                                    .foregroundColor(colorGreen)
-                                    .border(colorGreen, width: 3) //
-                                    .cornerRadius(5) //
-                                    .padding(.top, 80)
-                                    //.offset(y:50)
-                                    .sheet (isPresented: $mostrarEdicion,
-                                        onDismiss: {
-                                            if !cancelar {
-                                                usuarioCurrent.email = email
-                                                usuarioCurrent.telefono = telefono
-                                                usuarioCurrent.descripcion = descripcion
-                                                usuarioCurrent.foto = foto.pngData()
-                                                vm.guardarDatos()
-                                            }
-                                        }, content: {
-                                            VistaEdicionPerfilUsuario(usuarioCurrent: $usuarioCurrent, email: $email, telefono: $telefono,
-                                                descripcion: $descripcion, foto: $foto, cancelar: $cancelar)
-                                        }
-                                    )
-                                
-                            }
-                        }//FIN HSTACK.
-                        .offset(y: -90)
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-                        
-                        
                         //MARK: CONTENIDO INFORMACIÓN USUARIO
                         
                         Text(usuarioCurrent.nombre!)
@@ -172,7 +129,7 @@ struct VistaPerfilUsuario: View {
                             Text(usuarioCurrent.email ?? "42 333 666 999") //email
                             
                         }
-                        .frame(width: 380, height: 60, alignment: .leading)
+                        .frame(width: gemr.size.width*0.95, height: 60, alignment: .leading)
                         .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                         .background(colorRect)
                         .font(.custom("Arial", size:25))
@@ -183,7 +140,7 @@ struct VistaPerfilUsuario: View {
                                 .padding(.leading, 10)
                             Text(usuarioCurrent.telefono ?? "42 333 666 999")  //telefono
                         }
-                        .frame(width: 380, height: 60, alignment: .leading)
+                        .frame(width: gemr.size.width*0.95, height: 60, alignment: .leading)
                         .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                         .background(colorRect)
                         .font(.custom("Arial", size:25))
@@ -195,6 +152,7 @@ struct VistaPerfilUsuario: View {
                             .frame(width: 43, height: 43)
                             .background(colorRect)
                             .foregroundColor(.white)
+                            .padding(.leading, gemr.size.width*0.01)
                 
                         Text(" Sobre mí")
                             .font(.custom("Arial", size:32))
@@ -204,21 +162,24 @@ struct VistaPerfilUsuario: View {
                     .offset(y: -90)
 
                     ScrollView {
-                        Text (usuarioCurrent.descripcion ?? "Nada por ahora :P") //Text (descripcion)
-                            .frame(width: 370, alignment: .leading) //419x110
+                        Text (usuarioCurrent.descripcion ?? "Nada por ahora :P")
+                            .frame(width: gemr.size.width*0.9, alignment: .leading)
                             .fixedSize(horizontal: false, vertical: true)
                             .padding(.all, 10)
                             .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                             .background(colorRect)
                             .font(.custom("Arial", size:26))
-                    }.frame(width: 370, height: 210, alignment: .center)
-                            .zIndex(-1)
+                    }.frame(width: gemr.size.width*0.95, height: gemr.size.height*0.25, alignment: .center)
                             .offset(y:-90)
                         
+                        
+                        
+                        
                 } //VStack Todo
-                    .frame(width: 380)
+                    .frame(width: gemr.size.width*0.95)
                     .background(colorFondo)
                 .foregroundColor(.white)
+                .offset(y:-50)
                 .onAppear(){
                     self.email = usuarioCurrent.email!
                     //self.telefono = usuarioCurrent.telefono! ??
@@ -230,9 +191,29 @@ struct VistaPerfilUsuario: View {
                         self.foto = UIImage(data: self.usuarioCurrent.foto!)!
                     }
                     //self.foto = UIImage(data: usuarioCurrent.foto!)?? ?? UIImage(systemName: "person.circle.fill")!
-                }.offset(y: 140)
-                }.navigationBarTitleDisplayMode(.inline)
-                    .navigationBarTitle("")
+                }//.offset(y: 140)
+                }.navigationBarItems(leading:
+                                        
+                                        Button("Salir"){
+                                            acceso = false
+                                        }
+                                            .frame(width:51)
+                                        .font(.custom("Arial", size:24))
+                                        .padding(.leading)
+                                        .foregroundColor(colorRojoTxt)
+                                    ,trailing:
+                                                            HStack{
+                                        Text(usuarioCurrent.nombre!)
+                                                        
+                                        .font(.custom("Arial", size:24))
+                                        .foregroundColor(.white)
+                                        Spacer()
+                                    }
+                                        )
+                .navigationBarTitleDisplayMode(.inline)
+                //.navigationBarTitle(usuarioCurrent.nombre!)
+            }
+                
                     
         )
     }
