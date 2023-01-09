@@ -3,8 +3,8 @@ import SwiftUI
 struct RegistroView: View {
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var vm: ViewModel
-//    @Binding var usuarioCurrent: UsuarioEntity
-//    @Binding var acceso: Bool
+    //    @Binding var usuarioCurrent: UsuarioEntity
+    //    @Binding var acceso: Bool
     @Binding var registroCorrecto: Bool
     @State private var usuario: String = ""
     @State private var clave: String = ""
@@ -16,7 +16,8 @@ struct RegistroView: View {
     @State private var wrongClave = 0
     @State private var wrongCorreo = 0
     
-    //Falta implementar restricciones para establecer una contraseña segura y popUp de registro realizado
+    //Falta implementar restricciones para establecer una contraseña segura
+    
     var body: some View {
         ZStack{
             Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
@@ -28,9 +29,15 @@ struct RegistroView: View {
                     .frame(width: 400, height:300)
                     .padding(-100)
                 VStack{
+                    
                     Text("Nombre de usuario")
                         .foregroundColor(.white)
                         .frame(width: 295, height: 42, alignment: .bottomLeading)
+                    //                        Spacer()
+                    //                        Text("\(usuario.count)/20")
+                    //                            .foregroundColor(Color.red)
+                    //                            .frame(height: 42, alignment: .bottomLeading)
+                    
                     TextField("", text: $usuario)
                         .placeholder(Text("Introduzca su nombre de usuario")
                             .foregroundColor(.white), show: usuario.isEmpty)
@@ -41,9 +48,14 @@ struct RegistroView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .autocapitalization(.none)
                         .overlay(
-                              RoundedRectangle(cornerRadius: 10)
-                                  .stroke(.red, lineWidth: CGFloat(wrongUsuario))
-                          )
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(.red, lineWidth: CGFloat(wrongUsuario))
+                        )
+                        .onChange(of: self.usuario){ value in
+                            if Int(usuario.count) > 20 {
+                                self.usuario = String(value.prefix(20))
+                            }
+                        }
                 }
                 
                 Text("Contraseña")
@@ -59,9 +71,9 @@ struct RegistroView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .autocapitalization(.none)
                     .overlay(
-                          RoundedRectangle(cornerRadius: 10)
-                              .stroke(.red, lineWidth: CGFloat(wrongClave))
-                      )
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(.red, lineWidth: CGFloat(wrongClave))
+                    )
                 
                 Text("Repita su contraseña")
                     .foregroundColor(.white)
@@ -76,9 +88,9 @@ struct RegistroView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .autocapitalization(.none)
                     .overlay(
-                          RoundedRectangle(cornerRadius: 10)
-                              .stroke(.red, lineWidth: CGFloat(wrongClave))
-                      )
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(.red, lineWidth: CGFloat(wrongClave))
+                    )
                 
                 Text("Correo electrónico")
                     .foregroundColor(.white)
@@ -93,9 +105,9 @@ struct RegistroView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .autocapitalization(.none)
                     .overlay(
-                          RoundedRectangle(cornerRadius: 10)
-                              .stroke(.red, lineWidth: CGFloat(wrongCorreo))
-                      )
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(.red, lineWidth: CGFloat(wrongCorreo))
+                    )
                     .onSubmit{
                         wrongClave = 0; wrongCorreo = 0; wrongUsuario = 0;
                         registrarUsuario()
@@ -123,16 +135,16 @@ struct RegistroView: View {
                     .padding(.top, 20)
                     .disabled(usuario.isEmpty ||  clave.isEmpty ||  clave2.isEmpty || correo.isEmpty)
                     .opacity(usuario.isEmpty ||  clave.isEmpty ||  clave2.isEmpty || correo.isEmpty ? 0.5 : 1.0)
-//                    .fullScreenCover(isPresented: $acceso) {
-//                        VistaMain(acceso: $acceso, usuarioCurrent: $usuarioCurrent).environmentObject(vm)
-//                    }
+                    //                    .fullScreenCover(isPresented: $acceso) {
+                    //                        VistaMain(acceso: $acceso, usuarioCurrent: $usuarioCurrent).environmentObject(vm)
+                    //                    }
                     
-//                    .sheet(isPresented: $registroCorrecto, onDismiss: {registroCorrecto = false}, content: {
-//                        ZStack{
-//                            Color.green.ignoresSafeArea()
-//                            Text("¡Registro realizado con éxito de \(usuarioCurrent.nombre!) :D!")
-//                        }
-//                    })
+                    //                    .sheet(isPresented: $registroCorrecto, onDismiss: {registroCorrecto = false}, content: {
+                    //                        ZStack{
+                    //                            Color.green.ignoresSafeArea()
+                    //                            Text("¡Registro realizado con éxito de \(usuarioCurrent.nombre!) :D!")
+                    //                        }
+                    //                    })
                     
                     HStack{
                         Text("¿Ya tienes cuenta?")
@@ -225,12 +237,12 @@ struct RegistroView: View {
         }else {
             vm.registrarUsuario(nombre: usuario, contrasena: clave, email: correo.lowercased())
             registroCorrecto = true
-//            acceso = true
-//            for usuario in vm.usuariosArray{
-//                if(usuario.nombre == self.usuario && usuario.contrasena == self.clave && usuario.email == self.correo){
-//                    usuarioCurrent = usuario
-//                }
-//            }
+            //            acceso = true
+            //            for usuario in vm.usuariosArray{
+            //                if(usuario.nombre == self.usuario && usuario.contrasena == self.clave && usuario.email == self.correo){
+            //                    usuarioCurrent = usuario
+            //                }
+            //            }
         }
     }
 }

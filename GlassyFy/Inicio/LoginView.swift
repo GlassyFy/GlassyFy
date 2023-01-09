@@ -10,7 +10,7 @@ struct LoginView: View {
     @Binding var acceso: Bool
     @Binding var usuarioCurrent: UsuarioEntity
     @State var registroCorrecto: Bool = false
-    //Falta implementar showPassword visibility (toggle entre TextField y SecureField) y popUp de login realizado
+
     var body: some View {
         
         ZStack{
@@ -23,6 +23,8 @@ struct LoginView: View {
                     .scaledToFit()
                     .frame(width: 400, height:300)
                     .padding(-100)
+                
+                
                 
                 Text("Correo electrónico")
                     .frame(width: 295, height: 42, alignment: .bottomLeading)
@@ -38,7 +40,7 @@ struct LoginView: View {
                     .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .overlay(RoundedRectangle(cornerRadius: 10)
-                              .stroke(.red, lineWidth: CGFloat(wrongCorreo)))
+                        .stroke(.red, lineWidth: CGFloat(wrongCorreo)))
                     .onSubmit {
                         autenticarUsuario(correoAux: correo, claveAux: clave)
                     }
@@ -58,9 +60,9 @@ struct LoginView: View {
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .overlay(
-                          RoundedRectangle(cornerRadius: 10)
-                              .stroke(.red, lineWidth: CGFloat(wrongClave))
-                      )
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(.red, lineWidth: CGFloat(wrongClave))
+                    )
                     .onSubmit {
                         autenticarUsuario(correoAux: correo, claveAux: clave)
                     }
@@ -78,24 +80,24 @@ struct LoginView: View {
                 .padding(.top, 40)
                 .disabled(correo.isEmpty || clave.isEmpty)
                 .opacity(correo.isEmpty || clave.isEmpty ? 0.5 : 1.0 )
-//                .fullScreenCover(isPresented: $acceso) {
-//                    VistaMain(acceso: $acceso, usuarioCurrent: $usuarioCurrent).environmentObject(vm)
-//                    //VistaPerfilUsuario(sesionIniciada: $sesionIniciada, usuarioCurrent:
-//                    //usuarioCurrent).environmentObject(vm)
-//                }
+                //                .fullScreenCover(isPresented: $acceso) {
+                //                    VistaMain(acceso: $acceso, usuarioCurrent: $usuarioCurrent).environmentObject(vm)
+                //                    //VistaPerfilUsuario(sesionIniciada: $sesionIniciada, usuarioCurrent:
+                //                    //usuarioCurrent).environmentObject(vm)
+                //                }
                 
-//                .sheet(isPresented: $acceso, onDismiss: {acceso = false}, content: {
-//                    ZStack{
-//                        Color.green.ignoresSafeArea()
-//                        Text("¡Bienvenido \(usuarioCurrent.email!) :D!")
-//                    }
-//                })
+                //                .sheet(isPresented: $acceso, onDismiss: {acceso = false}, content: {
+                //                    ZStack{
+                //                        Color.green.ignoresSafeArea()
+                //                        Text("¡Bienvenido \(usuarioCurrent.email!) :D!")
+                //                    }
+                //                })
                 HStack{
                     Text("¿Aún no tienes cuenta?")
                         .foregroundColor(Color.white)
                         .font(.footnote)
                         .bold()
-//                    NavigationLink(destination: RegistroView(usuarioCurrent: $usuarioCurrent, acceso: $acceso).environmentObject(vm)
+                    //                    NavigationLink(destination: RegistroView(usuarioCurrent: $usuarioCurrent, acceso: $acceso).environmentObject(vm)
                     NavigationLink(destination:
                                     RegistroView(registroCorrecto: $registroCorrecto).environmentObject(vm)
                                    //.animation(.easeInOut(duration: 0.5))
@@ -110,6 +112,27 @@ struct LoginView: View {
                         .offset(x:-15, y:0)
                     
                 }
+                
+                if(registroCorrecto == true){
+                    
+                    HStack{
+                        Image(systemName:"hand.thumbsup.fill")
+                            .foregroundColor(Color.white)
+                        Text("Registro realizado con éxito").foregroundColor(Color.white)
+                            .fontWeight(.semibold)
+                    }
+                    .frame(width: 295, height: 42)
+                    .background(Color(red: 90 / 255, green: 163 / 255, blue: 100 / 255))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .onAppear {
+                        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+                            registroCorrecto = false
+                        }
+                    }
+                    
+                    
+                }
+                
                 Text("GlassyFy 2022")
                     .font(.footnote)
                     .foregroundColor(.gray)
@@ -128,6 +151,9 @@ struct LoginView: View {
             clave = ""
             //acceso = false
         }
+        //        .onDisappear(){
+        //            registroCorrecto = false
+        //        }
         .navigationBarHidden(true)
     }
     func autenticarUsuario(correoAux: String, claveAux: String){
@@ -142,9 +168,9 @@ struct LoginView: View {
             wrongClave = 1
             aviso = "Correo electrónico o contraseña incorrectos"
         }
-            
+        
     }
-       
+    
 }
 
 //Struct que implementa el protocolo ViewModifier que nos permite realizar modificaciones
