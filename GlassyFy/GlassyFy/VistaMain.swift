@@ -32,7 +32,8 @@ struct VistaMain: View {
             NavigationView{
                 AnadirDatosExpView(usuarioCurrent: $usuarioCurrent)
             }.navigationBarHidden(true)
-                .navigationBarTitle(Text("Título de la vista"), displayMode: .inline)
+                .background(colorcampostxt)
+                //.navigationBarTitle(Text("Título de la vista"), displayMode: .inline)
             .tabItem{
                 Image(systemName: "note.text.badge.plus")
             }
