@@ -35,20 +35,23 @@ struct VistaHistoricoUsuario: View {
         Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
         .ignoresSafeArea()
         .overlay(
+            GeometryReader{ gemr in
                 VStack {
-                    HStack{
-                        Text("Tu histórico")
-                            .frame(width:373, alignment: .center)
-                            .foregroundColor(.white)
-                    }
-                    .frame(width:475,  height:37, alignment: .center)
-                    .background(colorRect)
-                    .font(.custom("Arial", size:24))
-                    .zIndex(3)
+//                    HStack{
+//                        Text("Tu histórico")
+//                            .frame(alignment: .center)
+//                            .foregroundColor(.white)
+//                    }
+//                    .frame(width:gemr.size.width  /*, height:37*/, alignment: .center)
+//                    .background(colorRect)
+//                    .font(.custom("Arial", size:24))
+//                    .zIndex(3)
 
+                    HStack{
+                        BusquedaView(text: $query)  //llama a la subvista para BARRA DE BÚSQUEDA
+                            .frame(width: gemr.size.width*0.9)
+                    }.frame(height: gemr.size.height*0.1)
                     
-                    BusquedaView(text: $query)  //llama a la subvista para BARRA DE BÚSQUEDA
-                        .frame(width: 350)
                     ZStack{
                         List(){
                             ForEach(vm.experimentosArray){experimento in
@@ -82,15 +85,16 @@ struct VistaHistoricoUsuario: View {
                             }.listRowBackground(colorFondo) // ForEach
                         }// List
                         
-                        .frame(width:455,  height:649, alignment: .center)
+                        .frame(height:gemr.size.height*0.8, alignment: .center)
                     }
-                    
-                    //.colorMultiply(Color(red: 127 / 255, green: 127 / 255, blue: 127 / 255))
                     
                     
                 }// VStack
                 
-                .frame(width:455,  height:769, alignment: .top)
+                .frame(height:gemr.size.height*0.8, alignment: .top)
+            }.navigationBarTitleDisplayMode(.inline)
+                .navigationBarTitle("Tu historico")
+                
         )
     } // body
 }
@@ -99,33 +103,36 @@ struct BusquedaView: View {   // Subvista BARRA DE BÚSQUEDA   EJERCICIO 2
     @Binding var text: String
     @EnvironmentObject var vm: ViewModel // No se si esta bien
     var body: some View {
-        Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
-        .ignoresSafeArea()
-        .overlay(
-            VStack {
-                HStack{
-                    Image(systemName: "magnifyingglass.circle")
-                        .resizable()
-                        .frame(width: 34, height: 33)
-                        .foregroundColor(text.isEmpty ? Color(UIColor.gray).opacity(0.4) : Color(UIColor.gray).opacity(0.9))
-                    TextField("Buscar experimento...", text:$text)
-                        .font(.custom("Arial", size:24))
-                        .multilineTextAlignment(.leading)
-                        .foregroundColor(.white)
-                    Button(){
-                        text = ""
-                    }label:{
-                        Image(systemName: "x.circle")
-                    }
-                    .opacity(text.isEmpty ? 0.0 : 1.0)   // Desaparece o aparece el botón
-                } //HStack
-                
-                //.frame(width: 409, height: 50, alignment:.center)
-                .background(colorRect)
-                .foregroundColor(.white)
-                .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
-            }
-                .frame(minWidth: 0, idealWidth: 250, maxWidth: 400, minHeight: 0, idealHeight: 50, maxHeight: .infinity, alignment: .center)
-        )
+        GeometryReader{ gemr in
+            Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
+            .ignoresSafeArea()
+            .overlay(
+                VStack {
+                    HStack{
+                        Image(systemName: "magnifyingglass.circle")
+                            .resizable()
+                            .frame(width: 34, height: 33)
+                            .foregroundColor(text.isEmpty ? Color(UIColor.gray).opacity(0.4) : Color(UIColor.gray).opacity(0.9))
+                        TextField("Buscar experimento...", text:$text)
+                            .font(.custom("Arial", size:24))
+                            .multilineTextAlignment(.leading)
+                            .foregroundColor(.white)
+                        Button(){
+                            text = ""
+                        }label:{
+                            Image(systemName: "x.circle")
+                        }
+                        .opacity(text.isEmpty ? 0.0 : 1.0)   // Desaparece o aparece el botón
+                    } //HStack
+                    
+                    //.frame(width: 409, height: 50, alignment:.center)
+                    .background(colorRect)
+                    .foregroundColor(.white)
+                    .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
+                }
+                    .frame(width: gemr.size.width, height: 50, alignment: .center)
+            )
+        }
+        
     }
 }
