@@ -35,6 +35,7 @@ struct GlassyFyApp: App {
         UITableView.appearance().separatorStyle = .none
          UITableViewCell.appearance().backgroundColor = UIColor(red: 48 / 255, green: 49 / 255, blue: 54 / 255, alpha: 0)
          UITableView.appearance().backgroundColor = UIColor(red: 48 / 255, green: 49 / 255, blue: 54 / 255, alpha: 0)
+        //UINavigationBar.appearance().barTintColor = .white
     }
     @StateObject var vm: ViewModel = ViewModel()
     var body: some Scene {

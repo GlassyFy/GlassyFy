@@ -34,7 +34,7 @@ struct VistaMain: View {
             }.navigationBarHidden(true)
                 .navigationBarTitle(Text("Título de la vista"), displayMode: .inline)
             .tabItem{
-                Image(systemName: "list.bullet.rectangle.portrait")
+                Image(systemName: "note.text.badge.plus")
             }
             .tag(0)
             
@@ -43,7 +43,8 @@ struct VistaMain: View {
                 AnadirDatosExpView(usuarioCurrent: $usuarioCurrent)
             }
                 .tabItem{
-                    Image(systemName: "note.text.badge.plus")
+                    
+                    Image(systemName: "list.bullet.rectangle.portrait")
                 }
                 .tag(1)
             
