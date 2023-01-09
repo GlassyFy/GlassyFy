@@ -64,80 +64,83 @@ struct AnadirDatosExpView: View {
     @Binding var usuarioCurrent: UsuarioEntity
     
     var body: some View {
-        
-        Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
-            .ignoresSafeArea()
-            .overlay(
-                VStack{
-                    Spacer()
-                    Text("Datos tecnicos")
-                        .font(.title)
-                    Spacer()
+        GeometryReader{ gemr in
+            Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
+                .ignoresSafeArea()
+                .overlay(
                     VStack{
-                        HStack{
-                            Text("Nombre del experimento")
-                                .font(.headline)
-                            Spacer()
-                        }
-            
-                        TextField("", text: $datos.nombre)
-                            .frame(height: 42)
-                            .background(colorcampostxt)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .foregroundColor(.white)
-                    }
-                    HStack{
-                        Text("Fecha de toma")
                         Spacer()
-                        DatePicker("", selection: $datos.fechaToma, displayedComponents: .date)
-                        .colorInvert()
-
-                    }
-                    
-                    VStack{
-                        HStack{
-                            Text("Descripcion")
-                            Spacer()
-                            Text("\(datos.descripcion.count)/300")
-                                .foregroundColor(rojotxt)
-                        }
+                        Text("Datos tecnicos")
+                            .font(.title)
+                        Spacer()
                         VStack{
-                            TextEditor(text: $datos.descripcion)
-                                    .frame(height: 278)
-                                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                                    .onChange(of: self.datos.descripcion){ value in
-                                        if Int(datos.descripcion.count) > 300 {
-                                            self.datos.descripcion = String(value.prefix(300))
-                                        }
-                                    }
-                                    .colorMultiply(contrariofondotxt)
-                                    .foregroundColor(.black)
-                                    .colorInvert()
-                                
-                            
-                            Button("Limpiar datos"){
-                                datos.descripcion = ""
-                                datos.fechaToma = Date()
-                                datos.nombre = ""
-                                
-                            }.foregroundColor(rojotxt)
+                            HStack{
+                                Text("Nombre del experimento")
+                                    .font(.headline)
+                                Spacer()
+                            }
+                
+                            TextField("", text: $datos.nombre)
+                                .frame(height: 42)
+                                .background(colorcampostxt)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .foregroundColor(.white)
                         }
-                    }
-                        
-                    NavigationLink(destination: AnadirDatosExpB(datos: datos, usuarioCurrent: $usuarioCurrent)){
-                    Text("Siguiente")
-                        .frame(width: 100, height: 55)
-                            .background(colorboton)
-                            .foregroundColor(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 30))
-                    }
-                    Spacer()
-                }.frame(width: 295)
-                    .foregroundColor(Color(red: 255 / 255, green: 255 / 255, blue: 255 / 255))
-                    .navigationBarBackButtonHidden(true)
+                        HStack{
+                            Text("Fecha de toma")
+                            Spacer()
+                            DatePicker("", selection: $datos.fechaToma, displayedComponents: .date)
+                            .colorInvert()
 
-            )
-        Spacer()
+                        }
+                        
+                        VStack{
+                            HStack{
+                                Text("Descripcion")
+                                Spacer()
+                                Text("\(datos.descripcion.count)/300")
+                                    .foregroundColor(rojotxt)
+                            }
+                            VStack{
+                                TextEditor(text: $datos.descripcion)
+                                    .frame(height: gemr.size.height*0.4)
+                                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                                        .onChange(of: self.datos.descripcion){ value in
+                                            if Int(datos.descripcion.count) > 300 {
+                                                self.datos.descripcion = String(value.prefix(300))
+                                            }
+                                        }
+                                        .colorMultiply(contrariofondotxt)
+                                        .foregroundColor(.black)
+                                        .colorInvert()
+                                    
+                                
+                                Button("Limpiar datos"){
+                                    datos.descripcion = ""
+                                    datos.fechaToma = Date()
+                                    datos.nombre = ""
+                                    
+                                }.foregroundColor(rojotxt)
+                            }
+                        }
+                            
+                        NavigationLink(destination: AnadirDatosExpB(datos: datos, usuarioCurrent: $usuarioCurrent)){
+                        Text("Siguiente")
+                            .frame(width: 100, height: 55)
+                                .background(colorboton)
+                                .foregroundColor(.white)
+                                .clipShape(RoundedRectangle(cornerRadius: 30))
+                        }
+                        Spacer()
+                    }.frame(width: gemr.size.width*0.7)
+                        .foregroundColor(Color(red: 255 / 255, green: 255 / 255, blue: 255 / 255))
+                        .navigationBarBackButtonHidden(true)
+                        .navigationBarTitleDisplayMode(.inline)
+
+                )
+            Spacer()
+        }
+        
     }
 }
 
@@ -163,210 +166,214 @@ struct AnadirDatosExpB: View {
     @State var maxValue: Double = 0
     
     var body: some View{
-        Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
-            .ignoresSafeArea()
-            .overlay(
-                VStack{
-                    Text("Datos de la muestra")
-                        .font(.title)
-                    Spacer()
+        GeometryReader{ gemr in
+            Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
+                .ignoresSafeArea()
+                .overlay(
                     VStack{
-                        HStack{
-                            Text("Índice de refracción (IR)")
-                                .frame(width: 200, height: 37)
-                                .background(selectIR ?  colorboton :colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                            
-                            Text("\(String(format: "%.5f", datos.inref))")
-                                .frame(width: 99,  height: 34)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .foregroundColor(.white)
-                        }.onTapGesture {
-                            selectIR = true
-                            selectMG = false; selectAL = false; selectK = false; selectCa = false; selectBa = false;
-                            minValue = 1
-                            maxValue = 2
-                            
-                        }
-                        
-                        HStack{
-                            Text("Magnesio (Mg)")
-                                .frame(width: 200, height: 37)
-                                .background(selectMG ?  colorboton :colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                            
-                            Text("\(String(format: "%.2f", datos.magnesio))")
-                                .frame(width: 99,  height: 34)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .foregroundColor(.white)
-                        }.onTapGesture {
-                            selectMG = true
-                            selectIR = false; selectAL = false; selectK = false; selectCa = false; selectBa = false;
-                            minValue = 0
-                            maxValue = 5
-                        }
-                        
-                        HStack{
-                            Text("Aluminio (Al)")
-                                .frame(width: 200, height: 37)
-                                .background(selectAL ?  colorboton :colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                            
-                            Text("\(String(format: "%.2f", datos.aluminio))")
-                                .frame(width: 99,  height: 34)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .foregroundColor(.white)
-                        }.onTapGesture {
-                            selectAL = true
-                            selectIR = false; selectMG = false; selectK = false; selectCa = false; selectBa = false;
-                            minValue = 0.1
-                            maxValue = 3.6
-                        }
-                        
-                        HStack{
-                            Text("Potasio (K)")
-                                .frame(width: 200, height: 37)
-                                .background(selectK ?  colorboton :colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                            
-                            Text("\(String(format: "%.2f", datos.potasio))")
-                                .frame(width: 99,  height: 34)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .foregroundColor(.white)
-                        }.onTapGesture {
-                            selectK = true
-                            selectIR = false; selectMG = false; selectAL = false; selectCa = false; selectBa = false;
-                            minValue = 0
-                            maxValue = 6.5
-                        }
-                        
-                        HStack{
-                            Text("Calcio (Ca)")
-                                .frame(width: 200, height: 37)
-                                .background(selectCa ?  colorboton :colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                            
-                            Text("\(String(format: "%.2f", datos.calcio))")
-                                .frame(width: 99,  height: 34)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .foregroundColor(.white)
-                        }.onTapGesture {
-                            selectCa = true
-                            selectIR = false; selectMG = false; selectAL = false; selectK = false; selectBa = false;
-                            minValue = 5.3
-                            maxValue = 16.5
-                        }
-                        
-                        HStack{
-                            Text("Bario (Ba)")
-                                .frame(width: 200, height: 37)
-                                .background(selectBa ?  colorboton :colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                            
-                            Text("\(String(format: "%.2f", datos.bario))")
-                                .frame(width: 99,  height: 34)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .foregroundColor(.white)
-                        }.onTapGesture {
-                            selectBa = true
-                            selectIR = false; selectMG = false; selectAL = false; selectK = false; selectCa = false;
-                            minValue = 0
-                            maxValue = 3.5
-                        }
-                        
-                        Button("Limpiar datos"){
-                            datos.inref = 0
-                            datos.magnesio = 0
-                            datos.aluminio = 0
-                            datos.potasio = 0
-                            datos.calcio = 0
-                            datos.bario = 0
-                        }.foregroundColor(rojotxt)
-                        
-                        if(selectIR || selectMG || selectK || selectAL || selectBa || selectCa){
-                        HStack{
-                            Spacer()
-                            
-                            Text("\(String(format: "%.2f", minValue))")
-                            
-                            Slider(value: selectIR ? $datos.inref : selectMG ? $datos.magnesio : selectAL ? $datos.aluminio : selectK ? $datos.potasio : selectCa ? $datos.calcio : selectBa ? $datos.bario : $parametro, in: minValue...maxValue)
-                            Text("\(String(format: "%.2f", maxValue))")
-                            
-                            Spacer()
-                        }.frame(width: 310, height: 50)
-                            .background(colorcampostxt)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                        
-                        //Campo de texto para INREF
-                        HStack{
-                            //if(selectIR){
-                                VStack{
-                                    Text("Puedes escribirlo para mayor precisión")
-                                        .foregroundColor(.white)
-                                
-                                    //TextField("", text: $datos.inrefStr)
-                                    TextField("", text: selectIR ? $datos.inrefStr : selectMG ? $datos.mgStr : selectAL ? $datos.alStr : selectK ? $datos.kStr : selectCa ? $datos.caStr : selectBa ? $datos.baStr : $parStr)
-                                        .keyboardType(.decimalPad)
-                                    .frame(width: 310, height: 50)
-                                    .background(colorcampostxt)
-                                    .foregroundColor(.white)
+                        Text("Datos de la muestra")
+                            .font(.title)
+                        Spacer()
+                        VStack{
+                            HStack{
+                                Text("Índice de refracción (IR)")
+                                    .frame(width: gemr.size.width*0.52, height: 37)
+                                    .background(selectIR ?  colorboton :colorcampostxt)
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                                    .onChange(of: datos.inrefStr){ value in
-                                        datos.updateInRef()
-                                    }
-                                    .onChange(of: datos.mgStr){ value in
-                                        datos.updateMg()
-                                    }
-                                    .onChange(of: datos.alStr){ value in
-                                        datos.updateAl()
-                                    }
-                                    .onChange(of: datos.kStr){ value in
-                                        datos.updateK()
-                                    }
-                                    .onChange(of: datos.caStr){ value in
-                                        datos.updateCa()
-                                    }
-                                    .onChange(of: datos.baStr){ value in
-                                        datos.updateBa()
-                                    }
+                                
+                                Text("\(String(format: "%.5f", datos.inref))")
+                                    .frame(width: gemr.size.width*0.25,  height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .foregroundColor(.white)
+                            }.onTapGesture {
+                                selectIR = true
+                                selectMG = false; selectAL = false; selectK = false; selectCa = false; selectBa = false;
+                                minValue = 1
+                                maxValue = 2
+                                
+                            }
+                            
+                            HStack{
+                                Text("Magnesio (Mg)")
+                                    .frame(width: gemr.size.width*0.52, height: 37)
+                                    .background(selectMG ?  colorboton :colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                
+                                Text("\(String(format: "%.2f", datos.magnesio))")
+                                    .frame(width: gemr.size.width*0.25,  height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .foregroundColor(.white)
+                            }.onTapGesture {
+                                selectMG = true
+                                selectIR = false; selectAL = false; selectK = false; selectCa = false; selectBa = false;
+                                minValue = 0
+                                maxValue = 5
+                            }
+                            
+                            HStack{
+                                Text("Aluminio (Al)")
+                                    .frame(width: gemr.size.width*0.52, height: 37)
+                                    .background(selectAL ?  colorboton :colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                
+                                Text("\(String(format: "%.2f", datos.aluminio))")
+                                    .frame(width: gemr.size.width*0.25,  height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .foregroundColor(.white)
+                            }.onTapGesture {
+                                selectAL = true
+                                selectIR = false; selectMG = false; selectK = false; selectCa = false; selectBa = false;
+                                minValue = 0.1
+                                maxValue = 3.6
+                            }
+                            
+                            HStack{
+                                Text("Potasio (K)")
+                                    .frame(width: gemr.size.width*0.52, height: 37)
+                                    .background(selectK ?  colorboton :colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                
+                                Text("\(String(format: "%.2f", datos.potasio))")
+                                    .frame(width: gemr.size.width*0.25,  height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .foregroundColor(.white)
+                            }.onTapGesture {
+                                selectK = true
+                                selectIR = false; selectMG = false; selectAL = false; selectCa = false; selectBa = false;
+                                minValue = 0
+                                maxValue = 6.5
+                            }
+                            
+                            HStack{
+                                Text("Calcio (Ca)")
+                                    .frame(width: gemr.size.width*0.52, height: 37)
+                                    .background(selectCa ?  colorboton :colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                
+                                Text("\(String(format: "%.2f", datos.calcio))")
+                                    .frame(width: gemr.size.width*0.25,  height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .foregroundColor(.white)
+                            }.onTapGesture {
+                                selectCa = true
+                                selectIR = false; selectMG = false; selectAL = false; selectK = false; selectBa = false;
+                                minValue = 5.3
+                                maxValue = 16.5
+                            }
+                            
+                            HStack{
+                                Text("Bario (Ba)")
+                                    .frame(width: gemr.size.width*0.52, height: 37)
+                                    .background(selectBa ?  colorboton :colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                
+                                Text("\(String(format: "%.2f", datos.bario))")
+                                    .frame(width: gemr.size.width*0.25,  height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .foregroundColor(.white)
+                            }.onTapGesture {
+                                selectBa = true
+                                selectIR = false; selectMG = false; selectAL = false; selectK = false; selectCa = false;
+                                minValue = 0
+                                maxValue = 3.5
+                            }
+                            
+                            Button("Limpiar datos"){
+                                datos.inref = 0
+                                datos.magnesio = 0
+                                datos.aluminio = 0
+                                datos.potasio = 0
+                                datos.calcio = 0
+                                datos.bario = 0
+                            }.foregroundColor(rojotxt)
+                            
+                            if(selectIR || selectMG || selectK || selectAL || selectBa || selectCa){
+                            HStack{
+                                Spacer()
+                                
+                                Text("\(String(format: "%.2f", minValue))")
+                                
+                                Slider(value: selectIR ? $datos.inref : selectMG ? $datos.magnesio : selectAL ? $datos.aluminio : selectK ? $datos.potasio : selectCa ? $datos.calcio : selectBa ? $datos.bario : $parametro, in: minValue...maxValue)
+                                Text("\(String(format: "%.2f", maxValue))")
+                                
+                                Spacer()
+                            }.frame(width: gemr.size.width*0.8, height: 50)
+                                .background(colorcampostxt)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                            
+                            //Campo de texto para INREF
+                            HStack{
+                                //if(selectIR){
+                                    VStack{
+                                        Text("Puedes escribirlo para mayor precisión")
+                                            .foregroundColor(.white)
                                     
-                                    
+                                        //TextField("", text: $datos.inrefStr)
+                                        TextField("", text: selectIR ? $datos.inrefStr : selectMG ? $datos.mgStr : selectAL ? $datos.alStr : selectK ? $datos.kStr : selectCa ? $datos.caStr : selectBa ? $datos.baStr : $parStr)
+                                            .keyboardType(.decimalPad)
+                                        .frame(width: gemr.size.width*0.8, height: 50)
+                                        .background(colorcampostxt)
+                                        .foregroundColor(.white)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        .onChange(of: datos.inrefStr){ value in
+                                            datos.updateInRef()
+                                        }
+                                        .onChange(of: datos.mgStr){ value in
+                                            datos.updateMg()
+                                        }
+                                        .onChange(of: datos.alStr){ value in
+                                            datos.updateAl()
+                                        }
+                                        .onChange(of: datos.kStr){ value in
+                                            datos.updateK()
+                                        }
+                                        .onChange(of: datos.caStr){ value in
+                                            datos.updateCa()
+                                        }
+                                        .onChange(of: datos.baStr){ value in
+                                            datos.updateBa()
+                                        }
+                                        
+                                        
+                                    }
                                 }
                             }
                         }
-                    }
-                    Spacer()
-                    HStack{
-                        
-                            Button("Volver atrás"){
-                                presentation.wrappedValue.dismiss()
-                            }
-                                .frame(width: 150, height: 55)
-                                .background(rojoboton)
-                                .foregroundColor(.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 30))
+                        Spacer()
+                        HStack{
                             
-                        NavigationLink(destination:RevisionDatosExp(datos: datos, usuarioCurrent: $usuarioCurrent)){
-                                Text("Siguiente")
+                                Button("Volver atrás"){
+                                    presentation.wrappedValue.dismiss()
+                                }
                                     .frame(width: 150, height: 55)
-                                    .background(colorboton)
+                                    .background(rojoboton)
                                     .foregroundColor(.white)
                                     .clipShape(RoundedRectangle(cornerRadius: 30))
-                            }
-                        
-                    }
-                    Spacer()
-                }.frame(width: 295)
-                    .foregroundColor(Color(red: 255 / 255, green: 255 / 255, blue: 255 / 255))
-                    .navigationBarBackButtonHidden(true)
-            )
-        Spacer()
+                                
+                            NavigationLink(destination:RevisionDatosExp(datos: datos, usuarioCurrent: $usuarioCurrent)){
+                                    Text("Siguiente")
+                                        .frame(width: 150, height: 55)
+                                        .background(colorboton)
+                                        .foregroundColor(.white)
+                                        .clipShape(RoundedRectangle(cornerRadius: 30))
+                                }
+                            
+                        }
+                        Spacer()
+                    }.frame(width: gemr.size.width*0.95 )
+                        .foregroundColor(Color(red: 255 / 255, green: 255 / 255, blue: 255 / 255))
+                        .navigationBarBackButtonHidden(true)
+                        .navigationBarTitleDisplayMode(.inline)
+                )
+            Spacer()
+        }
+        
     }
 }
 
@@ -380,182 +387,186 @@ struct RevisionDatosExp: View{
     @Binding var usuarioCurrent: UsuarioEntity
     
     var body: some View{
-        Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
-            .ignoresSafeArea()
-            .overlay(
-                VStack{
-                    Text("Revision de los datos")
-                        .font(.title)
-                        //.padding(.bottom, 10)
-                    Spacer()
-                ScrollView(showsIndicators: false){
-                VStack{
+        GeometryReader{ gemr in
+            Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
+                .ignoresSafeArea()
+                .overlay(
                     VStack{
-                        HStack{
-                            Text("Nombre del experimento")
-                                .foregroundColor(.white)
-                                .font(.headline)
-                            Spacer()
-                        }
-                        Text(datos.nombre)
-                            .frame(width: 295, height: 42)
-                            .background(colorcampostxt)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .foregroundColor(.white)
-                        
-                        HStack{
-                            
-                            Text("Fecha de toma")
-                                .foregroundColor(.white)
-                                .font(.headline)
-                            
-                            Text("\(datos.fechaToma.formatted(date: .numeric, time: .omitted))")
-                                .frame(width: 170, height: 42)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .foregroundColor(.white)
-                        }
-                        HStack{
-                            Text("Descripción")
-                                .foregroundColor(.white)
-                                .font(.headline)
-                            Spacer()
-                        }
-                        
-                        Text(datos.descripcion == "" ? "Sin descripción. " : "\(datos.descripcion)")
-                            .fixedSize(horizontal: false, vertical: true)
-                            .multilineTextAlignment(.leading)
-                            //.padding(.top, 10)
-                            .padding(.all, 10)
-                            .frame(width:295, alignment: .topLeading)
-                            .background(colorcampostxt)
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            //.multilineTextAlignment(.leading)
-                        
-                        HStack{
-                        Text("Datos")
-                            .foregroundColor(.white)
-                            .font(.headline)
+                        Text("Revision de los datos")
+                            .font(.title)
+                            //.padding(.bottom, 10)
                         Spacer()
-                        }
-                        
-                        HStack{
-                            Text("Indice Refracción (IR)")
-                                .frame(width: 190, height: 37)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                            
-                            Text("\(String(format: "%.5f", datos.inref))")
-                                .frame(width: 99,  height: 34)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .foregroundColor(.white)
-                        }
-                        HStack{
-                            Text("Magnesio (Mg)")
-                                .frame(width: 190, height: 37)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                            
-                            Text("\(String(format: "%.2f", datos.magnesio))")
-                                .frame(width: 99,  height: 34)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .foregroundColor(.white)
-                        }
-                    }
+                    ScrollView(showsIndicators: false){
                     VStack{
-                        HStack{
-                            Text("Aluminio (Al)")
-                                .frame(width: 190, height: 37)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                            
-                            Text("\(String(format: "%.2f", datos.aluminio))")
-                                .frame(width: 99,  height: 34)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .foregroundColor(.white)
-                        }
-                        
-                        HStack{
-                            Text("Potasio (K)")
-                                .frame(width: 190, height: 37)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                            
-                            Text("\(String(format: "%.2f", datos.potasio))")
-                                .frame(width: 99,  height: 34)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .foregroundColor(.white)
-                        }
-                        
-                        HStack{
-                            Text("Calcio (Ca)")
-                                .frame(width: 190, height: 37)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                            
-                            Text("\(String(format: "%.2f", datos.calcio))")
-                                .frame(width: 99,  height: 34)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .foregroundColor(.white)
-                        }
-                        
-                        HStack{
-                            Text("Bario (Ba)")
-                                .frame(width: 190, height: 37)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                            
-                            Text("\(String(format: "%.2f", datos.bario))")
-                                .frame(width: 99,  height: 34)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .foregroundColor(.white)
-                        }
-                    }
-                }
-                }
-                    HStack{
-                        Button("Volver atrás"){
-                            presentation.wrappedValue.dismiss()
-                        }
-                        .frame(width: 150, height: 55)
-                        .background(rojoboton)
-                        .foregroundColor(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 30))
-                        
-                       
-                        Text("Confirmar").onTapGesture {
-                                self.popUpVisible = true
-                            
-                            datos.tipo = calcularTipo(RI: datos.inref, Mg: datos.magnesio, Al: datos.aluminio, K: datos.potasio, Ca: datos.calcio, Ba: datos.bario)
-                            tipoNombre = datos.tipo
-                                vm.addExperimento(usuario: usuarioCurrent, nombre: datos.nombre, fechaToma: datos.fechaToma, descripcion: datos.descripcion, fechaCreacion: Date(), inRef: datos.inref, magnesio: datos.magnesio, aluminio: datos.aluminio, potasio: datos.potasio, Calcio: datos.calcio, Bario: datos.bario, tipo: datos.tipo)
+                        VStack{
+                            HStack{
+                                Text("Nombre del experimento")
+                                    .foregroundColor(.white)
+                                    .font(.headline)
+                                Spacer()
                             }
-                                .frame(width: 150, height: 55)
-                                .background(colorboton)
+                            Text(datos.nombre)
+                                .frame(width: gemr.size.width*0.8, height: 42)
+                                .background(colorcampostxt)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .foregroundColor(.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 30))
-                                .popover(isPresented: $popUpVisible){
-                                    popUpExito( visible: self.$popUpVisible)
-                                }
-                            //Aqui navegamos al popup
+                            
+                            HStack{
                                 
-                        NavigationLink(destination:AnadirDatosExpView(usuarioCurrent: $usuarioCurrent), isActive: $popUpVisible){
-                            EmptyView()
+                                Text("Fecha de toma")
+                                    .foregroundColor(.white)
+                                    .font(.headline)
+                                
+                                Text("\(datos.fechaToma.formatted(date: .numeric, time: .omitted))")
+                                    .frame(width: 170, height: 42)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .foregroundColor(.white)
+                            }
+                            HStack{
+                                Text("Descripción")
+                                    .foregroundColor(.white)
+                                    .font(.headline)
+                                Spacer()
+                            }
+                            
+                            Text(datos.descripcion == "" ? "Sin descripción. " : "\(datos.descripcion)")
+                                .fixedSize(horizontal: false, vertical: true)
+                                .multilineTextAlignment(.leading)
+                                //.padding(.top, 10)
+                                .padding(.all, 10)
+                                .frame(width:295, alignment: .topLeading)
+                                .background(colorcampostxt)
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                                //.multilineTextAlignment(.leading)
+                            
+                            HStack{
+                            Text("Datos")
+                                .foregroundColor(.white)
+                                .font(.headline)
+                            Spacer()
+                            }
+                            
+                            HStack{
+                                Text("Indice Refracción (IR)")
+                                    .frame(width: gemr.size.width*0.52, height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                
+                                Text("\(String(format: "%.5f", datos.inref))")
+                                    .frame(width: gemr.size.width*0.25,  height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .foregroundColor(.white)
+                            }
+                            HStack{
+                                Text("Magnesio (Mg)")
+                                    .frame(width: gemr.size.width*0.52, height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                
+                                Text("\(String(format: "%.2f", datos.magnesio))")
+                                    .frame(width: gemr.size.width*0.25,  height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        VStack{
+                            HStack{
+                                Text("Aluminio (Al)")
+                                    .frame(width: gemr.size.width*0.52, height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                
+                                Text("\(String(format: "%.2f", datos.aluminio))")
+                                    .frame(width: gemr.size.width*0.25,  height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .foregroundColor(.white)
+                            }
+                            
+                            HStack{
+                                Text("Potasio (K)")
+                                    .frame(width: gemr.size.width*0.52, height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                
+                                Text("\(String(format: "%.2f", datos.potasio))")
+                                    .frame(width: gemr.size.width*0.25,  height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .foregroundColor(.white)
+                            }
+                            
+                            HStack{
+                                Text("Calcio (Ca)")
+                                    .frame(width: gemr.size.width*0.52, height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                
+                                Text("\(String(format: "%.2f", datos.calcio))")
+                                    .frame(width: gemr.size.width*0.25,  height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .foregroundColor(.white)
+                            }
+                            
+                            HStack{
+                                Text("Bario (Ba)")
+                                    .frame(width: gemr.size.width*0.52, height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                
+                                Text("\(String(format: "%.2f", datos.bario))")
+                                    .frame(width: gemr.size.width*0.25,  height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .foregroundColor(.white)
+                            }
                         }
                     }
-                    Spacer()
-                }.frame(width: 295)
-                    .foregroundColor(Color(red: 255 / 255, green: 255 / 255, blue: 255 / 255))
-                    .navigationBarBackButtonHidden(true)
+                    }
+                        HStack{
+                            Button("Volver atrás"){
+                                presentation.wrappedValue.dismiss()
+                            }
+                            .frame(width: 150, height: 55)
+                            .background(rojoboton)
+                            .foregroundColor(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 30))
+                            
+                           
+                            Text("Confirmar").onTapGesture {
+                                    self.popUpVisible = true
+                                
+                                datos.tipo = calcularTipo(RI: datos.inref, Mg: datos.magnesio, Al: datos.aluminio, K: datos.potasio, Ca: datos.calcio, Ba: datos.bario)
+                                tipoNombre = datos.tipo
+                                    vm.addExperimento(usuario: usuarioCurrent, nombre: datos.nombre, fechaToma: datos.fechaToma, descripcion: datos.descripcion, fechaCreacion: Date(), inRef: datos.inref, magnesio: datos.magnesio, aluminio: datos.aluminio, potasio: datos.potasio, Calcio: datos.calcio, Bario: datos.bario, tipo: datos.tipo)
+                                }
+                                    .frame(width: 150, height: 55)
+                                    .background(colorboton)
+                                    .foregroundColor(.white)
+                                    .clipShape(RoundedRectangle(cornerRadius: 30))
+                                    .popover(isPresented: $popUpVisible){
+                                        popUpExito( visible: self.$popUpVisible)
+                                    }
+                                //Aqui navegamos al popup
+                                    
+                            NavigationLink(destination:AnadirDatosExpView(usuarioCurrent: $usuarioCurrent), isActive: $popUpVisible){
+                                EmptyView()
+                            }
+                        }
+                        Spacer()
+                    }.frame(width: gemr.size.width*0.9)
+                        .foregroundColor(Color(red: 255 / 255, green: 255 / 255, blue: 255 / 255))
+                        .navigationBarBackButtonHidden(true)
+                        .navigationBarTitleDisplayMode(.inline)
+                        
                     
-                
-            )
+                )
+        }
+        
     }
 }
 
@@ -601,7 +612,7 @@ struct popUpExito: View{
 //                    .foregroundColor(.white)
 //                    .clipShape(RoundedRectangle(cornerRadius: 30))
                     Spacer()
-                }
+                }.navigationBarTitleDisplayMode(.inline)
                 
             )    }
 }
