@@ -16,6 +16,7 @@ struct VistaPerfilUsuario: View {
     @State var foto:UIImage = UIImage(systemName: "person.circle.fill")! //@State var foto:UIImage
     @State var mostrarEdicion: Bool = false
     @State var cancelar: Bool = true
+    @State var fondo:UIImage = UIImage(named: "kraken")!
     
     /*init(usuarioCurrent: UsuarioEntity) {
             self.usuarioCurrent = usuarioCurrent
@@ -45,7 +46,7 @@ struct VistaPerfilUsuario: View {
             GeometryReader{ gemr in
                 VStack { //Todo
                     
-                    Image("kraken")
+                    Image(uiImage: fondo)
                         .resizable()
                         .frame(width:gemr.size.width ,height:gemr.size.height*0.25, alignment: .center)
                     
@@ -83,6 +84,8 @@ struct VistaPerfilUsuario: View {
                             telefono = usuarioCurrent.telefono!
                             descripcion = usuarioCurrent.descripcion ?? "Nada por ahora :P"
                             foto = UIImage(data: usuarioCurrent.foto!)!
+                            fondo = UIImage (data: usuarioCurrent.fondo!)!
+                            
                         } label: {
                             Image(systemName: "pencil")
                                 .resizable()
@@ -100,11 +103,12 @@ struct VistaPerfilUsuario: View {
                                             usuarioCurrent.telefono = telefono
                                             usuarioCurrent.descripcion = descripcion
                                             usuarioCurrent.foto = foto.pngData()
+                                            usuarioCurrent.fondo = fondo.pngData()
                                             vm.guardarDatos()
                                         }
                                     }, content: {
                                         VistaEdicionPerfilUsuario(usuarioCurrent: $usuarioCurrent, email: $email, telefono: $telefono,
-                                            descripcion: $descripcion, foto: $foto, cancelar: $cancelar)
+                                                                  descripcion: $descripcion, foto: $foto, fondo: $fondo, cancelar: $cancelar)
                                     }
                                 )
                             

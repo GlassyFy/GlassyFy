@@ -82,6 +82,7 @@ struct VistaListaUsuarios: View {
                                 }.listRowBackground(colorFondo) // ForEach
                                 
                             }// List
+                            .environment(\.defaultMinListRowHeight, 50)
                             
                             
                         }.zIndex(0)
@@ -155,7 +156,7 @@ struct VistaFilaUsuario: View {
                                 //Image(systemName: "books.vertical.fill")
                         Image (uiImage: UIImage(data: usuarioCurrent.foto!) ?? UIImage(systemName: "person.circle.fill")!)
                                     .resizable()
-                                    .frame(width: 31, height: 31)
+                                    .frame(width: 35, height: 35)
                                     .clipShape(Circle())
                                     .overlay(Circle().stroke(.white, lineWidth: 1))
                                     .padding()
@@ -168,7 +169,7 @@ struct VistaFilaUsuario: View {
                         Spacer()
                     }
                 } //HStak
-                .frame(/*width: gemr.size.width,*/ height: 37 ,alignment: .leading)
+                .frame(height: 40 ,alignment: .leading)
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(colorStroke, lineWidth: 1))
                         .background(colorRect)
                         .foregroundColor(.white)

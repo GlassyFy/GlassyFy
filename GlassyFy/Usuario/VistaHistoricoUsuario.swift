@@ -68,7 +68,8 @@ struct VistaHistoricoUsuario: View {
                                             )
                                         }
                                 }  //if
-                            }.listRowBackground(colorFondo) // ForEach
+                            }.listRowBackground(colorFondo)
+                                // ForEach
                         }// List
                         
                         .frame(height:gemr.size.height*0.8, alignment: .center)
@@ -79,8 +80,7 @@ struct VistaHistoricoUsuario: View {
                 
                 .frame(height:gemr.size.height*0.8, alignment: .top)
             }.navigationBarTitleDisplayMode(.inline)
-            //TENEMOS QUE CAMBIAR EL COLOR A BLANCO COMO SEA POSIBLE
-                .navigationBarTitle(Text("Tu historico").foregroundColor(.white))
+                .navigationBarTitle("Tu historico")
                 
         )
     } // body
