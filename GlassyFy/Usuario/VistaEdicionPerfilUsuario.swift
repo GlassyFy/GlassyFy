@@ -15,6 +15,7 @@ struct VistaEdicionPerfilUsuario: View {
     @Binding var telefono: String
     @Binding var descripcion: String
     @Binding var foto: UIImage
+    @Binding var fondo: UIImage
     @Binding var cancelar: Bool
     @State var mostrarCambiarFoto: Bool = false
     @Environment(\.presentationMode) var modoPresentacion
@@ -60,9 +61,17 @@ struct VistaEdicionPerfilUsuario: View {
                     ScrollView{
                         VStack {
                         
-                        Image("kraken")
+                        Image(uiImage: fondo)
                                 .resizable()
                                 .frame(width:gemr.size.width,  height:gemr.size.height*0.25, alignment: .center)
+                                .onTapGesture {
+                                    mostrarCambiarFoto.toggle()
+                                }
+                                .sheet (isPresented: $mostrarCambiarFoto) {
+                                    ImagePicker(sourceType: .photoLibrary) {imageSeleccionada in
+                                        fondo = imageSeleccionada
+                                    }
+                                }
 
                         VStack {
                             

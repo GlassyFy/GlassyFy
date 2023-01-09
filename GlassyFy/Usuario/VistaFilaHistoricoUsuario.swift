@@ -29,38 +29,47 @@ struct VistaFilaHistoricoUsuario: View {
             Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
             .ignoresSafeArea()
             .overlay(
-            HStack {
-                    NavigationLink (destination: VistaExperimentoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimentoCurrent)) {
-                        Image(systemName: "books.vertical.fill")
-                            .resizable()
-                            .frame(width: 37, height: 31)
-                            .padding(5)  //spacing
-                            .background(colorBlue)
-                            .cornerRadius(10)
-                            .offset(x:10, y:0)
-                    }
-                    VStack{
-                        if (experimentoCurrent.nombre != nil) {
-                            Text(experimentoCurrent.nombre!)  //Tras eliminar, experimentoCurrent.nombre = nil
-                                .font(.custom("Arial", size:20))
-                            //Text("Fecha Creación: \(fecha1.string(from: experimentoCurrent.fechaCreacion!))")
-                            Text("Fecha Creación: \(experimentoCurrent.fechaCreacion!.formatted(.dateTime.day().month().year()))")
-                                .font(.custom("Arial", size:14))
-                        }
-                    }
-                    .frame(minHeight: 0, idealHeight: 50, maxHeight: .infinity, alignment: .leading)
-                    //.frame(height:40, alignment: .leading) //width: 189,
-                    .offset(x:5, y:0)
-                Spacer()
-            } //HStak
-                .frame(width: gemr.size.width, alignment: .leading)
+                
+                    HStack {
+                        NavigationLink (destination: VistaExperimentoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimentoCurrent)) {
+                                Image(systemName: "books.vertical.fill")
+                                    .resizable()
+                                    .frame(width: 31, height: 31)
+                                    .padding(5)  //spacing
+                                    .background(colorBlue)
+                                    .cornerRadius(5)
+                                    //.offset(y:0)
+                            
+                            VStack{
+                                HStack{
+                                    if (experimentoCurrent.nombre != nil) {
+                                        Text(experimentoCurrent.nombre!)  //Tras eliminar, experimentoCurrent.nombre = nil
+                                            .font(.custom("Arial", size:20))
+                                            .padding(.leading, 5)
+                                        Spacer()
+                                }
+                                }
+                                HStack{
+                                    Spacer()
+                                    Text("Creado el  \(experimentoCurrent.fechaCreacion!.formatted(.dateTime.day().month().year()))")
+                                        .font(.custom("Arial", size:14))
+                                        //.offset(y:10)
+                                }
+                                    
+                            }
+                            .frame(alignment: .leading)
+                    } //HStak
+                    //.frame(width: gemr.size.width, height: 40,alignment: .leading)
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(colorStroke, lineWidth: 1))
+                    .background(colorRect)
+                    .foregroundColor(.white)
+                }.frame(width: gemr.size.width, height: 40,alignment: .leading)
+                    
+                
             
             //.frame(width:389,  height:40, alignment: .leading)// alignment: .center) //389 // 439x65
-            .overlay(RoundedRectangle(cornerRadius: 10).stroke(colorStroke, lineWidth: 1))
-            .background(colorRect)
-            .foregroundColor(.white)
+
             )
         }
     }
 }
-

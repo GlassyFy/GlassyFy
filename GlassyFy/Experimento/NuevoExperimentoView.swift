@@ -78,6 +78,8 @@ struct AnadirDatosExpView: View {
                                 Text("Nombre del experimento")
                                     .font(.headline)
                                 Spacer()
+                                Text("\(datos.nombre.count)/20")
+                                    .foregroundColor(rojotxt)
                             }
                 
                             TextField("", text: $datos.nombre)
@@ -85,6 +87,11 @@ struct AnadirDatosExpView: View {
                                 .background(colorcampostxt)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .foregroundColor(.white)
+                                .onChange(of: self.datos.nombre){ value in
+                                    if Int(datos.nombre.count) > 20 {
+                                        self.datos.nombre = String(value.prefix(20))
+                                    }
+                                }
                         }
                         HStack{
                             Text("Fecha de toma")
@@ -139,7 +146,7 @@ struct AnadirDatosExpView: View {
 
                 )
             Spacer()
-        }.navigationTitle("Nuevo experimento")
+        }
         
     }
 }
@@ -405,6 +412,7 @@ struct RevisionDatosExp: View{
                                     .font(.headline)
                                 Spacer()
                             }
+                            .frame(width: gemr.size.width*0.8, height: 42)
                             Text(datos.nombre)
                                 .frame(width: gemr.size.width*0.8, height: 42)
                                 .background(colorcampostxt)
@@ -416,26 +424,29 @@ struct RevisionDatosExp: View{
                                 Text("Fecha de toma")
                                     .foregroundColor(.white)
                                     .font(.headline)
-                                
+                                Spacer()
                                 Text("\(datos.fechaToma.formatted(date: .numeric, time: .omitted))")
-                                    .frame(width: 170, height: 42)
+                                    .frame(width: gemr.size.width*0.4, height: 42)
                                     .background(colorcampostxt)
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                                     .foregroundColor(.white)
                             }
+                            .frame(width: gemr.size.width*0.8)
+                            
                             HStack{
                                 Text("Descripción")
                                     .foregroundColor(.white)
                                     .font(.headline)
                                 Spacer()
                             }
+                            .frame(width: gemr.size.width*0.8, height: 42)
                             
                             Text(datos.descripcion == "" ? "Sin descripción. " : "\(datos.descripcion)")
                                 .fixedSize(horizontal: false, vertical: true)
                                 .multilineTextAlignment(.leading)
                                 //.padding(.top, 10)
                                 .padding(.all, 10)
-                                .frame(width:295, alignment: .topLeading)
+                                .frame(width: gemr.size.width*0.8, alignment: .topLeading)
                                 .background(colorcampostxt)
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 //.multilineTextAlignment(.leading)
@@ -446,6 +457,7 @@ struct RevisionDatosExp: View{
                                 .font(.headline)
                             Spacer()
                             }
+                            .frame(width: gemr.size.width*0.8, height: 42)
                             
                             HStack{
                                 Text("Indice Refracción (IR)")
