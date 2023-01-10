@@ -16,6 +16,7 @@ struct VistaPerfilUsuarioAjeno: View {
     @State var foto:UIImage
     @State var mostrarEdicion: Bool = false
     @State var cancelar: Bool = true
+    //@State var fondo: UIImage
     
     init(usuarioCurrent: UsuarioEntity) {
             self.usuarioCurrent = usuarioCurrent
@@ -43,7 +44,7 @@ struct VistaPerfilUsuarioAjeno: View {
             GeometryReader{ gemr in
                 VStack { //Todo
                     
-                    Image("kraken")
+                    Image(uiImage: UIImage(data: usuarioCurrent.fondo!) ?? UIImage(named: "kraken")!)
                         .resizable()
                         .frame(width:gemr.size.width ,height:gemr.size.height*0.25, alignment: .center)
                     
@@ -76,7 +77,7 @@ struct VistaPerfilUsuarioAjeno: View {
                             
                         Spacer()
                     }//FIN HSTACK.
-                    .offset(y: -gemr.size.height*0.15)
+                    .offset(y: -gemr.size.height*0.18)
                     .frame(width: gemr.size.width, alignment: .center)
                     
                     VStack{
@@ -128,13 +129,14 @@ struct VistaPerfilUsuarioAjeno: View {
 
                     ScrollView {
                         Text (usuarioCurrent.descripcion ?? "Nada por ahora :P")
-                            .frame(width: gemr.size.width*0.9, alignment: .leading)
+                            
+                    }.frame(width: gemr.size.width*0.9, alignment: .leading)
                             .fixedSize(horizontal: false, vertical: true)
                             .padding(.all, 10)
                             .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                             .background(colorRect)
                             .font(.custom("Arial", size:26))
-                    }.frame(width: gemr.size.width*0.95, height: gemr.size.height*0.25, alignment: .center)
+                        //.frame(width: gemr.size.width*0.95, height: gemr.size.height*0.25, alignment: .center)
                             .offset(y:-90)
                         
                         
