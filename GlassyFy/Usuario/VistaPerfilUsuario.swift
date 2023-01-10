@@ -89,8 +89,8 @@ struct VistaPerfilUsuario: View {
                         } label: {
                             Image(systemName: "pencil")
                                 .resizable()
-                                .frame(width: 31, height: 32)
-                                .padding(10)
+                                .frame(width: 55, height: 45)
+                                .padding(5)
                                 .foregroundColor(colorGreen)
                                 .border(colorGreen, width: 3) //
                                 .cornerRadius(5) //
@@ -115,7 +115,7 @@ struct VistaPerfilUsuario: View {
                         }
                         Spacer()
                     }//FIN HSTACK.
-                    .offset(y: -gemr.size.height*0.15)
+                    .offset(y: -gemr.size.height*0.18)
                     .frame(width: gemr.size.width, alignment: .center)
                     
                     VStack{
@@ -125,7 +125,7 @@ struct VistaPerfilUsuario: View {
                             .font(.custom("Arial", size:32))
                             .foregroundColor(.white)
                             //.padding(.bottom, 10)
-                            .offset(y: -90)
+                            .offset(y: -gemr.size.height*0.18)
                         
                         HStack{
                             Image(systemName: "envelope.fill")
@@ -137,7 +137,7 @@ struct VistaPerfilUsuario: View {
                         .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                         .background(colorRect)
                         .font(.custom("Arial", size:25))
-                        .offset(y: -90)
+                        .offset(y: -gemr.size.height*0.18)
                         
                         HStack{
                             Image(systemName: "phone.fill")
@@ -148,7 +148,7 @@ struct VistaPerfilUsuario: View {
                         .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                         .background(colorRect)
                         .font(.custom("Arial", size:25))
-                        .offset(y: -90)
+                        .offset(y: -gemr.size.height*0.18)
                         
                     HStack{  //Sobre mi
                         Image (systemName: "questionmark.app")
@@ -163,22 +163,21 @@ struct VistaPerfilUsuario: View {
                         Spacer()
                     }
                     .frame(height:65, alignment: .leading)
-                    .offset(y: -90)
+                    .offset(y: -gemr.size.height*0.18)
 
                     ScrollView {
                         Text (usuarioCurrent.descripcion ?? "Nada por ahora :P")
-                            .frame(width: gemr.size.width*0.9, alignment: .leading)
+                            //.frame(width: gemr.size.width*0.9, alignment: .leading)
+                            .padding()
+                        
+                    }.frame(width: gemr.size.width*0.95, alignment: .center)
+                            .frame(maxHeight: gemr.size.height*0.25)
                             .fixedSize(horizontal: false, vertical: true)
-                            .padding(.all, 10)
                             .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                             .background(colorRect)
-                            .font(.custom("Arial", size:26))
-                    }.frame(width: gemr.size.width*0.95, height: gemr.size.height*0.25, alignment: .center)
-                            .offset(y:-90)
-                        
-                        
-                        
-                        
+                            .font(.custom("Arial", size:20))
+                            .offset(y: -gemr.size.height*0.18)
+                       
                 } //VStack Todo
                     .frame(width: gemr.size.width*0.95)
                     .background(colorFondo)
@@ -194,6 +193,7 @@ struct VistaPerfilUsuario: View {
                     }else{
                         self.foto = UIImage(data: self.usuarioCurrent.foto!)!
                     }
+                    fondo = UIImage(data: self.usuarioCurrent.fondo!)!
                     //self.foto = UIImage(data: usuarioCurrent.foto!)?? ?? UIImage(systemName: "person.circle.fill")!
                 }//.offset(y: 140)
                 }.navigationBarItems(leading:
@@ -205,17 +205,17 @@ struct VistaPerfilUsuario: View {
                                         .font(.custom("Arial", size:24))
                                         .padding(.leading)
                                         .foregroundColor(colorRojoTxt)
-                                    ,trailing:
+                                    /*,trailing:
                                                             HStack{
                                         Text(usuarioCurrent.nombre!)
                                                         
                                         .font(.custom("Arial", size:24))
                                         .foregroundColor(.white)
                                         Spacer()
-                                    }
+                                    }*/
                                         )
                 .navigationBarTitleDisplayMode(.inline)
-                //.navigationBarTitle(usuarioCurrent.nombre!)
+                .navigationBarTitle(usuarioCurrent.nombre!)
             }
                 
                     

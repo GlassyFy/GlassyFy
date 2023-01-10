@@ -18,6 +18,7 @@ struct VistaEdicionPerfilUsuario: View {
     @Binding var fondo: UIImage
     @Binding var cancelar: Bool
     @State var mostrarCambiarFoto: Bool = false
+    @State var mostrarCambiarFondo: Bool = false
     @Environment(\.presentationMode) var modoPresentacion
     var body: some View {
         GeometryReader{gemr in
@@ -60,29 +61,59 @@ struct VistaEdicionPerfilUsuario: View {
 
                     ScrollView{
                         VStack {
-                        
-                        Image(uiImage: fondo)
-                                .resizable()
-                                .frame(width:gemr.size.width,  height:gemr.size.height*0.25, alignment: .center)
-                                .onTapGesture {
-                                    mostrarCambiarFoto.toggle()
-                                }
-                                .sheet (isPresented: $mostrarCambiarFoto) {
-                                    ImagePicker(sourceType: .photoLibrary) {imageSeleccionada in
-                                        fondo = imageSeleccionada
+                            ZStack{
+                                Image(uiImage: fondo)
+                                        .resizable()
+                                        .frame(width:gemr.size.width,  height:gemr.size.height*0.25, alignment: .center)
+                                //Aplicamos el sombreado
+                                    .overlay(
+                                        Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
+                                            .opacity(0.5)
+                                    )
+                                //Aplicamos la imagen de la camara
+                                    .overlay(
+                                        Image(systemName: "camera")
+                                            .resizable()
+                                            .frame(width: 40, height: 40)
+                                            .offset(y:-20)
+                                            
+                                    )
+                                    .onTapGesture {
+                                        mostrarCambiarFondo.toggle()
                                     }
-                                }
-
+                                            
+                                        
+                                        .sheet (isPresented: $mostrarCambiarFondo) {
+                                            ImagePicker(sourceType: .photoLibrary) {imagenFondo in
+                                                fondo = imagenFondo
+                                            }
+                                        }
+                            }.zIndex(0)
+                       
                         VStack {
                             
                             //Se ha integrado el cambiar foto dentro de la propia foto, al hacer click
-                            HStack { //Cambiar Foto
-                                Image(uiImage: foto) //Image(uiImage: UIImage(data: usuarioCurrent.foto!)!)//("foto")
+                            ZStack { //Cambiar Foto
+                                Image(uiImage: foto)
                                     .resizable()
-                                    //.scaledToFit()
                                     .frame(width:gemr.size.width*0.3, height:gemr.size.width*0.3)
                                     .clipShape(Circle())
-                                    .overlay(Circle().stroke(.white, lineWidth: 1))
+                                    .overlay(
+                                        Circle().stroke(.white, lineWidth: 1)
+                                    )
+                                //Aplicamos el sombreado
+                                    .overlay(
+                                        Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
+                                            .clipShape(Circle())
+                                            .opacity(0.5)
+                                    )
+                                //Aplicamos la imagen de la camara
+                                    .overlay(
+                                        Image(systemName: "camera")
+                                            .resizable()
+                                            .frame(width: 40, height: 40, alignment: .center)
+                                            
+                                    )
                                     .onTapGesture {
                                         mostrarCambiarFoto.toggle()
                                     }
@@ -91,6 +122,7 @@ struct VistaEdicionPerfilUsuario: View {
                                             foto = imageSeleccionada
                                         }
                                     }
+                                    .zIndex(3)
                                 
 //                                Button() {
 //                                    mostrarCambiarFoto.toggle()
@@ -181,6 +213,7 @@ struct VistaEdicionPerfilUsuario: View {
                 //.frame(width:gemr.size.width*0.) //475x729
                 .background(colorFondo)
                 .foregroundColor(.white)
+                .zIndex(5)
             
             
         ).padding(.leading, -gemr.size.width*0.02)

@@ -35,10 +35,10 @@ struct VistaExperimentoUsuario: View {
                         .padding()
                     
                         Text("Fecha de toma: ")
-                          .font(.custom("Arial", size:20))
+                          .font(.custom("Arial", size:18))
                           .foregroundColor(colorLabel)
                     
-                    Spacer()
+                   // Spacer()
                     
                     Text("\(experimentoCurrent.fechaToma!.formatted(.dateTime.day().month().year()))")//Text(fecha1.string(from: experimentoCurrent.fechaToma!))
                         .foregroundColor(.white)
@@ -54,10 +54,10 @@ struct VistaExperimentoUsuario: View {
                         .padding()
                     
                     Text("Creado el día: ")
-                      .font(.custom("Arial", size:20))
+                      .font(.custom("Arial", size:18))
                       .foregroundColor(colorLabel)
                     
-                    Spacer()
+                    //Spacer()
                     
                     Text("\(experimentoCurrent.fechaCreacion!.formatted(.dateTime.day().month().year()))")
                         .foregroundColor(.white)
