@@ -40,7 +40,7 @@ struct VistaFilaHistoricoUsuario: View {
                                 }
                                 HStack{
                                     Spacer()
-                                    Text("Creado el  \(experimentoCurrent.fechaCreacion!.formatted(.dateTime.day().month().year()))")
+                                    Text("Creado el  \(experimentoCurrent.fechaCreacion!.formatted(date: .numeric, time: .omitted))")
                                         .font(.custom("Arial", size:14))
                                         //.offset(y:10)
                                 }
