@@ -149,13 +149,15 @@ struct VistaEdicionPerfilUsuario: View {
 
                             HStack {  //Cambiar email
                                 Image(systemName: "envelope.fill")
-                                    //.foregroundColor(.white)
+                                    .padding(.leading, 10)
+                                    
                                 TextField("Email", text: $email)
                                     .foregroundColor(.white)
                                     .frame(height: 32, alignment: .leading)
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .multilineTextAlignment(.leading)
                             }
-                            .frame(width:gemr.size.width*0.95,  height:60, alignment: .leading) //439
+                            .frame(width:gemr.size.width*0.95,  height:60,alignment: .leading) //439
                             .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                             .background(colorRect)
                             //.foregroundColor(.white)
@@ -164,11 +166,13 @@ struct VistaEdicionPerfilUsuario: View {
                             
                             HStack { //Cambiar telefono
                                 Image(systemName: "phone.fill")
+                                    .padding(.leading, 10)
                                     //.foregroundColor(.white)
                                 TextField("Tlfno", text: $telefono)
                                     .foregroundColor(.white)
                                     .frame(height: 32, alignment: .leading)
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .multilineTextAlignment(.leading)
                             }
                             .frame(width:gemr.size.width*0.95,  height:60, alignment: .leading) //439
                             .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
@@ -182,6 +186,7 @@ struct VistaEdicionPerfilUsuario: View {
                                     .resizable()
                                     .frame(width: 43, height: 43)
                                     .background(colorRect)
+                                    .padding(.leading, gemr.size.width*0.01)
                                 Text("  Sobre mí")
                                     .font(.custom("Arial", size:32))
                                 Spacer()

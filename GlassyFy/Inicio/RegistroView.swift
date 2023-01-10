@@ -19,167 +19,170 @@ struct RegistroView: View {
     //Falta implementar restricciones para establecer una contraseña segura
     
     var body: some View {
-        ZStack{
-            Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
-                .ignoresSafeArea()
-            VStack{
-                Image("logo_glassyfy")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 400, height:300)
-                    .padding(-100)
+        GeometryReader{gemr in
+            ZStack{
+                Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
+                    .ignoresSafeArea()
                 VStack{
+                    Image("logo_glassyfy")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 400, height:300)
+                        .padding(-100)
+                    VStack{
+                        
+                        Text("Nombre de usuario")
+                            .foregroundColor(.white)
+                            .frame(width: gemr.size.width*0.7, height: 42, alignment: .bottomLeading)
+                        //                        Spacer()
+                        //                        Text("\(usuario.count)/20")
+                        //                            .foregroundColor(Color.red)
+                        //                            .frame(height: 42, alignment: .bottomLeading)
+                        
+                        TextField("", text: $usuario)
+                            .placeholder(Text("Introduzca su nombre de usuario")
+                                .foregroundColor(.white), show: usuario.isEmpty)
+                            .padding()
+                            .frame(width: gemr.size.width*0.7, height: 42)
+                            .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
+                            .foregroundColor(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .autocapitalization(.none)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(.red, lineWidth: CGFloat(wrongUsuario))
+                            )
+                            .onChange(of: self.usuario){ value in
+                                if Int(usuario.count) > 20 {
+                                    self.usuario = String(value.prefix(20))
+                                }
+                            }
+                    }
                     
-                    Text("Nombre de usuario")
+                    Text("Contraseña")
                         .foregroundColor(.white)
-                        .frame(width: 295, height: 42, alignment: .bottomLeading)
-                    //                        Spacer()
-                    //                        Text("\(usuario.count)/20")
-                    //                            .foregroundColor(Color.red)
-                    //                            .frame(height: 42, alignment: .bottomLeading)
-                    
-                    TextField("", text: $usuario)
-                        .placeholder(Text("Introduzca su nombre de usuario")
-                            .foregroundColor(.white), show: usuario.isEmpty)
+                        .frame(width: gemr.size.width*0.7, height: 42, alignment: .bottomLeading)
+                    SecureField("", text: $clave)
+                        .placeholder(Text("Introduzca su contraseña")
+                            .foregroundColor(.white), show: clave.isEmpty)
                         .padding()
-                        .frame(width: 295, height: 42)
+                        .frame(width: gemr.size.width*0.7, height: 42)
                         .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
                         .foregroundColor(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .autocapitalization(.none)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(.red, lineWidth: CGFloat(wrongUsuario))
+                                .stroke(.red, lineWidth: CGFloat(wrongClave))
                         )
-                        .onChange(of: self.usuario){ value in
-                            if Int(usuario.count) > 20 {
-                                self.usuario = String(value.prefix(20))
+                    
+                    Text("Repita su contraseña")
+                        .foregroundColor(.white)
+                        .frame(width: gemr.size.width*0.7, height: 42, alignment: .bottomLeading)
+                    SecureField("", text: $clave2)
+                        .placeholder(Text("Introduzca su contraseña")
+                            .foregroundColor(.white), show: clave2.isEmpty)
+                        .padding()
+                        .frame(width: gemr.size.width*0.7, height: 42)
+                        .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
+                        .foregroundColor(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .autocapitalization(.none)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(.red, lineWidth: CGFloat(wrongClave))
+                        )
+                    
+                    Text("Correo electrónico")
+                        .foregroundColor(.white)
+                        .frame(width: gemr.size.width*0.7, height: 42, alignment: .bottomLeading)
+                    TextField("Introduzca su correo electrónico", text: $correo)
+                        .placeholder(Text("Introduzca su correo electrónico")
+                            .foregroundColor(.white), show: correo.isEmpty)
+                        .padding()
+                        .frame(width: gemr.size.width*0.7, height: 42)
+                        .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
+                        .foregroundColor(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .autocapitalization(.none)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(.red, lineWidth: CGFloat(wrongCorreo))
+                        )
+                        .onSubmit{
+                            wrongClave = 0; wrongCorreo = 0; wrongUsuario = 0;
+                            registrarUsuario()
+                            if(registroCorrecto == true){
+                                self.presentation.wrappedValue.dismiss()
                             }
                         }
-                }
-                
-                Text("Contraseña")
-                    .foregroundColor(.white)
-                    .frame(width: 295, height: 42, alignment: .bottomLeading)
-                SecureField("", text: $clave)
-                    .placeholder(Text("Introduzca su contraseña")
-                        .foregroundColor(.white), show: clave.isEmpty)
-                    .padding()
-                    .frame(width: 295, height: 42)
-                    .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
-                    .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .autocapitalization(.none)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(.red, lineWidth: CGFloat(wrongClave))
-                    )
-                
-                Text("Repita su contraseña")
-                    .foregroundColor(.white)
-                    .frame(width: 295, height: 42, alignment: .bottomLeading)
-                SecureField("", text: $clave2)
-                    .placeholder(Text("Introduzca su contraseña")
-                        .foregroundColor(.white), show: clave2.isEmpty)
-                    .padding()
-                    .frame(width: 295, height: 42)
-                    .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
-                    .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .autocapitalization(.none)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(.red, lineWidth: CGFloat(wrongClave))
-                    )
-                
-                Text("Correo electrónico")
-                    .foregroundColor(.white)
-                    .frame(width: 295, height: 42, alignment: .bottomLeading)
-                TextField("Introduzca su correo electrónico", text: $correo)
-                    .placeholder(Text("Introduzca su correo electrónico")
-                        .foregroundColor(.white), show: correo.isEmpty)
-                    .padding()
-                    .frame(width: 295, height: 42)
-                    .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
-                    .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .autocapitalization(.none)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(.red, lineWidth: CGFloat(wrongCorreo))
-                    )
-                    .onSubmit{
-                        wrongClave = 0; wrongCorreo = 0; wrongUsuario = 0;
-                        registrarUsuario()
-                        if(registroCorrecto == true){
-                            self.presentation.wrappedValue.dismiss()
-                        }
-                    }
-                
-                Group {
-                    Text(aviso)
-                        .foregroundColor(.red)
-                        .font(.footnote)
                     
-                    Button("Registrarse"){
-                        wrongClave = 0; wrongCorreo = 0; wrongUsuario = 0;
-                        registrarUsuario()
-                        if(registroCorrecto == true){
-                            self.presentation.wrappedValue.dismiss()
-                        }
-                    }
-                    .frame(width: 144 , height: 53)
-                    .background(Color(red: 73 / 255, green: 82 / 255, blue: 189 / 255))
-                    .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 25))
-                    .padding(.top, 20)
-                    .disabled(usuario.isEmpty ||  clave.isEmpty ||  clave2.isEmpty || correo.isEmpty)
-                    .opacity(usuario.isEmpty ||  clave.isEmpty ||  clave2.isEmpty || correo.isEmpty ? 0.5 : 1.0)
-                    //                    .fullScreenCover(isPresented: $acceso) {
-                    //                        VistaMain(acceso: $acceso, usuarioCurrent: $usuarioCurrent).environmentObject(vm)
-                    //                    }
-                    
-                    //                    .sheet(isPresented: $registroCorrecto, onDismiss: {registroCorrecto = false}, content: {
-                    //                        ZStack{
-                    //                            Color.green.ignoresSafeArea()
-                    //                            Text("¡Registro realizado con éxito de \(usuarioCurrent.nombre!) :D!")
-                    //                        }
-                    //                    })
-                    
-                    HStack{
-                        Text("¿Ya tienes cuenta?")
-                            .foregroundColor(Color.white)
+                    Group {
+                        Text(aviso)
+                            .foregroundColor(.red)
                             .font(.footnote)
-                            .bold()
-                        Button("Inicia sesión aquí"){
-                            self.presentation.wrappedValue.dismiss()
+                        
+                        Button("Registrarse"){
+                            wrongClave = 0; wrongCorreo = 0; wrongUsuario = 0;
+                            registrarUsuario()
+                            if(registroCorrecto == true){
+                                self.presentation.wrappedValue.dismiss()
+                            }
                         }
-                        .foregroundColor(Color(red: 77 / 255, green: 167 / 255, blue: 231 / 255))
-                        .font(.footnote)
-                        .padding()
-                        .offset(x:-15, y:0)
+                        .frame(width: gemr.size.width*0.3 , height: 53)
+                        .background(Color(red: 73 / 255, green: 82 / 255, blue: 189 / 255))
+                        .foregroundColor(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 25))
+                        .padding(.top, 20)
+                        .disabled(usuario.isEmpty ||  clave.isEmpty ||  clave2.isEmpty || correo.isEmpty)
+                        .opacity(usuario.isEmpty ||  clave.isEmpty ||  clave2.isEmpty || correo.isEmpty ? 0.5 : 1.0)
+                        //                    .fullScreenCover(isPresented: $acceso) {
+                        //                        VistaMain(acceso: $acceso, usuarioCurrent: $usuarioCurrent).environmentObject(vm)
+                        //                    }
+                        
+                        //                    .sheet(isPresented: $registroCorrecto, onDismiss: {registroCorrecto = false}, content: {
+                        //                        ZStack{
+                        //                            Color.green.ignoresSafeArea()
+                        //                            Text("¡Registro realizado con éxito de \(usuarioCurrent.nombre!) :D!")
+                        //                        }
+                        //                    })
+                        
+                        HStack{
+                            Text("¿Ya tienes cuenta?")
+                                .foregroundColor(Color.white)
+                                .font(.footnote)
+                                .bold()
+                            Button("Inicia sesión aquí"){
+                                self.presentation.wrappedValue.dismiss()
+                            }
+                            .foregroundColor(Color(red: 77 / 255, green: 167 / 255, blue: 231 / 255))
+                            .font(.footnote)
+                            .padding()
+                            .offset(x:-15, y:0)
+                        }
                     }
-                }
+                    
+                    Text("GlassyFy 2022")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                        .frame(width: 100, height: 10, alignment:.bottom)
+                        .offset(x:0, y: 100)
+                }.frame(width: gemr.size.width*0.7)
+                    .offset(x: 0 , y: -50)
+                Spacer()
                 
-                Text("GlassyFy 2022")
-                    .font(.footnote)
-                    .foregroundColor(.gray)
-                    .frame(width: 100, height: 10, alignment:.bottom)
-                    .offset(x:0, y: 100)
-            }.frame(width: 296)
-                .offset(x: 0 , y: -50)
-            Spacer()
-            
+            }
+            .navigationBarHidden(true)
+            .onAppear{
+                aviso = ""
+                usuario = ""
+                clave = ""
+                clave2 = ""
+                correo = ""
+                //acceso = false
+            }
         }
-        .navigationBarHidden(true)
-        .onAppear{
-            aviso = ""
-            usuario = ""
-            clave = ""
-            clave2 = ""
-            correo = ""
-            //acceso = false
-        }
+        
     }
     
     func usuarioExistente(currentUser: String) -> Bool {

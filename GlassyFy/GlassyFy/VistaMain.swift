@@ -23,53 +23,54 @@ struct VistaMain: View {
     
     
     var body: some View {
-        Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
-            .ignoresSafeArea()
-            .overlay(
-        TabView(selection: $seleccion){
-            
-            //AAA
-            NavigationView{
-                AnadirDatosExpView(usuarioCurrent: $usuarioCurrent)
-            }.navigationBarHidden(true)
-                .background(colorcampostxt)
-                //.navigationBarTitle(Text("Título de la vista"), displayMode: .inline)
-            .tabItem{
-                Image(systemName: "note.text.badge.plus")
-            }
-            .tag(0)
-            
-            //BBB
-            NavigationView{
-                AnadirDatosExpView(usuarioCurrent: $usuarioCurrent)
-            }
+        GeometryReader{gemr in
+            Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
+                .ignoresSafeArea()
+                .overlay(
+            TabView(selection: $seleccion){
+                
+                //AAA
+                NavigationView{
+                    AnadirDatosExpView(usuarioCurrent: $usuarioCurrent)
+                }.navigationBarHidden(true)
+                    .background(colorcampostxt)
                 .tabItem{
-                    
-                    Image(systemName: "list.bullet.rectangle.portrait")
+                    Image(systemName: "note.text.badge.plus")
                 }
-                .tag(1)
-            
-            //CCC
-            NavigationView{
-                //AnadirDatosExpView()
-                VistaListaUsuarios()
-            }
-                .tabItem{
-                    Image(systemName: "person.3")
+                .tag(0)
+                
+                //BBB
+                NavigationView{
+                    AnadirDatosExpView(usuarioCurrent: $usuarioCurrent)
                 }
-                .tag(2)
+                    .tabItem{
+                        Image(systemName: "list.bullet.rectangle.portrait")
+                    }
+                    .tag(1)
+                
+                //CCC
+                NavigationView{
+                    VistaListaUsuarios()
+                }
+                    .tabItem{
+                        Image(systemName: "person.3")
+                    }
+                    .tag(2)
 
-            //DDD
-            NavigationView{
-                VistaPerfilUsuario(acceso: $acceso, usuarioCurrent: $usuarioCurrent).environmentObject(ViewModel())
-            }//.background(colorFondo)
-                .tabItem{
-                    //Label("Perfil", systemImage: "person.circle.fill")
-                    Image(systemName: "person.circle.fill")
-                }//.navigationTitle(vm.usuariosArray[0].nombre ?? "NOMBRE")
-                .tag(4)
+                //DDD
+                NavigationView{
+                    VistaPerfilUsuario(acceso: $acceso, usuarioCurrent: $usuarioCurrent).environmentObject(ViewModel())
+                }
+                    .tabItem{
+                        //Label("Perfil", systemImage: "person.circle.fill")
+                        Image(systemName: "person.circle.fill")
+                            
+                    }
+                    .tag(4)
+            }
+            )
         }
-        )
+        
     }
 }
 

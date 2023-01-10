@@ -13,149 +13,152 @@ struct LoginView: View {
 
     var body: some View {
         
-        ZStack{
-            Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
-                .ignoresSafeArea()
-            
-            VStack{
-                Image("logo_glassyfy")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 400, height:300)
-                    .padding(-100)
+        GeometryReader{ gemr in
+            ZStack{
+                Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
+                    .ignoresSafeArea()
                 
-                
-                
-                Text("Correo electrónico")
-                    .frame(width: 295, height: 42, alignment: .bottomLeading)
-                    .foregroundColor(.white)
-                
-                TextField("", text: $correo)
-                    .placeholder(Text("Introduzca su correo electrónico")
-                        .foregroundColor(.white),show: correo.isEmpty)
-                    .autocapitalization(.none)
-                    .padding()
-                    .frame(width: 295, height: 42)
-                    .foregroundColor(.white)
-                    .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .overlay(RoundedRectangle(cornerRadius: 10)
-                        .stroke(.red, lineWidth: CGFloat(wrongCorreo)))
-                    .onSubmit {
-                        autenticarUsuario(correoAux: correo, claveAux: clave)
-                    }
-                
-                
-                Text("Contraseña")
-                    .frame(width: 295, height: 42, alignment: .bottomLeading)
-                    .foregroundColor(.white)
-                
-                SecureField("", text: $clave)
-                    .placeholder(Text("Introduzca su contraseña")
-                        .foregroundColor(.white),show: clave.isEmpty)
-                    .autocapitalization(.none)
-                    .padding()
-                    .frame(width: 295, height: 42)
-                    .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
-                    .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(.red, lineWidth: CGFloat(wrongClave))
-                    )
-                    .onSubmit {
-                        autenticarUsuario(correoAux: correo, claveAux: clave)
-                    }
-                Text (aviso)
-                    .foregroundColor(.red)
-                    .font(.footnote)
-                
-                Button("Entrar"){
-                    autenticarUsuario(correoAux: correo, claveAux: clave)
-                }
-                .foregroundColor(.white)
-                .frame(width: 144 , height: 53)
-                .background(Color(red: 73 / 255, green: 82 / 255, blue: 189 / 255))
-                .clipShape(RoundedRectangle(cornerRadius: 25))
-                .padding(.top, 40)
-                .disabled(correo.isEmpty || clave.isEmpty)
-                .opacity(correo.isEmpty || clave.isEmpty ? 0.5 : 1.0 )
-                //                .fullScreenCover(isPresented: $acceso) {
-                //                    VistaMain(acceso: $acceso, usuarioCurrent: $usuarioCurrent).environmentObject(vm)
-                //                    //VistaPerfilUsuario(sesionIniciada: $sesionIniciada, usuarioCurrent:
-                //                    //usuarioCurrent).environmentObject(vm)
-                //                }
-                
-                //                .sheet(isPresented: $acceso, onDismiss: {acceso = false}, content: {
-                //                    ZStack{
-                //                        Color.green.ignoresSafeArea()
-                //                        Text("¡Bienvenido \(usuarioCurrent.email!) :D!")
-                //                    }
-                //                })
-                HStack{
-                    Text("¿Aún no tienes cuenta?")
-                        .foregroundColor(Color.white)
+                VStack{
+                    Image("logo_glassyfy")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: gemr.size.width*0.9, height:gemr.size.height*0.3)
+                        .padding(-100)
+                    
+                    
+                    
+                    Text("Correo electrónico")
+                        .frame(width: gemr.size.width*0.7, height: 42, alignment: .bottomLeading)
+                        .foregroundColor(.white)
+                    
+                    TextField("", text: $correo)
+                        .placeholder(Text("Introduzca su correo electrónico")
+                            .foregroundColor(.white),show: correo.isEmpty)
+                        .autocapitalization(.none)
+                        .padding()
+                        .frame(width: gemr.size.width*0.7, height: 42)
+                        .foregroundColor(.white)
+                        .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .overlay(RoundedRectangle(cornerRadius: 10)
+                            .stroke(.red, lineWidth: CGFloat(wrongCorreo)))
+                        .onSubmit {
+                            autenticarUsuario(correoAux: correo, claveAux: clave)
+                        }
+                    
+                    
+                    Text("Contraseña")
+                        .frame(width: gemr.size.width*0.7, height: 42, alignment: .bottomLeading)
+                        .foregroundColor(.white)
+                    
+                    SecureField("", text: $clave)
+                        .placeholder(Text("Introduzca su contraseña")
+                            .foregroundColor(.white),show: clave.isEmpty)
+                        .autocapitalization(.none)
+                        .padding()
+                        .frame(width: gemr.size.width*0.7, height: 42)
+                        .background(Color(red: 101 / 255, green: 101 / 255, blue: 101 / 255))
+                        .foregroundColor(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(.red, lineWidth: CGFloat(wrongClave))
+                        )
+                        .onSubmit {
+                            autenticarUsuario(correoAux: correo, claveAux: clave)
+                        }
+                    Text (aviso)
+                        .foregroundColor(.red)
                         .font(.footnote)
-                        .bold()
-                    //                    NavigationLink(destination: RegistroView(usuarioCurrent: $usuarioCurrent, acceso: $acceso).environmentObject(vm)
-                    NavigationLink(destination:
-                                    RegistroView(registroCorrecto: $registroCorrecto).environmentObject(vm)
-                                   //.animation(.easeInOut(duration: 0.5))
-                        .navigationBarBackButtonHidden(true)
-                        .navigationBarHidden(true)) {
-                            Text("Regístrate aquí")
-                                .foregroundColor(Color(red: 77 / 255, green: 167 / 255, blue: 231 / 255))
-                                .font(.footnote)
-                                .padding()
-                            
-                        }
-                        .offset(x:-15, y:0)
                     
-                }
-                
-                if(registroCorrecto == true){
+                    Button("Entrar"){
+                        autenticarUsuario(correoAux: correo, claveAux: clave)
+                    }
+                    .foregroundColor(.white)
+                    .frame(width: gemr.size.width*0.3 , height: 53)
+                    .background(Color(red: 73 / 255, green: 82 / 255, blue: 189 / 255))
+                    .clipShape(RoundedRectangle(cornerRadius: 25))
+                    .padding(.top, 40)
+                    .disabled(correo.isEmpty || clave.isEmpty)
+                    .opacity(correo.isEmpty || clave.isEmpty ? 0.5 : 1.0 )
+                    //                .fullScreenCover(isPresented: $acceso) {
+                    //                    VistaMain(acceso: $acceso, usuarioCurrent: $usuarioCurrent).environmentObject(vm)
+                    //                    //VistaPerfilUsuario(sesionIniciada: $sesionIniciada, usuarioCurrent:
+                    //                    //usuarioCurrent).environmentObject(vm)
+                    //                }
                     
+                    //                .sheet(isPresented: $acceso, onDismiss: {acceso = false}, content: {
+                    //                    ZStack{
+                    //                        Color.green.ignoresSafeArea()
+                    //                        Text("¡Bienvenido \(usuarioCurrent.email!) :D!")
+                    //                    }
+                    //                })
                     HStack{
-                        Image(systemName:"hand.thumbsup.fill")
+                        Text("¿Aún no tienes cuenta?")
                             .foregroundColor(Color.white)
-                        Text("Registro realizado con éxito").foregroundColor(Color.white)
-                            .fontWeight(.semibold)
+                            .font(.footnote)
+                            .bold()
+                        //                    NavigationLink(destination: RegistroView(usuarioCurrent: $usuarioCurrent, acceso: $acceso).environmentObject(vm)
+                        NavigationLink(destination:
+                                        RegistroView(registroCorrecto: $registroCorrecto).environmentObject(vm)
+                                       //.animation(.easeInOut(duration: 0.5))
+                            .navigationBarBackButtonHidden(true)
+                            .navigationBarHidden(true)) {
+                                Text("Regístrate aquí")
+                                    .foregroundColor(Color(red: 77 / 255, green: 167 / 255, blue: 231 / 255))
+                                    .font(.footnote)
+                                    .padding()
+                                
+                            }
+                            .offset(x:-15, y:0)
+                        
                     }
-                    .frame(width: 295, height: 42)
-                    .background(Color(red: 90 / 255, green: 163 / 255, blue: 100 / 255))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .onAppear {
-                        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-                            registroCorrecto = false
+                    
+                    if(registroCorrecto == true){
+                        
+                        HStack{
+                            Image(systemName:"hand.thumbsup.fill")
+                                .foregroundColor(Color.white)
+                            Text("Registro realizado con éxito").foregroundColor(Color.white)
+                                .fontWeight(.semibold)
                         }
+                        .frame(width: gemr.size.width*0.7, height: 42)
+                        .background(Color(red: 90 / 255, green: 163 / 255, blue: 100 / 255))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .onAppear {
+                            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+                                registroCorrecto = false
+                            }
+                        }
+                        
+                        
                     }
                     
-                    
+                    Text("GlassyFy 2022")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                        .frame(width: 100, height: 10, alignment:.bottom)
+                        .offset(x:0, y: 270)
                 }
-                
-                Text("GlassyFy 2022")
-                    .font(.footnote)
-                    .foregroundColor(.gray)
-                    .frame(width: 100, height: 10, alignment:.bottom)
-                    .offset(x:0, y: 270)
+                .padding()
+                .offset(x: 0 , y: -130)
+                Spacer()
             }
-            .padding()
-            .offset(x: 0 , y: -130)
-            Spacer()
+            .onAppear(){
+                wrongClave = 0
+                wrongCorreo = 0
+                aviso = ""
+                correo = ""
+                clave = ""
+                //acceso = false
+            }
+            //        .onDisappear(){
+            //            registroCorrecto = false
+            //        }
+            .navigationBarHidden(true)
         }
-        .onAppear(){
-            wrongClave = 0
-            wrongCorreo = 0
-            aviso = ""
-            correo = ""
-            clave = ""
-            //acceso = false
-        }
-        //        .onDisappear(){
-        //            registroCorrecto = false
-        //        }
-        .navigationBarHidden(true)
     }
+    
     func autenticarUsuario(correoAux: String, claveAux: String){
         for usuario in vm.usuariosArray {
             if (correoAux.lowercased() == usuario.email && claveAux == usuario.contrasena){
@@ -168,7 +171,6 @@ struct LoginView: View {
             wrongClave = 1
             aviso = "Correo electrónico o contraseña incorrectos"
         }
-        
     }
     
 }

@@ -61,7 +61,7 @@ struct VistaPerfilUsuario: View {
                                 .background(colorBlue)
                                 .cornerRadius(10)
                                 .foregroundColor(.white)
-                                .padding(.top, 80)
+                                .padding(.top, 95)
                         }
                         
                                                 
@@ -69,13 +69,11 @@ struct VistaPerfilUsuario: View {
                         //Image(uiImage: foto) //Image(uiImage: UIImage(data: usuarioCurrent.foto!)!)//("foto")
                         Image (uiImage: UIImage(data: usuarioCurrent.foto!) ?? UIImage(systemName: "person.circle.fill")!)
                             .resizable()
-                            //.scaledToFit()
-                            //.frame(width:234)
-                            .frame(width: gemr.size.width*0.3, height: gemr.size.height*0.3, alignment: .center)
+                            .frame(width:gemr.size.width*0.3, height:gemr.size.width*0.3)
                             .clipShape(Circle())
-                            .overlay(Circle().stroke(.white, lineWidth: 1))
-                            //.offset(y: -50)
-                            
+                            .overlay(
+                                Circle().stroke(.white, lineWidth: 1)
+                            )
                         Spacer()
                         
                         Button() {
@@ -87,14 +85,18 @@ struct VistaPerfilUsuario: View {
                             fondo = UIImage (data: usuarioCurrent.fondo!)!
                             
                         } label: {
-                            Image(systemName: "pencil")
-                                .resizable()
-                                .frame(width: 55, height: 45)
-                                .padding(5)
-                                .foregroundColor(colorGreen)
+                            HStack{
+                                Image(systemName: "pencil")
+                                    .resizable()
+                                    .frame(width: 31, height: 31)
+                                    .padding(5)
+                                    //.background(colorFondo)
+                                    .foregroundColor(colorGreen)
+                            }.frame(width: 55, height: 55)
+                                .background(colorFondo)
                                 .border(colorGreen, width: 3) //
                                 .cornerRadius(5) //
-                                .padding(.top, 80)
+                                .padding(.top, 95)
                                 //.offset(y:50)
                                 .sheet (isPresented: $mostrarEdicion,
                                     onDismiss: {
@@ -115,7 +117,7 @@ struct VistaPerfilUsuario: View {
                         }
                         Spacer()
                     }//FIN HSTACK.
-                    .offset(y: -gemr.size.height*0.18)
+                    .offset(y: -gemr.size.height*0.15)
                     .frame(width: gemr.size.width, alignment: .center)
                     
                     VStack{
@@ -125,7 +127,7 @@ struct VistaPerfilUsuario: View {
                             .font(.custom("Arial", size:32))
                             .foregroundColor(.white)
                             //.padding(.bottom, 10)
-                            .offset(y: -gemr.size.height*0.18)
+                            .offset(y: -gemr.size.height*0.15)
                         
                         HStack{
                             Image(systemName: "envelope.fill")
@@ -137,7 +139,7 @@ struct VistaPerfilUsuario: View {
                         .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                         .background(colorRect)
                         .font(.custom("Arial", size:25))
-                        .offset(y: -gemr.size.height*0.18)
+                        .offset(y: -gemr.size.height*0.15)
                         
                         HStack{
                             Image(systemName: "phone.fill")
@@ -148,7 +150,7 @@ struct VistaPerfilUsuario: View {
                         .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                         .background(colorRect)
                         .font(.custom("Arial", size:25))
-                        .offset(y: -gemr.size.height*0.18)
+                        .offset(y: -gemr.size.height*0.15)
                         
                     HStack{  //Sobre mi
                         Image (systemName: "questionmark.app")
@@ -163,26 +165,27 @@ struct VistaPerfilUsuario: View {
                         Spacer()
                     }
                     .frame(height:65, alignment: .leading)
-                    .offset(y: -gemr.size.height*0.18)
+                    .offset(y: -gemr.size.height*0.15)
 
                     ScrollView {
                         Text (usuarioCurrent.descripcion ?? "Nada por ahora :P")
                             //.frame(width: gemr.size.width*0.9, alignment: .leading)
                             .padding()
+                            .multilineTextAlignment(.leading)
                         
-                    }.frame(width: gemr.size.width*0.95, alignment: .center)
-                            .frame(maxHeight: gemr.size.height*0.25)
+                    }.frame(width: gemr.size.width*0.95)
+                            .frame(maxHeight: gemr.size.height*0.3)
                             .fixedSize(horizontal: false, vertical: true)
                             .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                             .background(colorRect)
                             .font(.custom("Arial", size:20))
-                            .offset(y: -gemr.size.height*0.18)
+                            .offset(y: -gemr.size.height*0.15)
                        
                 } //VStack Todo
                     .frame(width: gemr.size.width*0.95)
                     .background(colorFondo)
                 .foregroundColor(.white)
-                .offset(y:-50)
+                //.offset(y:-80)
                 .onAppear(){
                     self.email = usuarioCurrent.email!
                     //self.telefono = usuarioCurrent.telefono! ??
