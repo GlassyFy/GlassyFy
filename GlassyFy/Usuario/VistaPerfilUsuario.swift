@@ -199,7 +199,7 @@ struct VistaPerfilUsuario: View {
                     fondo = UIImage(data: self.usuarioCurrent.fondo!)!
                     //self.foto = UIImage(data: usuarioCurrent.foto!)?? ?? UIImage(systemName: "person.circle.fill")!
                 }//.offset(y: 140)
-                }.navigationBarItems(leading:
+                }.navigationBarItems(trailing:
                                         
                                         Button("Salir"){
                                             acceso = false

@@ -23,7 +23,7 @@ struct VistaMain: View {
     
     
     var body: some View {
-        GeometryReader{gemr in
+//        GeometryReader{gemr in
             Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
                 .ignoresSafeArea()
                 .overlay(
@@ -69,7 +69,7 @@ struct VistaMain: View {
                     .tag(4)
             }
             )
-        }
+        //}
         
     }
 }

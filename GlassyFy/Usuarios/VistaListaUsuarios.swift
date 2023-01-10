@@ -108,6 +108,7 @@ struct BusquedaUsuarioView: View {   // Subvista BARRA DE BÚSQUEDA   EJERCICIO 
                             .font(.custom("Arial", size:24))
                             .multilineTextAlignment(.leading)
                             .foregroundColor(.white)
+                            .autocapitalization(.none)
                         Button(){
                             text = ""
                         }label:{
