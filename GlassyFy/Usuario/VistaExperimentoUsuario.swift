@@ -34,13 +34,13 @@ struct VistaExperimentoUsuario: View {
                         Image(systemName: "calendar")
                         .padding()
                     
-                        Text("Fecha de toma: ")
+                        Text("Datos del día: ")
                           .font(.custom("Arial", size:18))
                           .foregroundColor(colorLabel)
                     
-                   // Spacer()
+                   Spacer()
                     
-                    Text("\(experimentoCurrent.fechaToma!.formatted(.dateTime.day().month().year()))")//Text(fecha1.string(from: experimentoCurrent.fechaToma!))
+                    Text("\(experimentoCurrent.fechaToma!.formatted(date: .numeric, time: .omitted))")//Text(fecha1.string(from: experimentoCurrent.fechaToma!))
                         .foregroundColor(.white)
                         .frame(alignment: .trailing)
                         .padding()
@@ -53,13 +53,13 @@ struct VistaExperimentoUsuario: View {
                     Image(systemName: "calendar.badge.plus")
                         .padding()
                     
-                    Text("Creado el día: ")
+                    Text("Dia creacion: ")
                       .font(.custom("Arial", size:18))
                       .foregroundColor(colorLabel)
                     
-                    //Spacer()
+                    Spacer()
                     
-                    Text("\(experimentoCurrent.fechaCreacion!.formatted(.dateTime.day().month().year()))")
+                    Text("\(experimentoCurrent.fechaCreacion!.formatted(date: .numeric, time: .omitted))")
                         .foregroundColor(.white)
                         .frame(alignment: .trailing)
                         .padding()
@@ -182,6 +182,7 @@ struct VistaExperimentoUsuario: View {
           .foregroundColor(.white)
           }
             .frame(width: gemr.size.width, height: gemr.size.height*0.8, alignment: .center)
+            .padding(.top, 20)
         }.navigationTitle(experimentoCurrent.nombre!)
       
     )
