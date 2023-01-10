@@ -73,6 +73,7 @@ struct VistaHistoricoUsuario: View {
                         }// List
                         
                         .frame(height:gemr.size.height*0.8, alignment: .center)
+                        .environment(\.defaultMinListRowHeight, 50)
                     }
                     
                     

@@ -101,7 +101,7 @@ class ViewModel: ObservableObject {
     
     
     
-    func addUsuario(nombre : String, descripcion: String, telefono : String, email: String, contrasena: String, foto: UIImage){
+    func addUsuario(nombre : String, descripcion: String, telefono : String, email: String, contrasena: String, foto: UIImage, fondo : UIImage){
         let nuevoUsuario = UsuarioEntity(context: gestorCoreData.contexto)
         nuevoUsuario.nombre = nombre
         nuevoUsuario.descripcion = descripcion
@@ -109,6 +109,7 @@ class ViewModel: ObservableObject {
         nuevoUsuario.email = email
         nuevoUsuario.contrasena = contrasena
         nuevoUsuario.foto = foto.pngData()
+        nuevoUsuario.fondo = UIImage(named: "kraken")?.pngData()
         guardarDatos()
     }
 
