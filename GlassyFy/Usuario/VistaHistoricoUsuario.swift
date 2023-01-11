@@ -43,7 +43,8 @@ struct VistaHistoricoUsuario: View {
                             ForEach(vm.experimentosArray){experimento in
                                 if (experimento.usuariosRelation==usuarioCurrent && (query.isEmpty || experimento.nombre!.contains(query))) {
                                 //if (query.isEmpty || experimento.nombre!.contains(query)) {
-                                    VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento)
+                                    VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento).frame(width: gemr.size.width*0.89)//.padding()
+                                            .offset(x: -gemr.size.width*0.03)
                                         .swipeActions {
                                                 Button(role: .destructive) {
                                                     itemToDelete = experimento
@@ -72,14 +73,14 @@ struct VistaHistoricoUsuario: View {
                                 // ForEach
                         }// List
                         
-                        .frame(height:gemr.size.height*0.8, alignment: .center)
-                        .environment(\.defaultMinListRowHeight, 50)
+                        .frame(width:gemr.size.width, height:gemr.size.height*0.9, alignment: .center)
+                        .environment(\.defaultMinListRowHeight, 60)
                     }
                     
                     
                 }// VStack
                 
-                .frame(height:gemr.size.height*0.8, alignment: .top)
+                .frame(width:gemr.size.width,height:gemr.size.height*0.8, alignment: .top)
             }.navigationBarTitleDisplayMode(.inline)
                 .navigationBarTitle("Tu historico")
                 
@@ -99,7 +100,7 @@ struct BusquedaView: View {   // Subvista BARRA DE BÚSQUEDA   EJERCICIO 2
                     HStack{
                         Image(systemName: "magnifyingglass.circle")
                             .resizable()
-                            .frame(width: 34, height: 33)
+                            .frame(width: 35, height: 35)
                             .foregroundColor(text.isEmpty ? Color(UIColor.gray).opacity(0.4) : Color(UIColor.gray).opacity(0.9))
                         TextField("Buscar experimento...", text:$text)
                             .font(.custom("Arial", size:24))
@@ -110,16 +111,21 @@ struct BusquedaView: View {   // Subvista BARRA DE BÚSQUEDA   EJERCICIO 2
                             text = ""
                         }label:{
                             Image(systemName: "x.circle")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.red)
+                                .padding(.trailing,5)
                         }
                         .opacity(text.isEmpty ? 0.0 : 1.0)   // Desaparece o aparece el botón
                     } //HStack
+                    .frame(width: gemr.size.width, height: 40, alignment: .center)
                     
                     //.frame(width: 409, height: 50, alignment:.center)
                     .background(colorRect)
                     .foregroundColor(.white)
                     .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                 }
-                    .frame(width: gemr.size.width, height: 50, alignment: .center)
+//                    .frame(width: gemr.size.width, height: 50, alignment: .center)
             )
         }
         

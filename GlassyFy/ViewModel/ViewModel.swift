@@ -67,14 +67,14 @@ class ViewModel: ObservableObject {
     }
 
   
-    func addExperimento(usuario: UsuarioEntity, nombre: String, fechaToma: Date, descripcion: String, fechaCreacion: Date, inRef: Double, magnesio: Double, aluminio: Double, potasio: Double, Calcio: Double, Bario: Double, tipo: String){
+    func addExperimento(usuario: UsuarioEntity, nombre: String, fechaToma: Date, descripcion: String, inRef: Double, magnesio: Double, aluminio: Double, potasio: Double, Calcio: Double, Bario: Double, tipo: String){
         
         let nuevoExperimento = ExperimentoEntity(context: gestorCoreData.contexto)
         nuevoExperimento.usuariosRelation = usuario
         nuevoExperimento.nombre = nombre
         nuevoExperimento.usuariosRelation = usuario
         nuevoExperimento.fechaToma = fechaToma
-        nuevoExperimento.fechaCreacion = fechaCreacion
+        //nuevoExperimento.fechaCreacion = fechaCreacion
         nuevoExperimento.descripcion = descripcion
         nuevoExperimento.iR = inRef
         nuevoExperimento.magnesio = magnesio

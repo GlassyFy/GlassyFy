@@ -554,7 +554,7 @@ struct RevisionDatosExp: View{
                                 
                                 datos.tipo = calcularTipo(RI: datos.inref, Mg: datos.magnesio, Al: datos.aluminio, K: datos.potasio, Ca: datos.calcio, Ba: datos.bario)
                                 tipoNombre = datos.tipo
-                                    vm.addExperimento(usuario: usuarioCurrent, nombre: datos.nombre, fechaToma: datos.fechaToma, descripcion: datos.descripcion, fechaCreacion: Date(), inRef: datos.inref, magnesio: datos.magnesio, aluminio: datos.aluminio, potasio: datos.potasio, Calcio: datos.calcio, Bario: datos.bario, tipo: datos.tipo)
+                                    vm.addExperimento(usuario: usuarioCurrent, nombre: datos.nombre, fechaToma: datos.fechaToma, descripcion: datos.descripcion, inRef: datos.inref, magnesio: datos.magnesio, aluminio: datos.aluminio, potasio: datos.potasio, Calcio: datos.calcio, Bario: datos.bario, tipo: datos.tipo)
                                 }
                                     .frame(width: 150, height: 55)
                                     .background(colorboton)
