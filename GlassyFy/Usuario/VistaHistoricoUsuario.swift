@@ -43,7 +43,7 @@ struct VistaHistoricoUsuario: View {
                             ForEach(vm.experimentosArray){experimento in
                                 if (experimento.usuariosRelation==usuarioCurrent && (query.isEmpty || experimento.nombre!.lowercased().starts(with: query.lowercased()))) {
                                 //if (query.isEmpty || experimento.nombre!.contains(query)) {
-                                    VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento).frame(width: gemr.size.width*0.89)//.padding()
+                                    VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento).frame(width: gemr.size.width*0.87)//.padding()
                                             .offset(x: -gemr.size.width*0.03)
                                         .swipeActions {
                                                 Button(role: .destructive) {
@@ -79,7 +79,6 @@ struct VistaHistoricoUsuario: View {
                     
                     
                 }// VStack
-                
                 .frame(width:gemr.size.width,height:gemr.size.height*0.8, alignment: .top)
             }.navigationBarTitleDisplayMode(.inline)
                 .navigationBarTitle("Tu historico")
