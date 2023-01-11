@@ -80,10 +80,12 @@ struct AnadirDatosExpView: View {
                                 Spacer()
                                 Text("\(datos.nombre.count)/20")
                                     .foregroundColor(rojotxt)
+                                
                             }
                 
                             TextField("", text: $datos.nombre)
                                 .frame(height: 42)
+                                .padding(.leading, 5)
                                 .background(colorcampostxt)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .foregroundColor(.white)
@@ -371,14 +373,14 @@ struct AnadirDatosExpB: View {
                                         .clipShape(RoundedRectangle(cornerRadius: 30))
                                 }
                             
-                        }
-                        Spacer()
+                        }.padding(.bottom, 10)
+                        //Spacer()
                     }.frame(width: gemr.size.width*0.95 )
                         .foregroundColor(Color(red: 255 / 255, green: 255 / 255, blue: 255 / 255))
                         .navigationBarBackButtonHidden(true)
                         .navigationBarTitleDisplayMode(.inline)
                 )
-            Spacer()
+            //Spacer()
         }
         
     }
@@ -433,24 +435,7 @@ struct RevisionDatosExp: View{
                             }
                             .frame(width: gemr.size.width*0.8)
                             
-                            HStack{
-                                Text("Descripción")
-                                    .foregroundColor(.white)
-                                    .font(.headline)
-                                Spacer()
-                            }
-                            .frame(width: gemr.size.width*0.8, height: 42)
-                            
-                            Text(datos.descripcion == "" ? "Sin descripción. " : "\(datos.descripcion)")
-                                .fixedSize(horizontal: false, vertical: true)
-                                .multilineTextAlignment(.leading)
-                                //.padding(.top, 10)
-                                .padding(.all, 10)
-                                .frame(width: gemr.size.width*0.8, alignment: .topLeading)
-                                .background(colorcampostxt)
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                //.multilineTextAlignment(.leading)
-                            
+
                             HStack{
                             Text("Datos")
                                 .foregroundColor(.white)
@@ -536,6 +521,24 @@ struct RevisionDatosExp: View{
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                                     .foregroundColor(.white)
                             }
+                            HStack{
+                                Text("Descripción")
+                                    .foregroundColor(.white)
+                                    .font(.headline)
+                                Spacer()
+                            }
+                            .frame(width: gemr.size.width*0.8, height: 42)
+                            
+                            Text(datos.descripcion == "" ? "Sin descripción. " : "\(datos.descripcion)")
+                                .fixedSize(horizontal: false, vertical: true)
+                                .multilineTextAlignment(.leading)
+                                //.padding(.top, 10)
+                                .padding(.all, 10)
+                                .frame(width: gemr.size.width*0.8, alignment: .topLeading)
+                                .background(colorcampostxt)
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                                //.multilineTextAlignment(.leading)
+                            
                         }
                     }
                     }
@@ -554,10 +557,10 @@ struct RevisionDatosExp: View{
                                 
                                 datos.tipo = calcularTipo(RI: datos.inref, Mg: datos.magnesio, Al: datos.aluminio, K: datos.potasio, Ca: datos.calcio, Ba: datos.bario)
                                 tipoNombre = datos.tipo
-                                    vm.addExperimento(usuario: usuarioCurrent, nombre: datos.nombre, fechaToma: datos.fechaToma, descripcion: datos.descripcion, inRef: datos.inref, magnesio: datos.magnesio, aluminio: datos.aluminio, potasio: datos.potasio, Calcio: datos.calcio, Bario: datos.bario, tipo: datos.tipo)
+                                vm.addExperimento(usuario: usuarioCurrent, nombre: datos.nombre == "" ? "Experimento" : datos.nombre, fechaToma: datos.fechaToma, descripcion: datos.descripcion, inRef: datos.inref, magnesio: datos.magnesio, aluminio: datos.aluminio, potasio: datos.potasio, Calcio: datos.calcio, Bario: datos.bario, tipo: datos.tipo)
                                 }
                                     .frame(width: 150, height: 55)
-                                    .background(colorboton)
+                                    .background(colorGreen)
                                     .foregroundColor(.white)
                                     .clipShape(RoundedRectangle(cornerRadius: 30))
                                     .popover(isPresented: $popUpVisible){
