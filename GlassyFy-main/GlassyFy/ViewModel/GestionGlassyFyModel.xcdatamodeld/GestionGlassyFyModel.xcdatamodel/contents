@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ExperimentoEntity" representedClassName="ExperimentoEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="aluminio" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="bario" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="calcio" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="descripcion" optional="YES" attributeType="String"/>
+        <attribute name="fechaCreacion" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fechaToma" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="iR" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="magnesio" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String"/>
+        <attribute name="potasio" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="tipo" optional="YES" attributeType="String"/>
+        <relationship name="usuariosRelation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UsuarioEntity" inverseName="experimentosRelation" inverseEntity="UsuarioEntity"/>
+    </entity>
+    <entity name="UsuarioEntity" representedClassName="UsuarioEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="contrasena" optional="YES" attributeType="String"/>
+        <attribute name="descripcion" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="fondo" optional="YES" attributeType="Binary"/>
+        <attribute name="foto" optional="YES" attributeType="Binary"/>
+        <attribute name="nombre" optional="YES" attributeType="String"/>
+        <attribute name="telefono" optional="YES" attributeType="String"/>
+        <relationship name="experimentosRelation" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExperimentoEntity" inverseName="usuariosRelation" inverseEntity="ExperimentoEntity"/>
+    </entity>
+    <elements>
+        <element name="ExperimentoEntity" positionX="160" positionY="192" width="128" height="209"/>
+        <element name="UsuarioEntity" positionX="160" positionY="192" width="128" height="149"/>
+    </elements>
+</model>
