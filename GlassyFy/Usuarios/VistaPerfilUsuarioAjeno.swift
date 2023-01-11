@@ -77,7 +77,7 @@ struct VistaPerfilUsuarioAjeno: View {
                             
                         Spacer()
                     }//FIN HSTACK.
-                    .offset(y: -gemr.size.height*0.18)
+                    .offset(y: -gemr.size.height*0.17)
                     .frame(width: gemr.size.width, alignment: .center)
                     
                     VStack{
@@ -87,7 +87,7 @@ struct VistaPerfilUsuarioAjeno: View {
                             .font(.custom("Arial", size:32))
                             .foregroundColor(.white)
                             //.padding(.bottom, 10)
-                            .offset(y: -90)
+                            .offset(y:  -gemr.size.height*0.15)
                         
                         HStack{
                             Image(systemName: "envelope.fill")
@@ -99,7 +99,7 @@ struct VistaPerfilUsuarioAjeno: View {
                         .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                         .background(colorRect)
                         .font(.custom("Arial", size:25))
-                        .offset(y: -90)
+                        .offset(y:  -gemr.size.height*0.15)
                         
                         HStack{
                             Image(systemName: "phone.fill")
@@ -110,7 +110,7 @@ struct VistaPerfilUsuarioAjeno: View {
                         .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                         .background(colorRect)
                         .font(.custom("Arial", size:25))
-                        .offset(y: -90)
+                        .offset(y:  -gemr.size.height*0.15)
                         
                     HStack{  //Sobre mi
                         Image (systemName: "questionmark.app")
@@ -125,7 +125,7 @@ struct VistaPerfilUsuarioAjeno: View {
                         Spacer()
                     }
                     .frame(height:65, alignment: .leading)
-                    .offset(y: -90)
+                    .offset(y:  -gemr.size.height*0.15)
 
                     ScrollView {
                         Text (usuarioCurrent.descripcion ?? "Nada por ahora :P")
@@ -137,7 +137,7 @@ struct VistaPerfilUsuarioAjeno: View {
                             .background(colorRect)
                             .font(.custom("Arial", size:26))
                         //.frame(width: gemr.size.width*0.95, height: gemr.size.height*0.25, alignment: .center)
-                            .offset(y:-90)
+                            .offset(y: -gemr.size.height*0.15)
                         
                         
                         
