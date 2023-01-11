@@ -41,7 +41,7 @@ struct VistaMain: View {
                 
                 //BBB
                 NavigationView{
-                    AnadirDatosExpView(usuarioCurrent: $usuarioCurrent)
+                    VistaHistoricoGlobal(usuarioCurrent: $usuarioCurrent)
                 }
                     .tabItem{
                         Image(systemName: "list.bullet.rectangle.portrait")

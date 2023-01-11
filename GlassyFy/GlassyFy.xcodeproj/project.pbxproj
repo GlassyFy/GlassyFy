@@ -17,6 +17,7 @@
 		29DC4255291EC5100067B0A8 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4254291EC5100067B0A8 /* ViewModel.swift */; };
 		29DC4257291EC6BA0067B0A8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4256291EC6BA0067B0A8 /* CoreDataManager.swift */; };
 		29DC425A291EC90D0067B0A8 /* GestionGlassyFyModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4258291EC90D0067B0A8 /* GestionGlassyFyModel.xcdatamodeld */; };
+		6A083CDC296EFDA800066BA4 /* HistoricoGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A083CDB296EFDA800066BA4 /* HistoricoGlobal.swift */; };
 		6A6C2380295D084800814E6C /* CalcularTipo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6C237F295D084800814E6C /* CalcularTipo.swift */; };
 		6A93879729567BDF00E9B38E /* RegistroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A93879429567BDF00E9B38E /* RegistroView.swift */; };
 		6A93879829567BDF00E9B38E /* InicioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A93879529567BDF00E9B38E /* InicioView.swift */; };
@@ -45,6 +46,7 @@
 		29DC4254291EC5100067B0A8 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		29DC4256291EC6BA0067B0A8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		29DC4259291EC90D0067B0A8 /* GestionGlassyFyModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GestionGlassyFyModel.xcdatamodel; sourceTree = "<group>"; };
+		6A083CDB296EFDA800066BA4 /* HistoricoGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricoGlobal.swift; sourceTree = "<group>"; };
 		6A6C237F295D084800814E6C /* CalcularTipo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcularTipo.swift; sourceTree = "<group>"; };
 		6A93879429567BDF00E9B38E /* RegistroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistroView.swift; sourceTree = "<group>"; };
 		6A93879529567BDF00E9B38E /* InicioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InicioView.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 		29DC4238291EC43D0067B0A8 = {
 			isa = PBXGroup;
 			children = (
+				6A083CDA296EFD9800066BA4 /* HistoricoGlobal */,
 				2995448729686A9B0000EE51 /* Usuarios */,
 				6A93878D29567A8D00E9B38E /* Inicio */,
 				6A9B59A2295529700023D088 /* Usuario */,
@@ -134,6 +137,14 @@
 				29DC4254291EC5100067B0A8 /* ViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6A083CDA296EFD9800066BA4 /* HistoricoGlobal */ = {
+			isa = PBXGroup;
+			children = (
+				6A083CDB296EFDA800066BA4 /* HistoricoGlobal.swift */,
+			);
+			path = HistoricoGlobal;
 			sourceTree = "<group>";
 		};
 		6A74D79D295A6A1300ABE4CD /* Recovered References */ = {
@@ -250,6 +261,7 @@
 				6A9B59AC295529C60023D088 /* VistaExperimentoUsuario.swift in Sources */,
 				6A9B59A4295529AF0023D088 /* VistaPerfilUsuario.swift in Sources */,
 				29DC425A291EC90D0067B0A8 /* GestionGlassyFyModel.xcdatamodeld in Sources */,
+				6A083CDC296EFDA800066BA4 /* HistoricoGlobal.swift in Sources */,
 				29DC4247291EC43D0067B0A8 /* PerfilUsuarioView.swift in Sources */,
 				29DC4245291EC43D0067B0A8 /* GlassyFyApp.swift in Sources */,
 				6ABE5F66293A714300615DFE /* ControlVistasNuevoExp.swift in Sources */,
