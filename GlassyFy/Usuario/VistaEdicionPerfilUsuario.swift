@@ -144,8 +144,9 @@ struct VistaEdicionPerfilUsuario: View {
                         .offset(y:-80) //-100
                         
                         TextField("", text: $nombre)
-                                .foregroundColor(.white)
                                 .frame(height: 32, alignment: .center)
+                                .foregroundColor(.white)    
+                                .font(.custom("Arial", size:24))
                                 //.clipShape(RoundedRectangle(cornerRadius: 10))
                                 .offset(y: -70)
                                 .onChange(of: self.nombre){ value in

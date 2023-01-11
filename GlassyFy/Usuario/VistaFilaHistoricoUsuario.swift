@@ -35,7 +35,7 @@ struct VistaFilaHistoricoUsuario: View {
                                 HStack{
                                     if (experimentoCurrent.nombre != nil) {
                                         Text(experimentoCurrent.nombre!)  //Tras eliminar, experimentoCurrent.nombre = nil
-                                            .font(.custom("Arial", size:20))
+                                            .font(.custom("Arial", size:18))
                                             .padding(.leading, 5)
                                         Spacer()
                                 }
