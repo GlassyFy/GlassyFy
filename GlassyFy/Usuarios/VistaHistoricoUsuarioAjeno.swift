@@ -40,7 +40,7 @@ struct VistaHistoricoUsuarioAjeno: View {
                             }.listRowBackground(colorFondo) // ForEach
                         }// List
                         .frame(height:gemr.size.height*0.9, alignment: .center)
-                        .environment(\.defaultMinListRowHeight, 50)
+                        .environment(\.defaultMinListRowHeight, 60)
                     }
                 }// VStack
                 .frame(width:gemr.size.width,  height:gemr.size.height, alignment: .top)

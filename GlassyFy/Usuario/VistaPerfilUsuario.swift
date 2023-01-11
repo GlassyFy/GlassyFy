@@ -17,6 +17,7 @@ struct VistaPerfilUsuario: View {
     @State var mostrarEdicion: Bool = false
     @State var cancelar: Bool = true
     @State var fondo:UIImage = UIImage(named: "kraken")!
+    @State var nombre: String = ""
     
     /*init(usuarioCurrent: UsuarioEntity) {
             self.usuarioCurrent = usuarioCurrent
@@ -106,10 +107,11 @@ struct VistaPerfilUsuario: View {
                                             usuarioCurrent.descripcion = descripcion
                                             usuarioCurrent.foto = foto.pngData()
                                             usuarioCurrent.fondo = fondo.pngData()
+                                            usuarioCurrent.nombre = nombre != "" ? nombre : usuarioCurrent.nombre
                                             vm.guardarDatos()
                                         }
                                     }, content: {
-                                        VistaEdicionPerfilUsuario(usuarioCurrent: $usuarioCurrent, email: $email, telefono: $telefono,
+                                        VistaEdicionPerfilUsuario(usuarioCurrent: $usuarioCurrent, nombre: $nombre, email: $email, telefono: $telefono,
                                                                   descripcion: $descripcion, foto: $foto, fondo: $fondo, cancelar: $cancelar)
                                     }
                                 )
@@ -151,7 +153,7 @@ struct VistaPerfilUsuario: View {
                         .background(colorRect)
                         .font(.custom("Arial", size:25))
                         .offset(y: -gemr.size.height*0.15)
-                        
+            if(usuarioCurrent.descripcion != ""){
                     HStack{  //Sobre mi
                         Image (systemName: "questionmark.app")
                             .resizable()
@@ -167,6 +169,7 @@ struct VistaPerfilUsuario: View {
                     .frame(height:65, alignment: .leading)
                     .offset(y: -gemr.size.height*0.15)
 
+                        
                     ScrollView {
                         Text (usuarioCurrent.descripcion ?? "Nada por ahora :P")
                             //.frame(width: gemr.size.width*0.9, alignment: .leading)
@@ -174,13 +177,13 @@ struct VistaPerfilUsuario: View {
                             .multilineTextAlignment(.leading)
                         
                     }.frame(width: gemr.size.width*0.95)
-                            .frame(maxHeight: gemr.size.height*0.3)
+                            .frame(maxHeight: gemr.size.height*0.3, alignment: .leading)
                             .fixedSize(horizontal: false, vertical: true)
                             .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
                             .background(colorRect)
                             .font(.custom("Arial", size:20))
                             .offset(y: -gemr.size.height*0.15)
-                       
+                        }
                 } //VStack Todo
                     .frame(width: gemr.size.width*0.95)
                     .background(colorFondo)
@@ -188,6 +191,7 @@ struct VistaPerfilUsuario: View {
                 //.offset(y:-80)
                 .onAppear(){
                     self.email = usuarioCurrent.email!
+                    self.nombre = usuarioCurrent.nombre!
                     //self.telefono = usuarioCurrent.telefono! ??
                     telefono = usuarioCurrent.telefono ?? "950 000 000"
                     self.descripcion = usuarioCurrent.descripcion ?? "Nada por ahora macho"

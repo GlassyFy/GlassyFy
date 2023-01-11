@@ -22,15 +22,7 @@ struct VistaHistoricoGlobal: View {
         .overlay(
             GeometryReader{ gemr in
                 VStack {
-//                    HStack{
-//                        Text("Histórico")
-//                            .frame(alignment: .center)
-//                            .foregroundColor(.white)
-//                    }
-//                    .frame(width:gemr.size.width  /*, height:37*/, alignment: .center)
-//                    .background(colorRect)
-//                    .font(.custom("Arial", size:24))
-//                    .zIndex(3)
+
                     HStack{
                         BusquedaView(text: $query)  //llama a la subvista para BARRA DE BÚSQUEDA
                             .frame(width: gemr.size.width*0.9)
@@ -39,45 +31,23 @@ struct VistaHistoricoGlobal: View {
                     ZStack{
                         List(){
                             ForEach(vm.experimentosArray){experimento in
-                                if ((query.isEmpty || experimento.nombre!.contains(query))) {
-                                //if (query.isEmpty || experimento.nombre!.contains(query)) {
-                                    VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento)
-                                        .swipeActions {
-                                                Button(role: .destructive) {
-                                                    itemToDelete = experimento
-                                                    showingDeleteAlert = true
-                                                } label: {
-                                                    Image(systemName: "trash.circle.fill")
-                                                        .resizable()
-                                                        .background(colorFondo)
-                                                        .foregroundColor(colorRojoTxt)
-                                                        .clipShape(Circle())
-                                                        //.frame(width: 70, height: 70)
-                                                }
-                                        }
-                                        .alert(isPresented:$showingDeleteAlert) {
-                                            Alert(
-                                                title: Text("¿Seguro desea eliminar el experimento?"),
-                                                message: Text(itemToDelete!.nombre!),
-                                                primaryButton: .destructive(Text("Sí").bold()) {
-                                                    vm.deleteExperimento(experimento: itemToDelete!)
-                                                },
-                                                secondaryButton: .cancel(Text("No").bold())
-                                            )
-                                        }
+                                if (query.isEmpty || (experimento.nombre!.lowercased().starts(with: query.lowercased()))) {
+                                    
+                                    VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento).frame(width: gemr.size.width*0.89)
+                                            .offset(x: -gemr.size.width*0.03)
                                 }  //if
                             }.listRowBackground(colorFondo)
                                 // ForEach
                         }// List
                         
-                        .frame(height:gemr.size.height*0.8, alignment: .center)
-                        .environment(\.defaultMinListRowHeight, 50)
+                        .frame(width:gemr.size.width, height:gemr.size.height*0.9, alignment: .center)
+                        .environment(\.defaultMinListRowHeight, 60)
                     }
                     
                     
                 }// VStack
                 
-                .frame(height:gemr.size.height*0.8, alignment: .top)
+                .frame(width:gemr.size.width,height:gemr.size.height*0.8, alignment: .top)
             }.navigationBarTitleDisplayMode(.inline)
                 .navigationBarTitle("Historico")
                 

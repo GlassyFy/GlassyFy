@@ -11,6 +11,7 @@ import SwiftUI
 struct VistaEdicionPerfilUsuario: View {
     @EnvironmentObject var vm: ViewModel
     @Binding var usuarioCurrent: UsuarioEntity
+    @Binding var nombre: String
     @Binding var email: String
     @Binding var telefono: String
     @Binding var descripcion: String
@@ -142,16 +143,22 @@ struct VistaEdicionPerfilUsuario: View {
                         .frame(width:gemr.size.width*0.95, alignment: .center) //
                         .offset(y:-80) //-100
                         
-                        Text(usuarioCurrent.nombre!)
-                            .frame(width:439,  height:44, alignment: .center)
-                            .font(.custom("Arial", size:36))
-                            .offset(y:-70)
+                        TextField("", text: $nombre)
+                                .foregroundColor(.white)
+                                .frame(height: 32, alignment: .center)
+                                //.clipShape(RoundedRectangle(cornerRadius: 10))
+                                .offset(y: -70)
+                                .onChange(of: self.nombre){ value in
+                                    if Int(self.nombre.count) > 20 {
+                                        self.nombre = String(value.prefix(20))
+                                    }
+                                }
 
                             HStack {  //Cambiar email
                                 Image(systemName: "envelope.fill")
                                     .padding(.leading, 10)
                                     
-                                TextField("Email", text: $email)
+                                Text("\(email)")
                                     .foregroundColor(.white)
                                     .frame(height: 32, alignment: .leading)
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -163,6 +170,7 @@ struct VistaEdicionPerfilUsuario: View {
                             //.foregroundColor(.white)
                             .font(.custom("Arial", size:28))
                             .offset(y:-60) //
+                            .opacity(0.5)
                             
                             HStack { //Cambiar telefono
                                 Image(systemName: "phone.fill")
