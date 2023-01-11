@@ -2,13 +2,12 @@
 //  VistaHistorico.swift
 //  GlassyFy
 //
-//  Created by Aula11 on 25/11/22.
+//  Created by Aula11 on 23/11/22.
 //
-
 import SwiftUI
 
 
-struct VistaHistoricoUsuario: View {
+struct VistaHistoricoGlobal: View {
     @EnvironmentObject var vm: ViewModel
     @Binding var usuarioCurrent: UsuarioEntity //= usuario
     @State var query: String = ""
@@ -24,7 +23,7 @@ struct VistaHistoricoUsuario: View {
             GeometryReader{ gemr in
                 VStack {
 //                    HStack{
-//                        Text("Tu histórico")
+//                        Text("Histórico")
 //                            .frame(alignment: .center)
 //                            .foregroundColor(.white)
 //                    }
@@ -32,7 +31,6 @@ struct VistaHistoricoUsuario: View {
 //                    .background(colorRect)
 //                    .font(.custom("Arial", size:24))
 //                    .zIndex(3)
-
                     HStack{
                         BusquedaView(text: $query)  //llama a la subvista para BARRA DE BÚSQUEDA
                             .frame(width: gemr.size.width*0.9)
@@ -41,10 +39,9 @@ struct VistaHistoricoUsuario: View {
                     ZStack{
                         List(){
                             ForEach(vm.experimentosArray){experimento in
-                                if (experimento.usuariosRelation==usuarioCurrent && (query.isEmpty || experimento.nombre!.contains(query))) {
+                                if ((query.isEmpty || experimento.nombre!.contains(query))) {
                                 //if (query.isEmpty || experimento.nombre!.contains(query)) {
-                                    VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento).frame(width: gemr.size.width*0.89)//.padding()
-                                            .offset(x: -gemr.size.width*0.03)
+                                    VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento)
                                         .swipeActions {
                                                 Button(role: .destructive) {
                                                     itemToDelete = experimento
@@ -73,62 +70,17 @@ struct VistaHistoricoUsuario: View {
                                 // ForEach
                         }// List
                         
-                        .frame(width:gemr.size.width, height:gemr.size.height*0.9, alignment: .center)
-                        .environment(\.defaultMinListRowHeight, 60)
+                        .frame(height:gemr.size.height*0.8, alignment: .center)
+                        .environment(\.defaultMinListRowHeight, 50)
                     }
                     
                     
                 }// VStack
                 
-                .frame(width:gemr.size.width,height:gemr.size.height*0.8, alignment: .top)
+                .frame(height:gemr.size.height*0.8, alignment: .top)
             }.navigationBarTitleDisplayMode(.inline)
-                .navigationBarTitle("Tu historico")
+                .navigationBarTitle("Historico")
                 
         )
     } // body
-}
-
-struct BusquedaView: View {   // Subvista BARRA DE BÚSQUEDA   EJERCICIO 2
-    @Binding var text: String
-    @EnvironmentObject var vm: ViewModel // No se si esta bien
-    var body: some View {
-        GeometryReader{ gemr in
-            Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
-            .ignoresSafeArea()
-            .overlay(
-                VStack {
-                    HStack{
-                        Image(systemName: "magnifyingglass.circle")
-                            .resizable()
-                            .frame(width: 35, height: 35)
-                            .foregroundColor(text.isEmpty ? Color(UIColor.gray).opacity(0.4) : Color(UIColor.gray).opacity(0.9))
-                            .padding(.leading, 5)
-                        TextField("Buscar experimento...", text:$text)
-                            .font(.custom("Arial", size:24))
-                            .multilineTextAlignment(.leading)
-                            .foregroundColor(.white)
-                            .autocapitalization(.none)
-                        Button(){
-                            text = ""
-                        }label:{
-                            Image(systemName: "x.circle")
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                                .foregroundColor(.red)
-                                .padding(.trailing,5)
-                        }
-                        .opacity(text.isEmpty ? 0.0 : 1.0)   // Desaparece o aparece el botón
-                    } //HStack
-                    .frame(width: gemr.size.width, height: 40, alignment: .center)
-                    
-                    //.frame(width: 409, height: 50, alignment:.center)
-                    .background(colorRect)
-                    .foregroundColor(.white)
-                    .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
-                }
-//                    .frame(width: gemr.size.width, height: 50, alignment: .center)
-            )
-        }
-        
-    }
 }
