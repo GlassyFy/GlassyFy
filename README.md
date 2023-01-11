@@ -1,4 +1,4 @@
-# GlassyFy
+# GlassLab
 Proyecto en grupo de Líneas de Productos Software
 1. **Antonio**
 2. **Ioan**
