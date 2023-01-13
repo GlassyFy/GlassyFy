@@ -18,7 +18,7 @@ struct InicioView: View {
             ZStack{
                 Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255).ignoresSafeArea()
                 VStack{
-                    Image("logo_glassyfy")
+                    Image("glaston_b2")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 400, height:300)

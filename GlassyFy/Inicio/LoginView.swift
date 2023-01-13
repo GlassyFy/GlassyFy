@@ -19,17 +19,19 @@ struct LoginView: View {
                     .ignoresSafeArea()
                 
                 VStack{
-                    Image("logo_glassyfy")
+                    Image("glaston_b1")
                         .resizable()
                         .scaledToFit()
                         .frame(width: gemr.size.width*0.9, height:gemr.size.height*0.3)
                         .padding(-100)
+                        .padding(.top, 10)
                     
                     
                     
                     Text("Correo electrónico")
                         .frame(width: gemr.size.width*0.7, height: 42, alignment: .bottomLeading)
                         .foregroundColor(.white)
+                        .padding(.top, 10)
                     
                     TextField("", text: $correo)
                         .placeholder(Text("Introduzca su correo electrónico")
@@ -134,7 +136,7 @@ struct LoginView: View {
                         
                     }
                     
-                    Text("GlassyFy 2022")
+                    Text("Glasston 2022")
                         .font(.footnote)
                         .foregroundColor(.gray)
                         .frame(width: 100, height: 10, alignment:.bottom)
