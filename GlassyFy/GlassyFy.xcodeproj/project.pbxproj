@@ -7,6 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29752FF92970E3E5006D9830 /* VistaExperimentoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B59A6295529C50023D088 /* VistaExperimentoUsuario.swift */; };
+		29752FFA2970E3E5006D9830 /* VistaPerfilUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B59A3295529AF0023D088 /* VistaPerfilUsuario.swift */; };
+		29752FFB2970E3E5006D9830 /* GestionGlassyFyModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4258291EC90D0067B0A8 /* GestionGlassyFyModel.xcdatamodeld */; };
+		29752FFC2970E3E5006D9830 /* HistoricoGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A083CDB296EFDA800066BA4 /* HistoricoGlobal.swift */; };
+		29752FFD2970E3E5006D9830 /* PerfilUsuarioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4246291EC43D0067B0A8 /* PerfilUsuarioView.swift */; };
+		29752FFE2970E3E5006D9830 /* GlassyFyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4244291EC43D0067B0A8 /* GlassyFyApp.swift */; };
+		29752FFF2970E3E5006D9830 /* ControlVistasNuevoExp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE5F65293A714300615DFE /* ControlVistasNuevoExp.swift */; };
+		297530002970E3E5006D9830 /* VistaEdicionPerfilUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B59A7295529C50023D088 /* VistaEdicionPerfilUsuario.swift */; };
+		297530012970E3E5006D9830 /* InicioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A93879529567BDF00E9B38E /* InicioView.swift */; };
+		297530022970E3E5006D9830 /* RegistroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A93879429567BDF00E9B38E /* RegistroView.swift */; };
+		297530032970E3E5006D9830 /* VistaHistoricoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B59A9295529C60023D088 /* VistaHistoricoUsuario.swift */; };
+		297530042970E3E5006D9830 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4256291EC6BA0067B0A8 /* CoreDataManager.swift */; };
+		297530052970E3E5006D9830 /* NuevoExperimentoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA136A32927F11A006C1D4F /* NuevoExperimentoView.swift */; };
+		297530062970E3E5006D9830 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A93879629567BDF00E9B38E /* LoginView.swift */; };
+		297530072970E3E5006D9830 /* VistaEliminacionExperimento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B59A5295529C50023D088 /* VistaEliminacionExperimento.swift */; };
+		297530082970E3E5006D9830 /* VistaListaUsuarios.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2995448829686ADA0000EE51 /* VistaListaUsuarios.swift */; };
+		297530092970E3E5006D9830 /* CalcularTipo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6C237F295D084800814E6C /* CalcularTipo.swift */; };
+		2975300A2970E3E5006D9830 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC4254291EC5100067B0A8 /* ViewModel.swift */; };
+		2975300B2970E3E5006D9830 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B59AA295529C60023D088 /* ImagePicker.swift */; };
+		2975300C2970E3E5006D9830 /* VistaHistoricoUsuarioAjeno.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2995448C29686C1E0000EE51 /* VistaHistoricoUsuarioAjeno.swift */; };
+		2975300D2970E3E5006D9830 /* VistaPerfilUsuarioAjeno.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2995448A29686B660000EE51 /* VistaPerfilUsuarioAjeno.swift */; };
+		2975300E2970E3E5006D9830 /* VistaMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB481B6292E3D2A00558179 /* VistaMain.swift */; };
+		2975300F2970E3E5006D9830 /* VistaFilaHistoricoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B59A8295529C60023D088 /* VistaFilaHistoricoUsuario.swift */; };
+		297530122970E3E5006D9830 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29DC424B291EC43E0067B0A8 /* Preview Assets.xcassets */; };
+		297530132970E3E5006D9830 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29DC4248291EC43E0067B0A8 /* Assets.xcassets */; };
 		2995448929686ADA0000EE51 /* VistaListaUsuarios.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2995448829686ADA0000EE51 /* VistaListaUsuarios.swift */; };
 		2995448B29686B660000EE51 /* VistaPerfilUsuarioAjeno.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2995448A29686B660000EE51 /* VistaPerfilUsuarioAjeno.swift */; };
 		2995448D29686C1E0000EE51 /* VistaHistoricoUsuarioAjeno.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2995448C29686C1E0000EE51 /* VistaHistoricoUsuarioAjeno.swift */; };
@@ -35,6 +60,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		297530172970E3E5006D9830 /* GlassyFy Dumb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GlassyFy Dumb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		297530182970E3E5006D9830 /* GlassyFy copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GlassyFy copy-Info.plist"; path = "/Users/aula11/Desktop/GlassyFy/GlassyFy copy-Info.plist"; sourceTree = "<absolute>"; };
 		2995448829686ADA0000EE51 /* VistaListaUsuarios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaListaUsuarios.swift; sourceTree = "<group>"; };
 		2995448A29686B660000EE51 /* VistaPerfilUsuarioAjeno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaPerfilUsuarioAjeno.swift; sourceTree = "<group>"; };
 		2995448C29686C1E0000EE51 /* VistaHistoricoUsuarioAjeno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaHistoricoUsuarioAjeno.swift; sourceTree = "<group>"; };
@@ -65,6 +92,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		297530102970E3E5006D9830 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29DC423E291EC43D0067B0A8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -97,6 +131,7 @@
 				29DC4243291EC43D0067B0A8 /* GlassyFy */,
 				29DC4242291EC43D0067B0A8 /* Products */,
 				6A74D79D295A6A1300ABE4CD /* Recovered References */,
+				297530182970E3E5006D9830 /* GlassyFy copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				29DC4241291EC43D0067B0A8 /* GlassyFy.app */,
+				297530172970E3E5006D9830 /* GlassyFy Dumb.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -191,6 +227,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		29752FF72970E3E5006D9830 /* GlassyFy Dumb */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 297530142970E3E5006D9830 /* Build configuration list for PBXNativeTarget "GlassyFy Dumb" */;
+			buildPhases = (
+				29752FF82970E3E5006D9830 /* Sources */,
+				297530102970E3E5006D9830 /* Frameworks */,
+				297530112970E3E5006D9830 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GlassyFy Dumb";
+			productName = GlassyFy;
+			productReference = 297530172970E3E5006D9830 /* GlassyFy Dumb.app */;
+			productType = "com.apple.product-type.application";
+		};
 		29DC4240291EC43D0067B0A8 /* GlassyFy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 29DC424F291EC43E0067B0A8 /* Build configuration list for PBXNativeTarget "GlassyFy" */;
@@ -237,11 +290,21 @@
 			projectRoot = "";
 			targets = (
 				29DC4240291EC43D0067B0A8 /* GlassyFy */,
+				29752FF72970E3E5006D9830 /* GlassyFy Dumb */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		297530112970E3E5006D9830 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				297530122970E3E5006D9830 /* Preview Assets.xcassets in Resources */,
+				297530132970E3E5006D9830 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29DC423F291EC43D0067B0A8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -254,6 +317,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		29752FF82970E3E5006D9830 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29752FF92970E3E5006D9830 /* VistaExperimentoUsuario.swift in Sources */,
+				29752FFA2970E3E5006D9830 /* VistaPerfilUsuario.swift in Sources */,
+				29752FFB2970E3E5006D9830 /* GestionGlassyFyModel.xcdatamodeld in Sources */,
+				29752FFC2970E3E5006D9830 /* HistoricoGlobal.swift in Sources */,
+				29752FFD2970E3E5006D9830 /* PerfilUsuarioView.swift in Sources */,
+				29752FFE2970E3E5006D9830 /* GlassyFyApp.swift in Sources */,
+				29752FFF2970E3E5006D9830 /* ControlVistasNuevoExp.swift in Sources */,
+				297530002970E3E5006D9830 /* VistaEdicionPerfilUsuario.swift in Sources */,
+				297530012970E3E5006D9830 /* InicioView.swift in Sources */,
+				297530022970E3E5006D9830 /* RegistroView.swift in Sources */,
+				297530032970E3E5006D9830 /* VistaHistoricoUsuario.swift in Sources */,
+				297530042970E3E5006D9830 /* CoreDataManager.swift in Sources */,
+				297530052970E3E5006D9830 /* NuevoExperimentoView.swift in Sources */,
+				297530062970E3E5006D9830 /* LoginView.swift in Sources */,
+				297530072970E3E5006D9830 /* VistaEliminacionExperimento.swift in Sources */,
+				297530082970E3E5006D9830 /* VistaListaUsuarios.swift in Sources */,
+				297530092970E3E5006D9830 /* CalcularTipo.swift in Sources */,
+				2975300A2970E3E5006D9830 /* ViewModel.swift in Sources */,
+				2975300B2970E3E5006D9830 /* ImagePicker.swift in Sources */,
+				2975300C2970E3E5006D9830 /* VistaHistoricoUsuarioAjeno.swift in Sources */,
+				2975300D2970E3E5006D9830 /* VistaPerfilUsuarioAjeno.swift in Sources */,
+				2975300E2970E3E5006D9830 /* VistaMain.swift in Sources */,
+				2975300F2970E3E5006D9830 /* VistaFilaHistoricoUsuario.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29DC423D291EC43D0067B0A8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -287,6 +380,74 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		297530152970E3E5006D9830 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GlassyFy/Preview Content\"";
+				DEVELOPMENT_TEAM = 8T699DK3TL;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "GlassyFy copy-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ual.GlassyFy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = LPS2;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		297530162970E3E5006D9830 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GlassyFy/Preview Content\"";
+				DEVELOPMENT_TEAM = 8T699DK3TL;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "GlassyFy copy-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ual.GlassyFy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = LPS2;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		29DC424D291EC43E0067B0A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -428,6 +589,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = LPS1;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -461,6 +623,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = LPS1;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -470,6 +633,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		297530142970E3E5006D9830 /* Build configuration list for PBXNativeTarget "GlassyFy Dumb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				297530152970E3E5006D9830 /* Debug */,
+				297530162970E3E5006D9830 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		29DC423C291EC43D0067B0A8 /* Build configuration list for PBXProject "GlassyFy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -606,6 +606,7 @@ struct popUpExito: View{
                         Text("Guardado con éxito")
                             .font(.title)
                         Spacer()
+                        #if LPS1
                         Text("El cristal es de tipo:")
                             .font(.title3)
                         //TODO: Implementar el tipo de cristal tras el calculo
@@ -616,6 +617,7 @@ struct popUpExito: View{
                         //Image(systemName: "wineglass.fill")
                         
                         Spacer()
+                        #endif
                         Text("Deslice hacia abajo...")
                             .font(.system(size: 10))
                         //TODO: No se pq pero el botón no cierra el popup al haber incluido el metodo para anadir el experimento a la bbdd.
