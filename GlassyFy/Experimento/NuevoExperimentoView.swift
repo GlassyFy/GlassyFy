@@ -20,7 +20,7 @@ class DatosExp: ObservableObject{
     @Published var potasio: Double = 0
     @Published var calcio: Double = 0
     @Published var bario: Double = 0
-    @Published var tipo: String = ""
+    @Published var tipo: String = "Cristal flotado"
     
     @Published var inrefStr: String = ""
     @Published var mgStr: String = ""
@@ -174,6 +174,9 @@ struct AnadirDatosExpB: View {
     @State var minValue: Double = 0
     @State var maxValue: Double = 0
     
+    var tipo = ["Cristal flotado", "Cristal no flotado", "Parabrisas flotado", "Parabrisas no flotado", "Cristal de recipiente", "Cristal de vajilla", "Cristal de faro"]
+    @State var selectTipo = "Cristal flotado"
+    
     var body: some View{
         GeometryReader{ gemr in
             Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
@@ -292,6 +295,22 @@ struct AnadirDatosExpB: View {
                                 minValue = 0
                                 maxValue = 3.5
                             }
+                            
+                            #if LPS2
+                            Text("Selecciona el tipo de cristal")
+                                .frame(width: gemr.size.width*0.8, height: 50)
+                            Picker("Selecciona el tipo de cristal", selection: $datos.tipo){
+                                ForEach(tipo, id: \.self){
+                                    Text($0)
+                                }
+                            }.frame(width: gemr.size.width*0.52, height: 50)
+                                .background(colorcampostxt)
+                                .foregroundColor(.white)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10).stroke(colorboton, lineWidth: 2)
+                                )
+                            #endif
                             
                             Button("Limpiar datos"){
                                 datos.inref = 0
@@ -521,6 +540,29 @@ struct RevisionDatosExp: View{
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                                     .foregroundColor(.white)
                             }
+                            #if LPS2
+                            HStack{
+                                Text("Tipo")
+                                    .frame(width: gemr.size.width*0.25,  height: 37)
+                                    .background(colorcampostxt)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .foregroundColor(.white)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10).stroke(azultipo, lineWidth: 2)
+                                    )
+                                
+                                Text("\(datos.tipo)")
+                                    .frame(width: gemr.size.width*0.52, height: 37)
+                                    .background(colorcampostxt)
+                                    .foregroundColor(.white)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10).stroke(azultipo, lineWidth: 2)
+                                    )
+                            }
+                            
+                            #endif
+                            
                             HStack{
                                 Text("Descripción")
                                     .foregroundColor(.white)
@@ -554,9 +596,12 @@ struct RevisionDatosExp: View{
                            
                             Text("Confirmar").onTapGesture {
                                     self.popUpVisible = true
-                                
+                                #if LPS1
                                 datos.tipo = calcularTipo(RI: datos.inref, Mg: datos.magnesio, Al: datos.aluminio, K: datos.potasio, Ca: datos.calcio, Ba: datos.bario)
+                                #endif
+                                
                                 tipoNombre = datos.tipo
+                                
                                 vm.addExperimento(usuario: usuarioCurrent, nombre: datos.nombre == "" ? "Experimento" : datos.nombre, fechaToma: datos.fechaToma, descripcion: datos.descripcion, inRef: datos.inref, magnesio: datos.magnesio, aluminio: datos.aluminio, potasio: datos.potasio, Calcio: datos.calcio, Bario: datos.bario, tipo: datos.tipo)
                                 }
                                     .frame(width: 150, height: 55)

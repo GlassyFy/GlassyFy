@@ -34,7 +34,7 @@ struct VistaListaUsuarios: View {
                         VStack{
                             List(){
                                 ForEach(vm.usuariosArray){usuario in
-                                    if (query.isEmpty || usuario.nombre!.lowercased().starts(with: query.lowercased())) {
+                                    if (query.isEmpty || usuario.nombre!.lowercased().contains( query.lowercased())) {
                                         VistaFilaUsuario(usuarioCurrent: usuario)
                                     }  //if
                                 }.listRowBackground(colorFondo) // ForEach
