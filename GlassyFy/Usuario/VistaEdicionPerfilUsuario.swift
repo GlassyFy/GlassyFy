@@ -143,18 +143,22 @@ struct VistaEdicionPerfilUsuario: View {
                         .frame(width:gemr.size.width*0.95, alignment: .center) //
                         .offset(y:-80) //-100
                         
-                        TextField("", text: $nombre)
-                                .frame(height: 32, alignment: .center)
-                                .foregroundColor(.white)    
-                                .font(.custom("Arial", size:24))
-                                //.clipShape(RoundedRectangle(cornerRadius: 10))
-                                .offset(y: -70)
-                                .onChange(of: self.nombre){ value in
-                                    if Int(self.nombre.count) > 20 {
-                                        self.nombre = String(value.prefix(20))
-                                    }
-                                }
+                            HStack{ 
+                                TextField("", text: $nombre)
+                                    .frame(width:gemr.size.width*0.95, height: 60, alignment: .center)
+                                        .foregroundColor(.white)
+                                        .font(.custom("Arial", size:24))
+                                        .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
+                                        .background(colorRect)
+                                        .offset(y: -70)
+                                        .onChange(of: self.nombre){ value in
+                                            if Int(self.nombre.count) > 20 {
+                                                self.nombre = String(value.prefix(20))
+                                            }
+                                        }
 
+                            }
+                        
                             HStack {  //Cambiar email
                                 Image(systemName: "envelope.fill")
                                     .padding(.leading, 10)

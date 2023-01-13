@@ -41,7 +41,7 @@ struct VistaHistoricoUsuario: View {
                     ZStack{
                         List(){
                             ForEach(vm.experimentosArray){experimento in
-                                if (experimento.usuariosRelation==usuarioCurrent && (query.isEmpty || experimento.nombre!.lowercased().starts(with: query.lowercased()))) {
+                                if (experimento.usuariosRelation==usuarioCurrent && (query.isEmpty || experimento.nombre!.lowercased().contains( query.lowercased()))) {
                                 //if (query.isEmpty || experimento.nombre!.contains(query)) {
                                     VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento).frame(width: gemr.size.width*0.87)//.padding()
                                             .offset(x: -gemr.size.width*0.03)

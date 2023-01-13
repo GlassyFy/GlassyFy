@@ -34,7 +34,7 @@ struct VistaHistoricoUsuarioAjeno: View {
                     ZStack{
                         List(){
                             ForEach(vm.experimentosArray){experimento in
-                                if (experimento.usuariosRelation==usuarioCurrent && (query.isEmpty || experimento.nombre!.contains(query))) {
+                                if (experimento.usuariosRelation==usuarioCurrent && (query.isEmpty || experimento.nombre!.lowercased().contains(query.lowercased()))) {
                                     VistaFilaHistoricoUsuario(usuarioCurrent: usuarioCurrent, experimentoCurrent: experimento)
                                 }  //if
                             }.listRowBackground(colorFondo) // ForEach

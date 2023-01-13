@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "29752FF72970E3E5006D9830"
-               BuildableName = "GlassyFy tonta.app"
+               BuildableName = "GlassyFy Dumb.app"
                BlueprintName = "GlassyFy Dumb"
                ReferencedContainer = "container:GlassyFy.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "29752FF72970E3E5006D9830"
-            BuildableName = "GlassyFy tonta.app"
+            BuildableName = "GlassyFy Dumb.app"
             BlueprintName = "GlassyFy Dumb"
             ReferencedContainer = "container:GlassyFy.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "29752FF72970E3E5006D9830"
-            BuildableName = "GlassyFy tonta.app"
+            BuildableName = "GlassyFy Dumb.app"
             BlueprintName = "GlassyFy Dumb"
             ReferencedContainer = "container:GlassyFy.xcodeproj">
          </BuildableReference>

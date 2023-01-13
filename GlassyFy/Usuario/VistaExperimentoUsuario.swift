@@ -137,7 +137,6 @@ struct VistaExperimentoUsuario: View {
                             .padding(.trailing, 10)
                     }//.frame(width: gemr.size.width*0.8, /*height:26,*/ alignment: .trailing)
                     
-                    #if LPS1
                     HStack{
                         Spacer()
                         Text("Tipo: ")
@@ -146,7 +145,6 @@ struct VistaExperimentoUsuario: View {
                             .frame(width: 200, alignment: .trailing)
                             .padding(.trailing, 10)
                     }//.frame(width: gemr.size.width*0.8, /*height:26,*/ alignment: .trailing)
-                    #endif
                 } //VStack
                 .frame(width: gemr.size.width*0.9, height: gemr.size.width*0.5, alignment:.top)
                 .overlay(RoundedRectangle(cornerRadius:10).stroke(colorStroke, lineWidth: 1))
