@@ -24,16 +24,18 @@ struct RegistroView: View {
                 Color(red: 48 / 255, green: 49 / 255, blue: 54 / 255)
                     .ignoresSafeArea()
                 VStack{
-                    Image("logo_glassyfy")
+                    Image("glaston_b1")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 400, height:300)
+                        .frame(width: gemr.size.width*0.9, height:gemr.size.height*0.3)
                         .padding(-100)
+                        .padding(.top, 10)
                     VStack{
                         
                         Text("Nombre de usuario")
                             .foregroundColor(.white)
                             .frame(width: gemr.size.width*0.7, height: 42, alignment: .bottomLeading)
+                            .padding(.top, 10)
                         //                        Spacer()
                         //                        Text("\(usuario.count)/20")
                         //                            .foregroundColor(Color.red)
@@ -162,7 +164,7 @@ struct RegistroView: View {
                         }
                     }
                     
-                    Text("GlassyFy 2022")
+                    Text("Glasston 2022")
                         .font(.footnote)
                         .foregroundColor(.gray)
                         .frame(width: 100, height: 10, alignment:.bottom)
