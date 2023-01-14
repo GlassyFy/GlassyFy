@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "29752FF72970E3E5006D9830"
                BuildableName = "GlassyFy Dumb.app"
-               BlueprintName = "GlassyFy Dumb"
+               BlueprintName = "Glasston Dumb"
                ReferencedContainer = "container:GlassyFy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,7 +46,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "29752FF72970E3E5006D9830"
             BuildableName = "GlassyFy Dumb.app"
-            BlueprintName = "GlassyFy Dumb"
+            BlueprintName = "Glasston Dumb"
             ReferencedContainer = "container:GlassyFy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -63,7 +63,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "29752FF72970E3E5006D9830"
             BuildableName = "GlassyFy Dumb.app"
-            BlueprintName = "GlassyFy Dumb"
+            BlueprintName = "Glasston Dumb"
             ReferencedContainer = "container:GlassyFy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
