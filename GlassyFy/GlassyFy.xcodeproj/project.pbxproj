@@ -60,12 +60,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		297530172970E3E5006D9830 /* GlassyFy Dumb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GlassyFy Dumb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		297530172970E3E5006D9830 /* Glasston Dumb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Glasston Dumb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		297530182970E3E5006D9830 /* GlassyFy copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GlassyFy copy-Info.plist"; path = "/Users/aula11/Desktop/GlassyFy/GlassyFy copy-Info.plist"; sourceTree = "<absolute>"; };
 		2995448829686ADA0000EE51 /* VistaListaUsuarios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaListaUsuarios.swift; sourceTree = "<group>"; };
 		2995448A29686B660000EE51 /* VistaPerfilUsuarioAjeno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaPerfilUsuarioAjeno.swift; sourceTree = "<group>"; };
 		2995448C29686C1E0000EE51 /* VistaHistoricoUsuarioAjeno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaHistoricoUsuarioAjeno.swift; sourceTree = "<group>"; };
-		29DC4241291EC43D0067B0A8 /* GlassyFy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlassyFy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		29DC4241291EC43D0067B0A8 /* Glasston.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glasston.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29DC4244291EC43D0067B0A8 /* GlassyFyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassyFyApp.swift; sourceTree = "<group>"; };
 		29DC4246291EC43D0067B0A8 /* PerfilUsuarioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilUsuarioView.swift; sourceTree = "<group>"; };
 		29DC4248291EC43E0067B0A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -138,8 +138,8 @@
 		29DC4242291EC43D0067B0A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				29DC4241291EC43D0067B0A8 /* GlassyFy.app */,
-				297530172970E3E5006D9830 /* GlassyFy Dumb.app */,
+				29DC4241291EC43D0067B0A8 /* Glasston.app */,
+				297530172970E3E5006D9830 /* Glasston Dumb.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -227,9 +227,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		29752FF72970E3E5006D9830 /* GlassyFy Dumb */ = {
+		29752FF72970E3E5006D9830 /* Glasston Dumb */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 297530142970E3E5006D9830 /* Build configuration list for PBXNativeTarget "GlassyFy Dumb" */;
+			buildConfigurationList = 297530142970E3E5006D9830 /* Build configuration list for PBXNativeTarget "Glasston Dumb" */;
 			buildPhases = (
 				29752FF82970E3E5006D9830 /* Sources */,
 				297530102970E3E5006D9830 /* Frameworks */,
@@ -239,14 +239,14 @@
 			);
 			dependencies = (
 			);
-			name = "GlassyFy Dumb";
+			name = "Glasston Dumb";
 			productName = GlassyFy;
-			productReference = 297530172970E3E5006D9830 /* GlassyFy Dumb.app */;
+			productReference = 297530172970E3E5006D9830 /* Glasston Dumb.app */;
 			productType = "com.apple.product-type.application";
 		};
-		29DC4240291EC43D0067B0A8 /* GlassyFy */ = {
+		29DC4240291EC43D0067B0A8 /* Glasston */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 29DC424F291EC43E0067B0A8 /* Build configuration list for PBXNativeTarget "GlassyFy" */;
+			buildConfigurationList = 29DC424F291EC43E0067B0A8 /* Build configuration list for PBXNativeTarget "Glasston" */;
 			buildPhases = (
 				29DC423D291EC43D0067B0A8 /* Sources */,
 				29DC423E291EC43D0067B0A8 /* Frameworks */,
@@ -256,9 +256,9 @@
 			);
 			dependencies = (
 			);
-			name = GlassyFy;
+			name = Glasston;
 			productName = GlassyFy;
-			productReference = 29DC4241291EC43D0067B0A8 /* GlassyFy.app */;
+			productReference = 29DC4241291EC43D0067B0A8 /* Glasston.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -289,8 +289,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				29DC4240291EC43D0067B0A8 /* GlassyFy */,
-				29752FF72970E3E5006D9830 /* GlassyFy Dumb */,
+				29DC4240291EC43D0067B0A8 /* Glasston */,
+				29752FF72970E3E5006D9830 /* Glasston Dumb */,
 			);
 		};
 /* End PBXProject section */
@@ -633,7 +633,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		297530142970E3E5006D9830 /* Build configuration list for PBXNativeTarget "GlassyFy Dumb" */ = {
+		297530142970E3E5006D9830 /* Build configuration list for PBXNativeTarget "Glasston Dumb" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				297530152970E3E5006D9830 /* Debug */,
@@ -651,7 +651,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		29DC424F291EC43E0067B0A8 /* Build configuration list for PBXNativeTarget "GlassyFy" */ = {
+		29DC424F291EC43E0067B0A8 /* Build configuration list for PBXNativeTarget "Glasston" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				29DC4250291EC43E0067B0A8 /* Debug */,

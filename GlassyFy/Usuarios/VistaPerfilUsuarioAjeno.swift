@@ -68,7 +68,7 @@ struct VistaPerfilUsuarioAjeno: View {
                         //Image(uiImage: foto) //Image(uiImage: UIImage(data: usuarioCurrent.foto!)!)//("foto")
                         Image (uiImage: UIImage(data: usuarioCurrent.foto!) ?? UIImage(systemName: "person.circle.fill")!)
                             .resizable()
-                            .scaledToFit()
+                            //.scaledToFit()
                             //.frame(width:234)
                             .frame(width: gemr.size.width*0.3, height: gemr.size.height*0.3, alignment: .center)
                             .clipShape(Circle())
