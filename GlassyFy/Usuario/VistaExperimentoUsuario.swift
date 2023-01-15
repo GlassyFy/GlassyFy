@@ -23,7 +23,7 @@ struct VistaExperimentoUsuario: View {
                       Image(systemName: "person")
                           .padding()
                       
-                      Text(usuarioCurrent.nombre!)
+                      Text((experimentoCurrent.usuariosRelation?.nombre!)!)
                         .font(.custom("Arial", size:24))
                         .foregroundColor(.white)
                   } .frame(width: gemr.size.width*0.9, height: 40, alignment: .leading)
